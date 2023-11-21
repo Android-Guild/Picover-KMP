@@ -11,16 +11,12 @@ import dev.gitlive.firebase.storage.StorageReference
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.inspectors.forAll
-import io.kotest.matchers.equals.shouldBeEqual
 import io.kotest.matchers.result.shouldBeSuccess
 import io.kotest.matchers.shouldBe
-import io.mockk.Called
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.slot
-import io.mockk.verify
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 
@@ -32,22 +28,15 @@ class AuthRepositoryTest : ShouldSpec(
 		val userName = "Jack Smith"
 		val userEmail = "test@gmail.com"
 		val userUid = "test1234567890"
-		val profile = Profile(userPhotoUrl, userName, userEmail)
-		val firebaseAuth: FirebaseAuth = mockk(relaxUnitFun = true) {
-			every { currentUser } returns mockk {
-				every { photoURL } returns userPhotoUrl
-				every { displayName } returns userName
-				every { email } returns userEmail
-				every { uid } returns userUid
-			}
+		val firebaseUser: FirebaseUser = mockk(relaxUnitFun = true) {
+			every { photoURL } returns userPhotoUrl
+			every { displayName } returns userName
+			every { email } returns userEmail
+			every { uid } returns userUid
 		}
-		val referenceToUserAvatar: StorageReference = mockk {
-			coEvery { putFile(any()) } returns mockk()
-		}
-		val storageReference: StorageReference = mockk {
-			every { child("user/$userUid") } returns referenceToUserAvatar
-		}
-		val tested = AuthRepository(storageReference, firebaseAuth)
+		val firebaseAuth: FirebaseAuth = mockk(relaxUnitFun = true)
+		val storageReference: StorageReference = mockk()
+		val tested = AuthRepository(firebaseAuth, storageReference)
 
 		should("return authEvent depending on user returned from AuthStateListener WHEN observeEvents called") {
 			listOf(
@@ -83,49 +72,37 @@ class AuthRepositoryTest : ShouldSpec(
 			result shouldBe AccountDeletionResult.ReAuthenticationNeeded
 		}
 
-		should("call StorageReference.putFile WHEN updateUserAvatar called") {
-			val userPhotoFile: File = mockk()
-			coEvery { referenceToUserAvatar.getDownloadUrl() } returns userPhotoUrl
+		should("call putFile AND update photo AND return profile WHEN updateUserAvatar called") {
+			val photoFile: File = mockk()
+			val photoReference: StorageReference = mockk(relaxUnitFun = true)
+			coEvery { storageReference.child("user/$userUid") } returns photoReference
+			every { firebaseAuth.currentUser } returns firebaseUser
+			coEvery { photoReference.getDownloadUrl() } returns userPhotoUrl
 
-			tested.updateUserAvatar(userPhotoFile)
+			val result = tested.updateUserAvatar(photoFile)
 
-			coVerify { referenceToUserAvatar.putFile(userPhotoFile) }
-		}
-
-		should("return Profile WHEN updateUserAvatar called") {
-			coEvery { referenceToUserAvatar.getDownloadUrl() } returns userPhotoUrl
-
-			val result = tested.updateUserAvatar(mockk())
-
-			result shouldBeSuccess profile
+			coVerify {
+				photoReference.putFile(photoFile)
+				firebaseUser.updateProfile(photoUrl = userPhotoUrl)
+			}
+			result shouldBeSuccess Profile(userPhotoUrl, userName, userEmail)
 		}
 
 		should("return Profile WHEN userProfile called") {
-			coEvery { referenceToUserAvatar.getDownloadUrl() } returns userPhotoUrl
+			every { firebaseAuth.currentUser } returns firebaseUser
 
 			val result = tested.userProfile()
 
-			result shouldBeSuccess profile
+			result shouldBeSuccess Profile(userPhotoUrl, userName, userEmail)
 		}
 
 		should("set display name WHEN updateUserName called") {
-			val slot = slot<String>()
-			every { firebaseAuth.currentUser!! } returns mockk {
-				every { displayName } returns "Marian Kowalski"
-				every { email } returns userEmail
-				every { uid } returns userUid
-				coEvery { updateProfile(displayName = capture(slot)) } returns mockk()
-			}
-			coEvery { referenceToUserAvatar.getDownloadUrl() } returns userPhotoUrl
+			every { firebaseAuth.currentUser } returns firebaseUser
 
 			val result = tested.updateUserName("Marian Kowalski")
 
-			result shouldBeSuccess Profile(userPhotoUrl, "Marian Kowalski", userEmail)
-			slot.captured shouldBeEqual "Marian Kowalski"
-		}
-
-		should("not call storageReference WHEN class is created") {
-			verify { storageReference wasNot Called }
+			coVerify { firebaseUser.updateProfile(displayName = "Marian Kowalski") }
+			result shouldBeSuccess Profile(userPhotoUrl, userName, userEmail)
 		}
 	},
 )
