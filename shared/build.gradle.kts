@@ -12,7 +12,9 @@ kotlin {
 	sourceSets {
 		commonMain.dependencies {
 			implementation(libs.coroutines)
+			api(libs.firebase.auth)
 			implementation(libs.firebase.firestore)
+			implementation(libs.firebase.storage)
 		}
 		commonTest.dependencies {
 			implementation(libs.test.kotlin)

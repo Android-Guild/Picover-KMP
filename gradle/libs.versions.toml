@@ -32,8 +32,9 @@ hilt-navigation = "androidx.hilt:hilt-navigation-compose:1.1.0"
 hilt-work = "androidx.hilt:hilt-work:1.1.0"
 firebase-bom = "com.google.firebase:firebase-bom:32.6.0"
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "firebase" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
-firebase-storage = { module = "com.google.firebase:firebase-storage-ktx" }
+firebase-storage = { module = "dev.gitlive:firebase-storage", version.ref = "firebase" }
 firebase-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "firebase" }
 firebaseui-auth = "com.firebaseui:firebase-ui-auth:8.0.2"
 play-services-auth = "com.google.android.gms:play-services-auth:20.7.0"

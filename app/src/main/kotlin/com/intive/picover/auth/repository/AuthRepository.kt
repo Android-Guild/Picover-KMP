@@ -1,20 +1,16 @@
 package com.intive.picover.auth.repository
 
-import android.net.Uri
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException
-import com.google.firebase.auth.userProfileChangeRequest
-import com.google.firebase.storage.StorageException
-import com.google.firebase.storage.StorageReference
 import com.intive.picover.auth.model.AccountDeletionResult
 import com.intive.picover.auth.model.AuthEvent
 import com.intive.picover.profile.model.Profile
-import javax.inject.Inject
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.tasks.await
+import dev.gitlive.firebase.auth.FirebaseAuth
+import dev.gitlive.firebase.auth.FirebaseAuthRecentLoginRequiredException
+import dev.gitlive.firebase.storage.File
+import dev.gitlive.firebase.storage.FirebaseStorageException
+import dev.gitlive.firebase.storage.StorageReference
+import kotlinx.coroutines.flow.map
 
-class AuthRepository @Inject constructor(
+class AuthRepository(
 	storageReference: StorageReference,
 	private val firebaseAuth: FirebaseAuth,
 ) {
@@ -22,29 +18,24 @@ class AuthRepository @Inject constructor(
 	private val userAvatarReference by lazy { storageReference.child("user/${requireUser().uid}") }
 
 	fun observeEvents() =
-		callbackFlow {
-			val authStateListener = FirebaseAuth.AuthStateListener {
-				if (it.currentUser == null) {
+		firebaseAuth.authStateChanged
+			.map {
+				if (it == null) {
 					AuthEvent.NotLogged
 				} else {
 					AuthEvent.Logged
-				}.let { authEvent ->
-					trySend(authEvent)
 				}
 			}
-			firebaseAuth.addAuthStateListener(authStateListener)
-			awaitClose { firebaseAuth.removeAuthStateListener(authStateListener) }
-		}
 
-	fun logout() {
+	suspend fun logout() {
 		firebaseAuth.signOut()
 	}
 
 	suspend fun userProfile() =
 		try {
-			val photoUrl = userAvatarReference.downloadUrl.await()
+			val photoUrl = userAvatarReference.getDownloadUrl()
 			Result.success(createProfile(photoUrl))
-		} catch (storageException: StorageException) {
+		} catch (storageException: FirebaseStorageException) {
 			Result.success(createProfile(null))
 		} catch (exception: Exception) {
 			Result.failure(exception)
@@ -52,20 +43,16 @@ class AuthRepository @Inject constructor(
 
 	suspend fun deleteAccount() =
 		try {
-			requireUser()
-				.delete()
-				.await()
+			requireUser().delete()
 			AccountDeletionResult.Success
 		} catch (firebaseAuthRecentLoginRequiredException: FirebaseAuthRecentLoginRequiredException) {
 			firebaseAuth.signOut()
 			AccountDeletionResult.ReAuthenticationNeeded
 		}
 
-	suspend fun updateUserAvatar(uri: Uri) =
+	suspend fun updateUserAvatar(file: File) =
 		try {
-			userAvatarReference
-				.putFile(uri)
-				.await()
+			userAvatarReference.putFile(file)
 			userProfile()
 		} catch (exception: Exception) {
 			Result.failure(exception)
@@ -73,12 +60,7 @@ class AuthRepository @Inject constructor(
 
 	suspend fun updateUserName(userName: String) =
 		try {
-			requireUser()
-				.updateProfile(
-					userProfileChangeRequest {
-						displayName = userName
-					},
-				).await()
+			requireUser().updateProfile(displayName = userName)
 			userProfile()
 		} catch (exception: Exception) {
 			Result.failure(exception)
@@ -87,10 +69,10 @@ class AuthRepository @Inject constructor(
 	private fun requireUser() =
 		firebaseAuth.currentUser!!
 
-	private fun createProfile(photoUri: Uri?) =
+	private fun createProfile(photoUrl: String?) =
 		requireUser().let {
 			Profile(
-				photo = photoUri,
+				photo = photoUrl,
 				name = it.displayName!!,
 				email = it.email!!,
 			)

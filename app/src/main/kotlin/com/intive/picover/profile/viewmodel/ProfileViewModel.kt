@@ -1,6 +1,5 @@
 package com.intive.picover.profile.viewmodel
 
-import android.net.Uri
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
@@ -14,6 +13,7 @@ import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
 import com.intive.picover.profile.model.Profile
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.gitlive.firebase.storage.File
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
@@ -31,7 +31,9 @@ class ProfileViewModel @Inject constructor(
 	}
 
 	fun onLogoutClick() {
-		authRepository.logout()
+		viewModelScope.launch {
+			authRepository.logout()
+		}
 	}
 
 	fun onDeleteAccountClick() {
@@ -46,9 +48,9 @@ class ProfileViewModel @Inject constructor(
 		}
 	}
 
-	fun updateAvatar(uri: Uri) {
+	fun updateAvatar(file: File) {
 		executeAndUpdateProfile {
-			authRepository.updateUserAvatar(uri)
+			authRepository.updateUserAvatar(file)
 		}
 	}
 
