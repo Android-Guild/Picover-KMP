@@ -1,40 +1,47 @@
 package com.intive.picover.parties.viewmodel
 
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.viewModelScope
-import com.intive.picover.common.viewmodel.StatefulViewModel
-import com.intive.picover.common.viewmodel.state.ViewModelState.Error
-import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
-import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
-import com.intive.picover.parties.model.Party
+import cafe.adriel.voyager.core.model.StateScreenModel
+import cafe.adriel.voyager.core.model.screenModelScope
+import cafe.adriel.voyager.hilt.ScreenModelFactory
+import com.intive.picover.common.viewmodel.state.MVIStateType
+import com.intive.picover.parties.model.PartyDetailsState
 import com.intive.picover.parties.model.toUI
 import com.intive.picover.shared.party.data.repo.PartiesRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-@HiltViewModel
-class PartyDetailsViewModel @Inject constructor(
-	savedStateHandle: SavedStateHandle,
+class PartyDetailsViewModel @AssistedInject constructor(
+	@Assisted private val partyId: String,
 	private val partiesRepository: PartiesRepository,
-) : StatefulViewModel<Party>() {
-
-	private val partyId: String = savedStateHandle["partyId"]!!
+) : StateScreenModel<PartyDetailsState>(PartyDetailsState()) {
 
 	init {
 		loadParty()
 	}
 
 	fun loadParty() {
-		viewModelScope.launch {
-			_state.value = Loading
+		screenModelScope.launch {
+			mutableState.update { it.copy(type = MVIStateType.LOADING) }
 			partiesRepository.partyById(partyId)
 				.catch {
-					_state.value = Error
-				}.collect {
-					_state.value = Loaded(it.toUI())
+					mutableState.update { it.copy(type = MVIStateType.ERROR) }
+				}.collect { party ->
+					mutableState.update {
+						it.copy(
+							type = MVIStateType.LOADED,
+							party = party.toUI(),
+						)
+					}
 				}
 		}
+	}
+
+	@AssistedFactory
+	interface Factory : ScreenModelFactory {
+		fun create(partyId: String): PartyDetailsViewModel
 	}
 }
