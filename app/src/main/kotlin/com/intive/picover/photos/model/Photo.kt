@@ -1,19 +1,18 @@
 package com.intive.picover.photos.model
 
-import android.net.Uri
 import kotlin.random.Random
 
 data class Photo(
 	val height: Int,
 	val width: Int,
-	val uri: Uri,
+	val url: String,
 ) {
 	companion object {
-		fun withRandomSize(uri: Uri) =
+		fun withRandomSize(url: String) =
 			Photo(
 				height = Random.nextInt(100, 200),
 				width = Random.nextInt(200, 500),
-				uri = uri,
+				url = url,
 			)
 	}
 }

@@ -1,17 +1,14 @@
 package com.intive.picover.images.repository
 
-import com.google.firebase.storage.StorageReference
-import com.intive.picover.common.coroutines.dispatcher.Dispatcher
-import javax.inject.Inject
+import dev.gitlive.firebase.storage.StorageReference
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class ImagesRepository @Inject constructor(
+class ImagesRepository(
 	storageReference: StorageReference,
-	@Dispatcher.IO private val dispatcher: CoroutineDispatcher,
+	private val dispatcher: CoroutineDispatcher,
 ) {
 
 	private val imageReference =
@@ -19,10 +16,10 @@ class ImagesRepository @Inject constructor(
 
 	suspend fun fetchImages() =
 		withContext(dispatcher) {
-			imageReference.listAll().await().items
+			imageReference.listAll().items
 				.map {
 					async {
-						it.downloadUrl.await()
+						it.getDownloadUrl()
 					}
 				}.awaitAll()
 		}

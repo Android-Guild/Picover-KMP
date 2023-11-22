@@ -35,15 +35,15 @@ internal class ImagesViewModelTest : ShouldSpec(
 		}
 
 		should("set state WHEN fetchImages called") {
-			val uri: Uri = mockk()
-			val photo = Photo(10, 10, uri)
+			val url = "photo.jpg"
+			val photo = Photo(10, 10, url)
 			listOf(
-				Loading to mockkAnswer<List<Uri>> { just(Awaits) },
+				Loading to mockkAnswer<List<String>> { just(Awaits) },
 				Error to mockkAnswer { throws(Throwable()) },
-				Loaded(listOf(photo)) to mockkAnswer { returns(listOf(uri)) },
+				Loaded(listOf(photo)) to mockkAnswer { returns(listOf(url)) },
 			).forAll { (state, answers) ->
 				coEvery { imagesRepository.fetchImages() }.answers()
-				every { Photo.withRandomSize(uri) } returns photo
+				every { Photo.withRandomSize(url) } returns photo
 
 				val tested = ImagesViewModel(imagesRepository, mockk(), mockk())
 

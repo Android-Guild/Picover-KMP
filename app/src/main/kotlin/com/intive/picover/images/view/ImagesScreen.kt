@@ -52,7 +52,7 @@ private fun PhotosGrid(photos: List<Photo>, onImageTaken: (Uri) -> Unit) {
 			items(photos) {
 				CoilImage(
 					modifier = Modifier.size(it.width.dp, it.height.dp),
-					imageModel = { it.uri },
+					imageModel = { it.url },
 					previewPlaceholder = R.drawable.ic_launcher_foreground,
 					component = LocalImageComponent.current,
 				)
@@ -75,7 +75,7 @@ private fun PhotosGrid(photos: List<Photo>, onImageTaken: (Uri) -> Unit) {
 @Composable
 private fun PhotosGridPreview() {
 	val uris = (1..14).map {
-		Photo.withRandomSize(Uri.EMPTY)
+		Photo.withRandomSize("$it")
 	}
 	PhotosGrid(uris) {}
 }
