@@ -22,6 +22,7 @@ import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
 import com.intive.picover.profile.model.Profile
 import com.intive.picover.profile.viewmodel.ProfileViewModel
+import dev.gitlive.firebase.storage.File
 
 @Composable
 fun ProfileScreen(
@@ -30,7 +31,7 @@ fun ProfileScreen(
 ) {
 	val state by viewModel.state
 	val takePictureOrPickImageLauncher = rememberLauncherForActivityResult(TakePictureOrPickImageContract()) { uri ->
-		uri?.let(viewModel::updateAvatar)
+		uri?.let { viewModel.updateAvatar(File(it)) }
 	}
 	Column(
 		modifier = Modifier

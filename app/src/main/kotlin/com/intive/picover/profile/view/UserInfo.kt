@@ -1,6 +1,5 @@
 package com.intive.picover.profile.view
 
-import android.net.Uri
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -106,12 +105,12 @@ fun UserInfo(
 }
 
 @Composable
-private fun UserAvatar(imageUri: Uri?) {
+private fun UserAvatar(imageUrl: String?) {
 	CoilImage(
 		modifier = Modifier
 			.size(120.dp)
 			.clip(CircleShape),
-		imageModel = { imageUri },
+		imageModel = { imageUrl },
 		imageOptions = ImageOptions(
 			alignment = Alignment.Center,
 			contentDescription = null,
@@ -128,6 +127,6 @@ private fun UserAvatar(imageUri: Uri?) {
 @Composable
 private fun UserInfoPreview() {
 	PicoverTheme {
-		UserInfo(Profile(photo = Uri.parse("photo"), name = "test", email = "test@aa.bb"), {}, {})
+		UserInfo(Profile(photo = "photo", name = "test", email = "test@aa.bb"), {}, {})
 	}
 }
