@@ -18,8 +18,8 @@ object AuthModule {
 	@Provides
 	fun provideAuthRepository() =
 		AuthRepository(
-			Firebase.storage.reference,
 			Firebase.auth,
+			Firebase.storage.reference,
 		)
 
 	@Provides
