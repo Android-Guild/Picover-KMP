@@ -23,7 +23,7 @@ import kotlin.random.nextInt
 
 @HiltWorker
 @RequiresApi(Build.VERSION_CODES.S)
-class UploadPhotoWorker @AssistedInject constructor(
+internal class UploadPhotoWorker @AssistedInject constructor(
 	@Assisted appContext: Context,
 	@Assisted workerParams: WorkerParameters,
 	private val storageReference: StorageReference,

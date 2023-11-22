@@ -50,6 +50,7 @@ kotlin {
 
 dependencies {
 	add("kspAndroid", libs.hilt.android.compiler)
+	add("kspAndroid", libs.hilt.compiler)
 }
 
 android {
