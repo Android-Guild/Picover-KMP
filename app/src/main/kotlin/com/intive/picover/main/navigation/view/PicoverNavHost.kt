@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import cafe.adriel.voyager.navigator.Navigator
 import com.google.accompanist.navigation.material.BottomSheetNavigator
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.ModalBottomSheetLayout
@@ -60,7 +61,8 @@ fun PicoverNavHost(
 				route = "partyDetails/{partyId}",
 				arguments = listOf(navArgument("partyId") { type = NavType.StringType }),
 			) {
-				PartyDetailsScreen(hiltViewModel())
+				val partyId = it.arguments!!.getString("partyId")!!
+				Navigator(PartyDetailsScreen(partyId))
 			}
 			profileGraph(navController)
 			composable("articles") {

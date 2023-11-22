@@ -1,11 +1,11 @@
 package com.intive.picover.parties.viewmodel
 
-import androidx.lifecycle.SavedStateHandle
 import com.intive.picover.common.coroutines.CoroutineTestExtension
-import com.intive.picover.common.viewmodel.state.ViewModelState.Error
-import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
-import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
+import com.intive.picover.common.viewmodel.state.MVIStateType.ERROR
+import com.intive.picover.common.viewmodel.state.MVIStateType.LOADED
+import com.intive.picover.common.viewmodel.state.MVIStateType.LOADING
 import com.intive.picover.parties.model.Party
+import com.intive.picover.parties.model.PartyDetailsState
 import com.intive.picover.parties.model.toUI
 import com.intive.picover.shared.party.data.model.PartyRemote
 import com.intive.picover.shared.party.data.repo.PartiesRepository
@@ -28,7 +28,6 @@ class PartyDetailsViewModelTest : ShouldSpec(
 		val partyRemote: PartyRemote = mockk()
 		val party: Party = mockk()
 		val repository: PartiesRepository = mockk()
-		val savedStateHandle = SavedStateHandle(mapOf("partyId" to partyId))
 		lateinit var tested: PartyDetailsViewModel
 
 		beforeSpec {
@@ -42,13 +41,13 @@ class PartyDetailsViewModelTest : ShouldSpec(
 
 		should("set state WHEN initialized according to fetch party by id result") {
 			listOf(
-				emptyFlow<PartyRemote>() to Loading,
-				flowOf(partyRemote) to Loaded(party),
-				flow<PartyRemote> { throw Exception() } to Error,
+				emptyFlow<PartyRemote>() to PartyDetailsState(type = LOADING),
+				flowOf(partyRemote) to PartyDetailsState(type = LOADED, party = party),
+				flow<PartyRemote> { throw Exception() } to PartyDetailsState(type = ERROR),
 			).forAll { (result, state) ->
 				every { repository.partyById(partyId) } returns result
 
-				tested = PartyDetailsViewModel(savedStateHandle, repository)
+				tested = PartyDetailsViewModel(partyId, repository)
 
 				tested.state.value shouldBe state
 			}

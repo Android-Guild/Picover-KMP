@@ -5,26 +5,34 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.hilt.getScreenModel
 import com.intive.picover.common.error.PicoverGenericError
 import com.intive.picover.common.loader.PicoverLoader
+import com.intive.picover.common.viewmodel.state.MVIStateType
 import com.intive.picover.main.theme.Typography
 import com.intive.picover.parties.model.Party
 import com.intive.picover.parties.viewmodel.PartyDetailsViewModel
 
-@Composable
-fun PartyDetailsScreen(
-	viewModel: PartyDetailsViewModel,
-) {
-	val state by viewModel.state
-	when {
-		state.isLoading() -> PicoverLoader(modifier = Modifier.fillMaxSize())
-		state.isLoaded() -> LoadedContent(party = state.data())
-		state.isError() -> PicoverGenericError(onRetryClick = { viewModel.loadParty() })
+data class PartyDetailsScreen(val partyId: String) : Screen {
+
+	@Composable
+	override fun Content() {
+		val viewModel = getScreenModel<PartyDetailsViewModel, PartyDetailsViewModel.Factory> { factory ->
+			factory.create(partyId)
+		}
+		val state by viewModel.state.collectAsState()
+		when (state.type) {
+			MVIStateType.LOADING -> PicoverLoader(modifier = Modifier.fillMaxSize())
+			MVIStateType.LOADED -> LoadedContent(party = state.party!!)
+			MVIStateType.ERROR -> PicoverGenericError(onRetryClick = { viewModel.loadParty() })
+		}
 	}
 }
 
