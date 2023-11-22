@@ -6,8 +6,8 @@ import android.net.Uri
 import androidx.work.ListenableWorker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import com.google.firebase.storage.StorageReference
 import com.intive.picover.common.notification.provider.PicoverNotificationProvider
+import dev.gitlive.firebase.storage.StorageReference
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
@@ -42,12 +42,7 @@ class UploadPhotoWorkerTest : ShouldSpec(
 			every { workerParams.inputData } returns workDataOf("PHOTO_URI" to "photo1.jpg")
 			coEvery { tested.setForeground(any()) } just runs
 			every { Uri.parse("photo1.jpg") } returns photoUri
-			coEvery { storageReference.child("image").child(any()).putFile(photoUri) } returns mockk {
-				every { isComplete } returns true
-				every { exception } returns null
-				every { isCanceled } returns false
-				every { result } returns mockk()
-			}
+			coEvery { storageReference.child("image").child(any()).putFile(match { it.uri == photoUri }) } just runs
 
 			val result = tested.doWork()
 

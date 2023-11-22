@@ -1,12 +1,12 @@
 package com.intive.picover.articles.repository
 
-import com.google.android.gms.tasks.Tasks
-import com.google.firebase.storage.ListResult
-import com.google.firebase.storage.StorageReference
+import dev.gitlive.firebase.storage.ListResult
+import dev.gitlive.firebase.storage.StorageReference
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.result.shouldBeFailure
 import io.kotest.matchers.result.shouldBeSuccess
 import io.mockk.called
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -27,7 +27,7 @@ class ArticlesRepositoryTest : ShouldSpec(
 					mockk { every { name } returns "Article 2" },
 				)
 			}
-			every { storageReference.child("article").listAll() } returns Tasks.forResult(storageListResult)
+			coEvery { storageReference.child("article").listAll() } returns storageListResult
 
 			val result = tested.names()
 
@@ -36,7 +36,7 @@ class ArticlesRepositoryTest : ShouldSpec(
 
 		should("return error WHEN storage returns exception") {
 			val error = Exception()
-			every { storageReference.child("article").listAll() } returns Tasks.forException(error)
+			coEvery { storageReference.child("article").listAll() } throws error
 
 			val result = tested.names()
 

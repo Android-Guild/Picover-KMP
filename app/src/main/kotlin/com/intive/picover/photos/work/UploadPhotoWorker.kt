@@ -11,15 +11,15 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.ForegroundInfo
 import androidx.work.WorkerParameters
-import com.google.firebase.storage.StorageReference
 import com.intive.picover.R
 import com.intive.picover.common.notification.provider.PicoverNotificationProvider
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import dev.gitlive.firebase.storage.File
+import dev.gitlive.firebase.storage.StorageReference
 import java.time.LocalDateTime
 import kotlin.random.Random
 import kotlin.random.nextInt
-import kotlinx.coroutines.tasks.await
 
 @HiltWorker
 @RequiresApi(Build.VERSION_CODES.S)
@@ -46,8 +46,7 @@ class UploadPhotoWorker @AssistedInject constructor(
 	private suspend fun uploadPhoto(photoUri: Uri) {
 		storageReference.child("image")
 			.child("photo_${LocalDateTime.now()}")
-			.putFile(photoUri)
-			.await()
+			.putFile(File(photoUri))
 	}
 
 	private fun createNotificationChannel() {

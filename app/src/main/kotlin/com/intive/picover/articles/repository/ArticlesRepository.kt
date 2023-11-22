@@ -1,10 +1,8 @@
 package com.intive.picover.articles.repository
 
-import com.google.firebase.storage.StorageReference
-import javax.inject.Inject
-import kotlinx.coroutines.tasks.await
+import dev.gitlive.firebase.storage.StorageReference
 
-class ArticlesRepository @Inject constructor(
+class ArticlesRepository(
 	storageReference: StorageReference,
 ) {
 	private val articles by lazy { storageReference.child("article") }
@@ -12,7 +10,6 @@ class ArticlesRepository @Inject constructor(
 	suspend fun names() =
 		runCatching {
 			articles.listAll()
-				.await()
 				.items
 				.map { it.name }
 		}
