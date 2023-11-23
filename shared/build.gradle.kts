@@ -1,6 +1,8 @@
 plugins {
 	alias(libs.plugins.kotlin.multiplatform)
 	alias(libs.plugins.android.library)
+	alias(libs.plugins.kotlin.ksp)
+	alias(libs.plugins.hilt.android)
 	alias(libs.plugins.kotest)
 }
 
@@ -23,7 +25,7 @@ kotlin {
 	sourceSets {
 		commonMain.dependencies {
 			implementation(libs.coroutines)
-			api(libs.firebase.auth)
+			implementation(libs.firebase.auth)
 			implementation(libs.firebase.firestore)
 			implementation(libs.firebase.storage)
 		}
@@ -34,6 +36,7 @@ kotlin {
 		}
 		androidMain.dependencies {
 			implementation(libs.android.core)
+			implementation(libs.hilt.android)
 			implementation(libs.hilt.work)
 			implementation(libs.workmanager)
 		}
@@ -43,6 +46,10 @@ kotlin {
 			}
 		}
 	}
+}
+
+dependencies {
+	add("kspAndroid", libs.hilt.android.compiler)
 }
 
 android {

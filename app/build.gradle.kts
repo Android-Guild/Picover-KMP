@@ -82,7 +82,6 @@ dependencies {
 	implementation(libs.material)
 	implementation(libs.firebaseui.auth)
 	implementation(libs.play.services.auth)
-	implementation(libs.firebase.firestore)
 	implementation(libs.workmanager)
 	implementation(libs.bundles.voyager)
 	debugImplementation(libs.compose.ui.tooling)
