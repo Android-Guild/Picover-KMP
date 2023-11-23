@@ -2,7 +2,6 @@ package com.intive.picover.shared.di
 
 import android.content.Context
 import androidx.work.WorkManager
-import com.intive.picover.articles.repository.ArticlesRepository
 import com.intive.picover.auth.repository.AuthRepository
 import com.intive.picover.images.repository.ImagesRepository
 import com.intive.picover.shared.party.data.repo.PartiesRepository
@@ -36,10 +35,6 @@ object SharedModule {
 			Firebase.auth,
 			storageReference,
 		)
-
-	@Provides
-	fun provideArticlesRepository(storageReference: StorageReference) =
-		ArticlesRepository(storageReference)
 
 	@Provides
 	fun provideImagesRepository(
