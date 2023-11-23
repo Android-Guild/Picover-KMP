@@ -23,14 +23,18 @@ import kotlinx.coroutines.CoroutineDispatcher
 object SharedModule {
 
 	@Provides
+	fun provideFirebaseStorageReference() =
+		Firebase.storage.reference
+
+	@Provides
 	fun providePartiesRepository() =
 		PartiesRepository(Firebase.firestore)
 
 	@Provides
-	fun provideAuthRepository() =
+	fun provideAuthRepository(storageReference: StorageReference) =
 		AuthRepository(
 			Firebase.auth,
-			Firebase.storage.reference,
+			storageReference,
 		)
 
 	@Provides
