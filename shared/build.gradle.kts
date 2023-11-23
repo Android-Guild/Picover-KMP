@@ -32,6 +32,11 @@ kotlin {
 			implementation(libs.test.kotest.engine)
 			implementation(libs.test.mockk)
 		}
+		androidMain.dependencies {
+			implementation(libs.android.core)
+			implementation(libs.hilt.work)
+			implementation(libs.workmanager)
+		}
 		val androidUnitTest by getting {
 			dependencies {
 				implementation(libs.test.kotest.runner)
@@ -44,6 +49,6 @@ android {
 	namespace = "com.intive.picover.shared"
 	compileSdk = 34
 	defaultConfig {
-		minSdk = 24
+		minSdk = 26
 	}
 }
