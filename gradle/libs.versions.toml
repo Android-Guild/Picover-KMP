@@ -7,6 +7,7 @@ ktlint = "1.0.1"
 lint = "31.1.4"
 landscapist = "2.2.12"
 firebase = "1.10.4"
+resources = "0.23.0"
 voyager = "1.0.0-rc10"
 
 [libraries]
@@ -44,6 +45,7 @@ lint-api = { group = "com.android.tools.lint", name = "lint-api", version.ref = 
 ktlint-cli = { group = "com.pinterest.ktlint", name = "ktlint-cli", version.ref = "ktlint" }
 ktlint-ruleset = { group = "com.pinterest.ktlint", name = "ktlint-cli-ruleset-core", version.ref = "ktlint" }
 material = "com.google.android.material:material:1.10.0"
+resources = { module = "dev.icerock.moko:resources", version.ref = "resources" }
 workmanager = "androidx.work:work-runtime-ktx:2.8.1"
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-hilt = { module = "cafe.adriel.voyager:voyager-hilt", version.ref = "voyager" }
@@ -77,3 +79,4 @@ kover = "org.jetbrains.kotlinx.kover:0.7.4"
 oss-licenses = { id = "com.google.android.gms.oss-licenses-plugin" }
 firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.strictly = "4.0.1" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.strictly = "2.9.9" }
+resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "resources" }
