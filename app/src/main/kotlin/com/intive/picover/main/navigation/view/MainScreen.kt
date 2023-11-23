@@ -17,6 +17,7 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -26,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.navigation.material.BottomSheetNavigator
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
+import com.intive.picover.main.navigation.NavControllerHolder
 import com.intive.picover.main.navigation.model.NavigationItem
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class, ExperimentalMaterialNavigationApi::class)
@@ -34,6 +36,10 @@ fun MainScreen(activity: Activity, snackbarHostState: SnackbarHostState) {
 	val windowSize = calculateWindowSizeClass(activity)
 	val bottomSheetNavigator = rememberBottomSheetNavigator()
 	val navController = rememberNavController(bottomSheetNavigator)
+	DisposableEffect(Unit) {
+		NavControllerHolder.attach(navController)
+		onDispose { NavControllerHolder.detach() }
+	}
 	val snackbarHost = @Composable {
 		SnackbarHost(snackbarHostState)
 	}

@@ -21,29 +21,32 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.hilt.getScreenModel
 import com.intive.picover.R
 import com.intive.picover.common.text.PicoverOutlinedTextField
 import com.intive.picover.common.validator.TextValidator
+import com.intive.picover.main.navigation.NavControllerHolder
 import com.intive.picover.parties.viewmodel.PartiesViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AddPartyBottomSheet(
-	viewModel: PartiesViewModel,
-	navController: NavHostController,
-) {
-	val state by viewModel.state.collectAsState()
-	ModalBottomSheet(
-		onDismissRequest = { navController.popBackStack() },
-	) {
-		AddPartyContent(
-			title = state.title,
-			onTitleChange = { viewModel.updateTitle(it) },
-			description = state.description,
-			onDescriptionChange = { viewModel.updateDescription(it) },
-			onSaveButtonClick = { navController.popBackStack() },
-		)
+class AddPartyBottomSheet : Screen {
+
+	@OptIn(ExperimentalMaterial3Api::class)
+	@Composable
+	override fun Content() {
+		val viewModel = getScreenModel<PartiesViewModel>()
+		val state by viewModel.state.collectAsState()
+		ModalBottomSheet(
+			onDismissRequest = { NavControllerHolder.popBackStack() },
+		) {
+			AddPartyContent(
+				title = state.title,
+				onTitleChange = { viewModel.updateTitle(it) },
+				description = state.description,
+				onDescriptionChange = { viewModel.updateDescription(it) },
+				onSaveButtonClick = { NavControllerHolder.popBackStack() },
+			)
+		}
 	}
 }
 

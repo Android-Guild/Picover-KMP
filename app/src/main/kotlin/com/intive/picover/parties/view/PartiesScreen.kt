@@ -17,7 +17,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -26,42 +25,33 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.hilt.getScreenModel
 import com.intive.picover.R
 import com.intive.picover.common.error.PicoverGenericError
 import com.intive.picover.common.loader.PicoverLoader
 import com.intive.picover.common.viewmodel.state.MVIStateType
+import com.intive.picover.main.navigation.NavControllerHolder
 import com.intive.picover.main.theme.Typography
-import com.intive.picover.parties.model.PartiesEvent
-import com.intive.picover.parties.model.PartiesSideEffect.NavigateToAddParty
-import com.intive.picover.parties.model.PartiesSideEffect.NavigateToPartyDetails
 import com.intive.picover.parties.model.Party
 import com.intive.picover.parties.viewmodel.PartiesViewModel
-import kotlinx.coroutines.flow.collectLatest
 
-@Composable
-fun PartiesScreen(
-	viewModel: PartiesViewModel,
-	navController: NavHostController,
-) {
-	val state by viewModel.state.collectAsState()
-	LaunchedEffect(true) {
-		viewModel.sideEffects.collectLatest { effect ->
-			when (effect) {
-				is NavigateToPartyDetails -> navController.navigate("partyDetails/${effect.partyId}")
-				is NavigateToAddParty -> navController.navigate("parties/addParty")
-			}
+class PartiesScreen : Screen {
+
+	@Composable
+	override fun Content() {
+		val viewModel = getScreenModel<PartiesViewModel>()
+		val state by viewModel.state.collectAsState()
+		when (state.type) {
+			MVIStateType.LOADING -> PicoverLoader(modifier = Modifier.fillMaxSize())
+			MVIStateType.LOADED -> LoadedContent(
+				parties = state.parties,
+				onPartyClick = { NavControllerHolder.navigate("partyDetails/$it") },
+				onFabClick = { NavControllerHolder.navigate("parties/addParty") },
+			)
+
+			MVIStateType.ERROR -> PicoverGenericError(onRetryClick = { viewModel.onRetryClick() })
 		}
-	}
-	when (state.type) {
-		MVIStateType.LOADING -> PicoverLoader(modifier = Modifier.fillMaxSize())
-		MVIStateType.LOADED -> LoadedContent(
-			parties = state.parties,
-			onPartyClick = { viewModel.effect(NavigateToPartyDetails(it)) },
-			onFabClick = { viewModel.effect(NavigateToAddParty) },
-		)
-
-		MVIStateType.ERROR -> PicoverGenericError(onRetryClick = { viewModel.event(PartiesEvent.Load) })
 	}
 }
 
