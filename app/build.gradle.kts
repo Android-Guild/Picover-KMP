@@ -9,6 +9,7 @@ plugins {
 	id(libs.plugins.oss.licenses.get().pluginId)
 	id(libs.plugins.firebase.appdistribution.get().pluginId)
 	id(libs.plugins.firebase.crashlytics.get().pluginId)
+	alias(libs.plugins.kover)
 }
 
 android {
@@ -56,6 +57,7 @@ android {
 dependencies {
 	lintChecks(project(":lint"))
 	implementation(project(":shared"))
+	kover(project(":shared"))
 	ksp(libs.hilt.android.compiler)
 	implementation(libs.accompanist.navigation.material)
 	implementation(platform(libs.compose.bom))

@@ -4,12 +4,13 @@ plugins {
 	alias(libs.plugins.kotlin.ksp)
 	alias(libs.plugins.hilt.android)
 	alias(libs.plugins.kotest)
+	alias(libs.plugins.kover)
 }
 
 kotlin {
-	androidTarget {
-		jvmToolchain(17)
-	}
+	jvmToolchain(17)
+
+	androidTarget()
 
 	listOf(
 		iosX64(),

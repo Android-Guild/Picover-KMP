@@ -5,7 +5,10 @@ on:
     branches:
       - dev
 jobs:
-  tests:
+  test:
+    strategy:
+      matrix:
+        task: ["app:koverHtmlReportDebug", "ktlint-ruleset:test", "lint:test"]
     runs-on: ubuntu-latest
     container: gradle:8.4.0-jdk17
     steps:
@@ -15,4 +18,4 @@ jobs:
       - uses: ./.github/actions/firebase-google-service
         with:
           secret: ${{ secrets.FIREBASE_GOOGLE_SERVICE }}
-      - run: ./gradlew test
+      - run: ./gradlew ${{ matrix.task }}
