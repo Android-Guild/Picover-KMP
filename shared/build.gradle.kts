@@ -5,6 +5,7 @@ plugins {
 	alias(libs.plugins.hilt.android)
 	alias(libs.plugins.kotest)
 	alias(libs.plugins.kover)
+	alias(libs.plugins.resources)
 }
 
 kotlin {
@@ -29,6 +30,7 @@ kotlin {
 			implementation(libs.firebase.auth)
 			implementation(libs.firebase.firestore)
 			implementation(libs.firebase.storage)
+			implementation(libs.resources)
 		}
 		commonTest.dependencies {
 			implementation(libs.test.kotlin)
@@ -54,10 +56,20 @@ dependencies {
 	add("kspAndroid", libs.hilt.compiler)
 }
 
+multiplatformResources {
+	multiplatformResourcesPackage = "com.intive.picover.shared"
+}
+
 android {
 	namespace = "com.intive.picover.shared"
 	compileSdk = 34
+
 	defaultConfig {
 		minSdk = 26
+	}
+
+	sourceSets {
+		// https://github.com/icerockdev/moko-resources/issues/531
+		getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
 	}
 }
