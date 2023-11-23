@@ -42,16 +42,10 @@ fun PicoverNavHost(
 			startDestination = NavigationItem.PARTIES.route,
 		) {
 			composable("parties") {
-				PartiesScreen(
-					viewModel = hiltViewModel(),
-					navController = navController,
-				)
+				Navigator(PartiesScreen())
 			}
 			bottomSheet(route = "parties/addParty") {
-				AddPartyBottomSheet(
-					viewModel = hiltViewModel(),
-					navController = navController,
-				)
+				Navigator(AddPartyBottomSheet())
 			}
 			composable("photos") {
 				ImagesScreen(hiltViewModel())

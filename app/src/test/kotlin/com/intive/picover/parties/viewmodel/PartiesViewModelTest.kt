@@ -2,7 +2,6 @@ package com.intive.picover.parties.viewmodel
 
 import com.intive.picover.common.coroutines.CoroutineTestExtension
 import com.intive.picover.common.viewmodel.state.MVIStateType
-import com.intive.picover.parties.model.PartiesEvent
 import com.intive.picover.parties.model.PartiesState
 import com.intive.picover.parties.model.Party
 import com.intive.picover.parties.model.toUI
@@ -11,7 +10,6 @@ import com.intive.picover.shared.party.data.repo.PartiesRepository
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
-import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
@@ -54,10 +52,21 @@ class PartiesViewModelTest : ShouldSpec(
 			}
 		}
 
-		should("start loading parties WHEN load parties event is emitted") {
-			tested.event(PartiesEvent.Load)
+		should("set state WHEN onRetryClick according to fetch parties result") {
+			listOf(
+				emptyFlow<List<PartyRemote>>() to PartiesState(type = MVIStateType.LOADING),
+				flowOf(partiesRemote) to PartiesState(parties = parties, type = MVIStateType.LOADED),
+				flow<List<PartyRemote>> { throw Exception() } to PartiesState(type = MVIStateType.ERROR),
+			).forAll { (result, state) ->
+				every { repository.parties() } returns emptyFlow() andThen result
 
-			coVerify { repository.parties() }
+				tested = PartiesViewModel(
+					partiesRepository = repository,
+				)
+				tested.onRetryClick()
+
+				tested.state.value shouldBe state
+			}
 		}
 
 		should("update the title WHEN newTitle is provided") {
