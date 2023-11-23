@@ -25,11 +25,9 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getScreenModel
 import com.intive.picover.R
-import com.intive.picover.common.error.PicoverGenericError
-import com.intive.picover.common.loader.PicoverLoader
 import com.intive.picover.common.result.TakePictureOrPickImageContract
 import com.intive.picover.common.result.launch
-import com.intive.picover.common.viewmodel.state.MVIStateType
+import com.intive.picover.common.state.DefaultStateDispatcher
 import com.intive.picover.images.viewmodel.ImagesViewModel
 import com.intive.picover.photos.model.Photo
 import com.skydoves.landscapist.coil.CoilImage
@@ -41,10 +39,11 @@ class ImagesScreen : Screen {
 	override fun Content() {
 		val viewModel = getScreenModel<ImagesViewModel>()
 		val state by viewModel.state.collectAsState()
-		when (state.type) {
-			MVIStateType.LOADING -> PicoverLoader(modifier = Modifier.fillMaxSize())
-			MVIStateType.LOADED -> PhotosGrid(state.photos, viewModel::scheduleUploadPhoto)
-			MVIStateType.ERROR -> PicoverGenericError()
+		DefaultStateDispatcher(
+			state = state.type,
+			onRetryClick = null,
+		) {
+			PhotosGrid(state.photos, viewModel::scheduleUploadPhoto)
 		}
 	}
 }

@@ -5,17 +5,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.intive.picover.common.error.PicoverGenericError
 import com.intive.picover.common.loader.PicoverLoader
-import com.intive.picover.common.viewmodel.state.ViewModelState
+import com.intive.picover.common.viewmodel.state.MVIStateType
+import com.intive.picover.common.viewmodel.state.MVIStateType.ERROR
+import com.intive.picover.common.viewmodel.state.MVIStateType.LOADED
+import com.intive.picover.common.viewmodel.state.MVIStateType.LOADING
 
-// TODO add retry handler
 @Composable
-fun <T> DefaultStateDispatcher(
-	state: ViewModelState<T>,
-	content: @Composable (T) -> Unit,
+fun DefaultStateDispatcher(
+	state: MVIStateType,
+	onRetryClick: (() -> Unit)?,
+	content: @Composable () -> Unit,
 ) {
-	when {
-		state.isLoaded() -> content(state.data())
-		state.isLoading() -> PicoverLoader(Modifier.fillMaxSize())
-		state.isError() -> PicoverGenericError()
+	when (state) {
+		LOADED -> content()
+		LOADING -> PicoverLoader(Modifier.fillMaxSize())
+		ERROR -> PicoverGenericError(onRetryClick = onRetryClick)
 	}
 }
