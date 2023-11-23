@@ -18,7 +18,6 @@ import com.google.accompanist.navigation.material.BottomSheetNavigator
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.ModalBottomSheetLayout
 import com.google.accompanist.navigation.material.bottomSheet
-import com.intive.picover.articles.view.ArticlesScreen
 import com.intive.picover.images.view.ImagesScreen
 import com.intive.picover.main.navigation.model.NavigationItem
 import com.intive.picover.parties.view.AddPartyBottomSheet
@@ -65,9 +64,6 @@ fun PicoverNavHost(
 				Navigator(PartyDetailsScreen(partyId))
 			}
 			profileGraph(navController)
-			composable("articles") {
-				ArticlesScreen(hiltViewModel())
-			}
 		}
 	}
 }
