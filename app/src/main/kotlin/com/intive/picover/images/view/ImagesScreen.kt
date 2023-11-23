@@ -16,25 +16,36 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.hilt.getScreenModel
 import com.intive.picover.R
+import com.intive.picover.common.error.PicoverGenericError
+import com.intive.picover.common.loader.PicoverLoader
 import com.intive.picover.common.result.TakePictureOrPickImageContract
 import com.intive.picover.common.result.launch
-import com.intive.picover.common.state.DefaultStateDispatcher
+import com.intive.picover.common.viewmodel.state.MVIStateType
 import com.intive.picover.images.viewmodel.ImagesViewModel
 import com.intive.picover.photos.model.Photo
 import com.skydoves.landscapist.coil.CoilImage
 import com.skydoves.landscapist.components.LocalImageComponent
 
-@Composable
-fun ImagesScreen(viewModel: ImagesViewModel) {
-	val state by viewModel.state
-	DefaultStateDispatcher(state) {
-		PhotosGrid(it, viewModel::scheduleUploadPhoto)
+class ImagesScreen : Screen {
+
+	@Composable
+	override fun Content() {
+		val viewModel = getScreenModel<ImagesViewModel>()
+		val state by viewModel.state.collectAsState()
+		when (state.type) {
+			MVIStateType.LOADING -> PicoverLoader(modifier = Modifier.fillMaxSize())
+			MVIStateType.LOADED -> PhotosGrid(state.photos, viewModel::scheduleUploadPhoto)
+			MVIStateType.ERROR -> PicoverGenericError()
+		}
 	}
 }
 

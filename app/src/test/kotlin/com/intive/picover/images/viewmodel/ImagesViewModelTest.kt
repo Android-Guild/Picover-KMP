@@ -4,9 +4,10 @@ import android.net.Uri
 import androidx.compose.material3.SnackbarHostState
 import com.intive.picover.common.coroutines.CoroutineTestExtension
 import com.intive.picover.common.mockkAnswer
-import com.intive.picover.common.viewmodel.state.ViewModelState.Error
-import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
-import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
+import com.intive.picover.common.viewmodel.state.MVIStateType.ERROR
+import com.intive.picover.common.viewmodel.state.MVIStateType.LOADED
+import com.intive.picover.common.viewmodel.state.MVIStateType.LOADING
+import com.intive.picover.images.model.ImagesState
 import com.intive.picover.images.repository.ImagesRepository
 import com.intive.picover.photos.model.Photo
 import com.intive.picover.photos.usecase.ScheduleUploadPhotoUseCase
@@ -38,9 +39,9 @@ internal class ImagesViewModelTest : ShouldSpec(
 			val url = "photo.jpg"
 			val photo = Photo(10, 10, url)
 			listOf(
-				Loading to mockkAnswer<List<String>> { just(Awaits) },
-				Error to mockkAnswer { throws(Throwable()) },
-				Loaded(listOf(photo)) to mockkAnswer { returns(listOf(url)) },
+				ImagesState(type = LOADING) to mockkAnswer<List<String>> { just(Awaits) },
+				ImagesState(type = ERROR) to mockkAnswer { throws(Throwable()) },
+				ImagesState(type = LOADED, photos = listOf(photo)) to mockkAnswer { returns(listOf(url)) },
 			).forAll { (state, answers) ->
 				coEvery { imagesRepository.fetchImages() }.answers()
 				every { Photo.withRandomSize(url) } returns photo

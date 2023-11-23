@@ -2,32 +2,31 @@ package com.intive.picover.images.viewmodel
 
 import android.net.Uri
 import androidx.compose.material3.SnackbarHostState
-import androidx.lifecycle.viewModelScope
-import com.intive.picover.common.viewmodel.StatefulViewModel
-import com.intive.picover.common.viewmodel.state.ViewModelState.Error
-import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
+import cafe.adriel.voyager.core.model.StateScreenModel
+import cafe.adriel.voyager.core.model.screenModelScope
+import com.intive.picover.common.viewmodel.state.MVIStateType
+import com.intive.picover.images.model.ImagesState
 import com.intive.picover.images.repository.ImagesRepository
 import com.intive.picover.photos.model.Photo
 import com.intive.picover.photos.usecase.ScheduleUploadPhotoUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-@HiltViewModel
 class ImagesViewModel @Inject constructor(
 	private val repository: ImagesRepository,
 	private val scheduleUploadPhotoUseCase: ScheduleUploadPhotoUseCase,
 	private val snackbarHostState: SnackbarHostState,
-) : StatefulViewModel<List<Photo>>() {
+) : StateScreenModel<ImagesState>(ImagesState()) {
 
 	init {
-		viewModelScope.launch {
+		screenModelScope.launch {
 			loadImages()
 		}
 	}
 
 	fun scheduleUploadPhoto(uri: Uri) {
-		viewModelScope.launch {
+		screenModelScope.launch {
 			runCatching {
 				scheduleUploadPhotoUseCase(uri)
 			}.onSuccess {
@@ -42,10 +41,15 @@ class ImagesViewModel @Inject constructor(
 		runCatching {
 			repository.fetchImages()
 				.map { Photo.withRandomSize(it) }
-		}.onSuccess {
-			_state.value = Loaded(it)
+		}.onSuccess { photos ->
+			mutableState.update {
+				it.copy(
+					type = MVIStateType.LOADED,
+					photos = photos,
+				)
+			}
 		}.onFailure {
-			_state.value = Error
+			mutableState.update { it.copy(type = MVIStateType.ERROR) }
 		}
 	}
 }

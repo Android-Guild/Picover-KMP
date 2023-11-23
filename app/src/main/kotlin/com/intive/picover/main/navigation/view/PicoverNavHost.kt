@@ -48,7 +48,7 @@ fun PicoverNavHost(
 				Navigator(AddPartyBottomSheet())
 			}
 			composable("photos") {
-				ImagesScreen(hiltViewModel())
+				Navigator(ImagesScreen())
 			}
 			composable(
 				route = "partyDetails/{partyId}",
