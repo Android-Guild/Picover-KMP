@@ -22,9 +22,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.intive.picover.R
 import com.intive.picover.common.text.PicoverOutlinedTextField
 import com.intive.picover.common.validator.TextValidator
+import com.intive.picover.shared.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -3,7 +3,6 @@ package com.intive.picover.profile.viewmodel
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
-import com.intive.picover.R
 import com.intive.picover.auth.model.AccountDeletionResult
 import com.intive.picover.auth.repository.AuthRepository
 import com.intive.picover.common.toast.ToastPublisher
@@ -12,6 +11,7 @@ import com.intive.picover.common.viewmodel.state.ViewModelState.Error
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
 import com.intive.picover.profile.model.Profile
+import com.intive.picover.shared.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.gitlive.firebase.storage.File
 import javax.inject.Inject

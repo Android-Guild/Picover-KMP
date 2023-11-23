@@ -1,6 +1,6 @@
 package com.intive.picover.common.validator
 
-import com.intive.picover.R
+import com.intive.picover.shared.R
 
 sealed class ValidationStatus(val errorMessageId: Int?) {
 	data object EmptyText : ValidationStatus(R.string.TextShouldNotBeEmpty)

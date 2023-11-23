@@ -5,9 +5,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.intive.picover.R
 import com.intive.picover.common.annotation.LightDarkPreview
 import com.intive.picover.main.theme.PicoverTheme
+import com.intive.picover.shared.R
 
 @Composable
 fun DeleteAccountDialog(
