@@ -1,7 +1,5 @@
 package com.intive.picover.profile.viewmodel
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.viewModelScope
 import com.intive.picover.auth.model.AccountDeletionResult
 import com.intive.picover.auth.repository.AuthRepository
@@ -11,6 +9,7 @@ import com.intive.picover.common.viewmodel.state.ViewModelState.Error
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
 import com.intive.picover.profile.model.Profile
+import com.intive.picover.profile.model.ProfileUpdateResult
 import com.intive.picover.shared.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.gitlive.firebase.storage.File
@@ -22,9 +21,6 @@ class ProfileViewModel @Inject constructor(
 	private val authRepository: AuthRepository,
 	private val toastPublisher: ToastPublisher,
 ) : StatefulViewModel<Profile>() {
-
-	private val _username = mutableStateOf("")
-	val username: State<String> = _username
 
 	init {
 		fetchProfile()
@@ -54,9 +50,9 @@ class ProfileViewModel @Inject constructor(
 		}
 	}
 
-	fun saveUsername() {
+	fun onProfileUpdateResult(result: ProfileUpdateResult) {
 		executeAndUpdateProfile {
-			authRepository.updateUserName(username.value)
+			authRepository.updateUserName(result.username)
 		}
 	}
 
@@ -66,21 +62,12 @@ class ProfileViewModel @Inject constructor(
 		}
 	}
 
-	fun onUsernameChange(username: String) {
-		_username.value = username
-	}
-
-	fun initUsername() {
-		_username.value = state.value.data().name
-	}
-
 	private fun executeAndUpdateProfile(action: suspend () -> Result<Profile>) {
 		viewModelScope.launch {
 			_state.value = Loading
 			action()
 				.onSuccess {
 					_state.value = Loaded(it)
-					initUsername()
 				}.onFailure {
 					_state.value = Error
 				}

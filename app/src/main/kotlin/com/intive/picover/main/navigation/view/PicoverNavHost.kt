@@ -80,15 +80,12 @@ private fun NavGraphBuilder.profileGraph(navController: NavHostController) {
 				onDismiss = { navController.popBackStack() },
 			)
 		}
-		bottomSheet("updateProfile") {
-			val parentEntry = it.rememberParentEntry(navController)
-			val viewModel: ProfileViewModel = hiltViewModel(parentEntry)
-			ProfileUpdateBottomSheet(
-				username = viewModel.username.value,
-				onSaveClick = viewModel::saveUsername,
-				onClose = navController::popBackStack,
-				onUsernameChange = viewModel::onUsernameChange,
-			)
+		bottomSheet(
+			route = "updateProfile/{username}",
+			arguments = listOf(navArgument("username") { type = NavType.StringType }),
+		) {
+			val initialUsername = it.arguments!!.getString("username")!!
+			Navigator(ProfileUpdateBottomSheet(initialUsername))
 		}
 	}
 }

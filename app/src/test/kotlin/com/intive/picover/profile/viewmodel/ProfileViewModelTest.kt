@@ -9,6 +9,7 @@ import com.intive.picover.common.viewmodel.state.ViewModelState.Error
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
 import com.intive.picover.profile.model.Profile
+import com.intive.picover.profile.model.ProfileUpdateResult
 import com.intive.picover.shared.R
 import dev.gitlive.firebase.storage.File
 import io.kotest.assertions.assertSoftly
@@ -20,7 +21,6 @@ import io.mockk.Awaits
 import io.mockk.awaits
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
 
@@ -63,12 +63,10 @@ class ProfileViewModelTest : ShouldSpec(
 		}
 
 		should("profile return Profile data WHEN ProfileViewModelTest was initialized") {
-			every { profile.name } returns "Marian"
 			coEvery { authRepository.userProfile() } returns Result.success(profile)
 
 			assertSoftly(tested) {
 				state.value shouldBe Loaded(profile)
-				username.value shouldBe "Marian"
 			}
 		}
 
@@ -79,8 +77,8 @@ class ProfileViewModelTest : ShouldSpec(
 					{ tested.updateAvatar(photoFile) },
 				),
 				ManageProfileParam(
-					{ authRepository.updateUserName("") },
-					{ tested.saveUsername() },
+					{ authRepository.updateUserName("username") },
+					{ tested.onProfileUpdateResult(ProfileUpdateResult("username")) },
 				),
 				ManageProfileParam(
 					{ authRepository.userProfile() },
@@ -102,8 +100,8 @@ class ProfileViewModelTest : ShouldSpec(
 					{ tested.updateAvatar(photoFile) },
 				),
 				ManageProfileParam(
-					{ authRepository.updateUserName("") },
-					{ tested.saveUsername() },
+					{ authRepository.updateUserName("username") },
+					{ tested.onProfileUpdateResult(ProfileUpdateResult("username")) },
 				),
 				ManageProfileParam(
 					{ authRepository.userProfile() },
@@ -125,8 +123,8 @@ class ProfileViewModelTest : ShouldSpec(
 					{ tested.updateAvatar(photoFile) },
 				),
 				ManageProfileParam(
-					{ authRepository.updateUserName("") },
-					{ tested.saveUsername() },
+					{ authRepository.updateUserName("username") },
+					{ tested.onProfileUpdateResult(ProfileUpdateResult("username")) },
 				),
 				ManageProfileParam(
 					{ authRepository.userProfile() },
@@ -139,14 +137,6 @@ class ProfileViewModelTest : ShouldSpec(
 
 				tested.state.value shouldBe Error
 			}
-		}
-
-		should("set userName WHEN updateName called") {
-			coEvery { authRepository.updateUserName("") } returns Result.success(Profile("", "Marian K", "test@gmail.com"))
-
-			tested.saveUsername()
-
-			tested.username.value shouldBe "Marian K"
 		}
 	},
 )
