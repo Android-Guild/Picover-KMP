@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -19,7 +20,9 @@ import com.intive.picover.common.result.launch
 import com.intive.picover.common.viewmodel.state.ViewModelState.Error
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
+import com.intive.picover.main.navigation.NavControllerHolder
 import com.intive.picover.profile.model.Profile
+import com.intive.picover.profile.model.ProfileUpdateResult
 import com.intive.picover.profile.viewmodel.ProfileViewModel
 import com.intive.picover.shared.R
 import dev.gitlive.firebase.storage.File
@@ -33,6 +36,9 @@ fun ProfileScreen(
 	val takePictureOrPickImageLauncher = rememberLauncherForActivityResult(TakePictureOrPickImageContract()) { uri ->
 		uri?.let { viewModel.updateAvatar(File(it)) }
 	}
+	LaunchedEffect(Unit) {
+		NavControllerHolder.observeResult<ProfileUpdateResult>().collect { viewModel.onProfileUpdateResult(it) }
+	}
 	Column(
 		modifier = Modifier
 			.fillMaxSize()
@@ -43,12 +49,7 @@ fun ProfileScreen(
 				UserInfo(
 					profile = state.data(),
 					onEditPhotoClick = takePictureOrPickImageLauncher::launch,
-					onEditNameClick = {
-						// TODO: Without this initialization, the username text field will have a previously typed value.
-						//  Thus ProfileUpdateBottomSheet should have an independent state from ProfileScreen to get rid of hacks like this.
-						viewModel.initUsername()
-						navController.navigate("updateProfile")
-					},
+					onEditNameClick = { navController.navigate("updateProfile/${state.data().name}") },
 				)
 			}
 

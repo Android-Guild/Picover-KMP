@@ -22,65 +22,64 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.core.screen.Screen
 import com.intive.picover.common.text.PicoverOutlinedTextField
 import com.intive.picover.common.validator.TextValidator
+import com.intive.picover.main.navigation.NavControllerHolder
+import com.intive.picover.profile.model.ProfileUpdateResult
 import com.intive.picover.shared.R
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun ProfileUpdateBottomSheet(
-	username: String,
-	onSaveClick: () -> Unit,
-	onClose: () -> Unit,
-	onUsernameChange: (String) -> Unit,
-) {
-	var isUserNameValid by remember { mutableStateOf(true) }
-	ModalBottomSheet(
-		modifier = Modifier.padding(bottom = 56.dp),
-		onDismissRequest = onClose,
-	) {
-		Row(horizontalArrangement = Arrangement.SpaceAround) {
-			CenterAlignedTopAppBar(
-				navigationIcon = {
-					IconButton(
-						onClick = onClose,
-					) {
-						Icon(
-							imageVector = Icons.Rounded.Close,
-							contentDescription = null,
-						)
-					}
-				},
-				title = { Text(stringResource(id = R.string.EditUserData)) },
-				actions = {
-					IconButton(
-						onClick = {
-							onSaveClick()
-							onClose()
-						},
-						enabled = isUserNameValid,
-					) {
-						Icon(
-							imageVector = Icons.Rounded.Check,
-							contentDescription = null,
-						)
-					}
-				},
-			)
-		}
-		Column(
-			modifier = Modifier
-				.padding(start = 20.dp, end = 20.dp, bottom = 42.dp)
-				.fillMaxWidth(),
+data class ProfileUpdateBottomSheet(val initialUsername: String) : Screen {
+
+	@OptIn(ExperimentalMaterial3Api::class)
+	@Composable
+	override fun Content() {
+		var username by remember { mutableStateOf(initialUsername) }
+		var isUserNameValid by remember { mutableStateOf(true) }
+		ModalBottomSheet(
+			modifier = Modifier.padding(bottom = 56.dp),
+			onDismissRequest = NavControllerHolder::popBackStack,
 		) {
-			PicoverOutlinedTextField(
-				modifier = Modifier.fillMaxWidth(),
-				value = username,
-				onValueChange = onUsernameChange,
-				validator = TextValidator.Short,
-				labelText = stringResource(id = R.string.UserName),
-				onValidationStatusChange = { isUserNameValid = it },
-			)
+			Row(horizontalArrangement = Arrangement.SpaceAround) {
+				CenterAlignedTopAppBar(
+					navigationIcon = {
+						IconButton(
+							onClick = NavControllerHolder::popBackStack,
+						) {
+							Icon(
+								imageVector = Icons.Rounded.Close,
+								contentDescription = null,
+							)
+						}
+					},
+					title = { Text(stringResource(id = R.string.EditUserData)) },
+					actions = {
+						IconButton(
+							onClick = { NavControllerHolder.popBackStack(ProfileUpdateResult(username)) },
+							enabled = isUserNameValid,
+						) {
+							Icon(
+								imageVector = Icons.Rounded.Check,
+								contentDescription = null,
+							)
+						}
+					},
+				)
+			}
+			Column(
+				modifier = Modifier
+					.padding(start = 20.dp, end = 20.dp, bottom = 42.dp)
+					.fillMaxWidth(),
+			) {
+				PicoverOutlinedTextField(
+					modifier = Modifier.fillMaxWidth(),
+					value = username,
+					onValueChange = { username = it },
+					validator = TextValidator.Short,
+					labelText = stringResource(id = R.string.UserName),
+					onValidationStatusChange = { isUserNameValid = it },
+				)
+			}
 		}
 	}
 }
