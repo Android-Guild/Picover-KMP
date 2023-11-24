@@ -68,21 +68,5 @@ class PartiesViewModelTest : ShouldSpec(
 				tested.state.value shouldBe state
 			}
 		}
-
-		should("update the title WHEN newTitle is provided") {
-			val title = "new title"
-
-			tested.updateTitle(title)
-
-			tested.state.value.title shouldBe title
-		}
-
-		should("update the description WHEN newDescription is provided") {
-			val description = "new description"
-
-			tested.updateDescription(description)
-
-			tested.state.value.description shouldBe description
-		}
 	},
 )

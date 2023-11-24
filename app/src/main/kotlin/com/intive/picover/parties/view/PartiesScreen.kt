@@ -17,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -30,6 +31,7 @@ import cafe.adriel.voyager.hilt.getScreenModel
 import com.intive.picover.common.state.DefaultStateDispatcher
 import com.intive.picover.main.navigation.NavControllerHolder
 import com.intive.picover.main.theme.Typography
+import com.intive.picover.parties.model.AddPartyResult
 import com.intive.picover.parties.model.Party
 import com.intive.picover.parties.viewmodel.PartiesViewModel
 import com.intive.picover.shared.R
@@ -40,6 +42,9 @@ class PartiesScreen : Screen {
 	override fun Content() {
 		val viewModel = getScreenModel<PartiesViewModel>()
 		val state by viewModel.state.collectAsState()
+		LaunchedEffect(Unit) {
+			NavControllerHolder.observeResult<AddPartyResult>().collect { viewModel.onAddPartyResult(it) }
+		}
 		DefaultStateDispatcher(
 			state = state.type,
 			onRetryClick = viewModel::onRetryClick,

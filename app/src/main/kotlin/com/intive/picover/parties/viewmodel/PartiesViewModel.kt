@@ -3,6 +3,7 @@ package com.intive.picover.parties.viewmodel
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.intive.picover.common.viewmodel.state.MVIStateType
+import com.intive.picover.parties.model.AddPartyResult
 import com.intive.picover.parties.model.PartiesState
 import com.intive.picover.parties.model.toUI
 import com.intive.picover.shared.party.data.repo.PartiesRepository
@@ -21,18 +22,6 @@ class PartiesViewModel @Inject constructor(
 
 	fun onRetryClick() {
 		loadParties()
-	}
-
-	fun updateTitle(newTitle: String) {
-		mutableState.update {
-			it.copy(title = newTitle)
-		}
-	}
-
-	fun updateDescription(newDescription: String) {
-		mutableState.update {
-			it.copy(description = newDescription)
-		}
 	}
 
 	private fun loadParties() {
@@ -54,5 +43,9 @@ class PartiesViewModel @Inject constructor(
 					}
 				}
 		}
+	}
+
+	fun onAddPartyResult(result: AddPartyResult) {
+		// TODO implement adding to firebase
 	}
 }
