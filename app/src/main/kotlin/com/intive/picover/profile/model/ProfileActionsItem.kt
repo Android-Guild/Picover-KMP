@@ -1,32 +1,36 @@
 package com.intive.picover.profile.model
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.intive.picover.common.error.AppDrawable
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Copyright
+import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.OpenInBrowser
+import androidx.compose.material.icons.filled.PersonRemove
+import androidx.compose.ui.graphics.vector.ImageVector
 import com.intive.picover.shared.R
 
-sealed class ProfileActionsItem(val onClick: () -> Unit, @StringRes val textId: Int, @DrawableRes val iconId: Int) {
+sealed class ProfileActionsItem(val onClick: () -> Unit, @StringRes val textId: Int, val icon: ImageVector) {
 	class Licenses(onClick: () -> Unit) : ProfileActionsItem(
 		onClick = onClick,
 		textId = R.string.OpenLicenses,
-		iconId = AppDrawable.ic_copyright,
+		icon = Icons.Filled.Copyright,
 	)
 
 	class Logout(onClick: () -> Unit) : ProfileActionsItem(
 		onClick = onClick,
 		textId = R.string.LogoutButton,
-		iconId = AppDrawable.ic_logout,
+		icon = Icons.Filled.Logout,
 	)
 
 	class DeleteAccount(onClick: () -> Unit) : ProfileActionsItem(
 		onClick = onClick,
 		textId = R.string.DeleteAccountButton,
-		iconId = AppDrawable.ic_delete_account,
+		icon = Icons.Filled.PersonRemove,
 	)
 
 	class GitHub(onClick: () -> Unit) : ProfileActionsItem(
 		onClick = onClick,
 		textId = R.string.GithubButton,
-		iconId = AppDrawable.ic_github,
+		icon = Icons.Filled.OpenInBrowser,
 	)
 }

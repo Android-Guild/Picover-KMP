@@ -3,6 +3,8 @@ package com.intive.picover.main.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -16,9 +18,7 @@ import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.res.painterResource
 import androidx.core.view.WindowCompat
-import com.intive.picover.R
 import com.skydoves.landscapist.components.LocalImageComponent
 import com.skydoves.landscapist.components.imageComponent
 import com.skydoves.landscapist.placeholder.placeholder.PlaceholderPlugin
@@ -67,7 +67,7 @@ fun PicoverTheme(
 			baseColor = Color(0xFF424242),
 			highlightColor = Color(0xA3C2C2C2),
 		)
-		+PlaceholderPlugin.Failure(painterResource(R.drawable.ic_avatar_placeholder))
+		+PlaceholderPlugin.Failure(Icons.Outlined.AccountCircle)
 	}
 	CompositionLocalProvider(LocalImageComponent provides imageComponent) {
 		MaterialTheme(
