@@ -6,7 +6,7 @@ import androidx.compose.material.icons.filled.Celebration
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.intive.picover.R
+import com.intive.picover.shared.R
 
 enum class NavigationItem(
 	@StringRes val labelResId: Int,
@@ -14,17 +14,17 @@ enum class NavigationItem(
 	val route: String,
 ) {
 	PARTIES(
-		labelResId = R.string.Parties,
+		labelResId = R.string.ItemParties,
 		icon = Icons.Filled.Celebration,
 		route = "parties",
 	),
 	PHOTOS(
-		labelResId = R.string.Photos,
+		labelResId = R.string.ItemPhotos,
 		icon = Icons.Filled.PhotoCamera,
 		route = "photos",
 	),
 	PROFILE(
-		labelResId = R.string.Profile,
+		labelResId = R.string.ItemProfile,
 		icon = Icons.Filled.Person,
 		route = "profileGraph",
 	),

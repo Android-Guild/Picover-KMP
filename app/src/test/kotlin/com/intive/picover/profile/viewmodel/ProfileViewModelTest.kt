@@ -1,7 +1,6 @@
 package com.intive.picover.profile.viewmodel
 
 import android.net.Uri
-import com.intive.picover.R
 import com.intive.picover.auth.model.AccountDeletionResult
 import com.intive.picover.auth.repository.AuthRepository
 import com.intive.picover.common.coroutines.CoroutineTestExtension
@@ -10,6 +9,7 @@ import com.intive.picover.common.viewmodel.state.ViewModelState.Error
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
 import com.intive.picover.profile.model.Profile
+import com.intive.picover.shared.R
 import dev.gitlive.firebase.storage.File
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.IsolationMode

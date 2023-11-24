@@ -23,11 +23,11 @@ import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getScreenModel
-import com.intive.picover.R
 import com.intive.picover.common.text.PicoverOutlinedTextField
 import com.intive.picover.common.validator.TextValidator
 import com.intive.picover.main.navigation.NavControllerHolder
 import com.intive.picover.parties.viewmodel.PartiesViewModel
+import com.intive.picover.shared.R
 
 class AddPartyBottomSheet : Screen {
 

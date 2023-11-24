@@ -1,29 +1,3 @@
 <resources>
     <string name="AppName">Picover</string>
-    <string name="Parties">Parties</string>
-    <string name="Photos">Photos</string>
-    <string name="Profile">Profile</string>
-    <string name="OpenLicenses">Licenses</string>
-    <string name="LogoutButton">Logout</string>
-    <string name="DeleteAccountButton">Delete account</string>
-    <string name="GithubButton">GitHub</string>
-    <string name="DeleteAccountConfirmationDialogTitle">Delete account?</string>
-    <string name="DeleteAccountConfirmationDialogDescription">This operation cannot be undone. In some cases, you will be logged out and will have to log in again to delete your account.</string>
-    <string name="DeleteAccountSuccessToastText">Account deleted.</string>
-    <string name="DeleteAccountReAuthenticationToastText">You need to log in again to delete your account.</string>
-    <string name="DeleteButton">Delete</string>
-    <string name="CancelButton">Cancel</string>
-    <string name="SaveButton">Save</string>
-    <string name="UserName">User Name</string>
-    <string name="GenericErrorMessage">Something went wrong. Please try again later.</string>
-    <string name="RetryButton">Retry</string>
-    <string name="EditUserData">Edit User Data</string>
-    <string name="ProfileError">Something went wrong \nClick to refresh</string>
-    <string name="Loading">Loading…</string>
-    <string name="TextShouldNotBeEmpty">"Text should not be empty"</string>
-    <string name="TextShouldNotBeBlank">"Text should not be blank"</string>
-    <string name="TextIsTooLong">"Text is too long"</string>
-    <string name="PartyScreenFabAddIcon">Click to create new party</string>
-    <string name="PartyScreenAddPartyBottomSheetTitle">Party Title</string>
-    <string name="PartyScreenAddPartyBottomSheetDescription">Description</string>
 </resources>

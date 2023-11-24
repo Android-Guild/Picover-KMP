@@ -15,8 +15,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.intive.picover.R
 import com.intive.picover.main.theme.Typography
+import com.intive.picover.shared.R
+
+// TODO: Drop after migration from drawables to svg
+typealias AppDrawable = com.intive.picover.R.drawable
 
 @Preview
 @Composable
@@ -33,7 +36,7 @@ fun PicoverGenericError(
 	) {
 		Image(
 			modifier = Modifier.padding(bottom = 16.dp),
-			painter = painterResource(R.drawable.ic_generic_error),
+			painter = painterResource(AppDrawable.ic_generic_error),
 			contentDescription = null,
 		)
 		Text(

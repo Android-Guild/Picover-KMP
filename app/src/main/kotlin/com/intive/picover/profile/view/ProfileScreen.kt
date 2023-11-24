@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.intive.picover.R
 import com.intive.picover.common.error.PicoverGenericError
 import com.intive.picover.common.result.TakePictureOrPickImageContract
 import com.intive.picover.common.result.launch
@@ -22,6 +21,7 @@ import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
 import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
 import com.intive.picover.profile.model.Profile
 import com.intive.picover.profile.viewmodel.ProfileViewModel
+import com.intive.picover.shared.R
 import dev.gitlive.firebase.storage.File
 
 @Composable
