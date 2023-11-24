@@ -26,6 +26,6 @@ enum class NavigationItem(
 	PROFILE(
 		labelResId = R.string.ItemProfile,
 		icon = Icons.Filled.Person,
-		route = "profileGraph",
+		route = "profile",
 	),
 }
