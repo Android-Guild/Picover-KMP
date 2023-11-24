@@ -5,10 +5,11 @@ import com.intive.picover.auth.model.AccountDeletionResult
 import com.intive.picover.auth.repository.AuthRepository
 import com.intive.picover.common.coroutines.CoroutineTestExtension
 import com.intive.picover.common.toast.ToastPublisher
-import com.intive.picover.common.viewmodel.state.ViewModelState.Error
-import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
-import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
+import com.intive.picover.common.viewmodel.state.MVIStateType.ERROR
+import com.intive.picover.common.viewmodel.state.MVIStateType.LOADED
+import com.intive.picover.common.viewmodel.state.MVIStateType.LOADING
 import com.intive.picover.profile.model.Profile
+import com.intive.picover.profile.model.ProfileState
 import com.intive.picover.profile.model.ProfileUpdateResult
 import com.intive.picover.shared.R
 import dev.gitlive.firebase.storage.File
@@ -46,15 +47,16 @@ class ProfileViewModelTest : ShouldSpec(
 			coVerify { authRepository.logout() }
 		}
 
-		should("call deleteAccount on AuthRepository AND show on ToastPublisher depending on result WHEN onDeleteAccountClick") {
+		should("call deleteAccount on AuthRepository AND show on ToastPublisher depending on result WHEN onDeleteAccountConfirmClick") {
 			listOf(
 				AccountDeletionResult.Success to R.string.DeleteAccountSuccessToastText,
 				AccountDeletionResult.ReAuthenticationNeeded to R.string.DeleteAccountReAuthenticationToastText,
 			).forAll { (result, textId) ->
 				coEvery { authRepository.deleteAccount() } returns result
 
-				tested.onDeleteAccountClick()
+				tested.onDeleteAccountConfirmClick()
 
+				tested.state.value shouldBe ProfileState(showDeleteAccountPopup = false)
 				coVerify {
 					authRepository.deleteAccount()
 					toastPublisher.show(textId)
@@ -62,11 +64,23 @@ class ProfileViewModelTest : ShouldSpec(
 			}
 		}
 
-		should("profile return Profile data WHEN ProfileViewModelTest was initialized") {
+		should("show popup WHEN onDeleteAccountClick") {
+			tested.onDeleteAccountClick()
+
+			tested.state.value shouldBe ProfileState(showDeleteAccountPopup = true)
+		}
+
+		should("hide popup WHEN onDeleteAccountDismissClick") {
+			tested.onDeleteAccountDismissClick()
+
+			tested.state.value shouldBe ProfileState(showDeleteAccountPopup = false)
+		}
+
+		should("profile return Profile data WHEN ProfileViewModel was initialized") {
 			coEvery { authRepository.userProfile() } returns Result.success(profile)
 
 			assertSoftly(tested) {
-				state.value shouldBe Loaded(profile)
+				state.value shouldBe ProfileState(type = LOADED, profile = profile)
 			}
 		}
 
@@ -89,7 +103,7 @@ class ProfileViewModelTest : ShouldSpec(
 
 				param.action.invoke()
 
-				tested.state.value shouldBe Loaded(profile)
+				tested.state.value shouldBe ProfileState(type = LOADED, profile = profile)
 			}
 		}
 
@@ -112,7 +126,7 @@ class ProfileViewModelTest : ShouldSpec(
 
 				param.action.invoke()
 
-				tested.state.value shouldBe Loading
+				tested.state.value shouldBe ProfileState(type = LOADING)
 			}
 		}
 
@@ -135,7 +149,7 @@ class ProfileViewModelTest : ShouldSpec(
 
 				param.action.invoke()
 
-				tested.state.value shouldBe Error
+				tested.state.value shouldBe ProfileState(type = ERROR)
 			}
 		}
 	},

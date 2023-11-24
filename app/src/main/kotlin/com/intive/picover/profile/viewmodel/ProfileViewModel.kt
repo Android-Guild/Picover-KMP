@@ -1,39 +1,44 @@
 package com.intive.picover.profile.viewmodel
 
-import androidx.lifecycle.viewModelScope
+import cafe.adriel.voyager.core.model.StateScreenModel
+import cafe.adriel.voyager.core.model.screenModelScope
 import com.intive.picover.auth.model.AccountDeletionResult
 import com.intive.picover.auth.repository.AuthRepository
 import com.intive.picover.common.toast.ToastPublisher
-import com.intive.picover.common.viewmodel.StatefulViewModel
-import com.intive.picover.common.viewmodel.state.ViewModelState.Error
-import com.intive.picover.common.viewmodel.state.ViewModelState.Loaded
-import com.intive.picover.common.viewmodel.state.ViewModelState.Loading
+import com.intive.picover.common.viewmodel.state.MVIStateType.ERROR
+import com.intive.picover.common.viewmodel.state.MVIStateType.LOADED
+import com.intive.picover.common.viewmodel.state.MVIStateType.LOADING
 import com.intive.picover.profile.model.Profile
+import com.intive.picover.profile.model.ProfileState
 import com.intive.picover.profile.model.ProfileUpdateResult
 import com.intive.picover.shared.R
-import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.gitlive.firebase.storage.File
 import javax.inject.Inject
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-@HiltViewModel
 class ProfileViewModel @Inject constructor(
 	private val authRepository: AuthRepository,
 	private val toastPublisher: ToastPublisher,
-) : StatefulViewModel<Profile>() {
+) : StateScreenModel<ProfileState>(ProfileState()) {
 
 	init {
 		fetchProfile()
 	}
 
 	fun onLogoutClick() {
-		viewModelScope.launch {
+		screenModelScope.launch {
 			authRepository.logout()
 		}
 	}
 
 	fun onDeleteAccountClick() {
-		viewModelScope.launch {
+		mutableState.update { it.copy(showDeleteAccountPopup = true) }
+	}
+
+	fun onDeleteAccountConfirmClick() {
+		mutableState.update { it.copy(showDeleteAccountPopup = false) }
+		screenModelScope.launch {
 			val accountDeletionResult = authRepository.deleteAccount()
 			when (accountDeletionResult) {
 				is AccountDeletionResult.Success -> R.string.DeleteAccountSuccessToastText
@@ -42,6 +47,10 @@ class ProfileViewModel @Inject constructor(
 				toastPublisher.show(it)
 			}
 		}
+	}
+
+	fun onDeleteAccountDismissClick() {
+		mutableState.update { it.copy(showDeleteAccountPopup = false) }
 	}
 
 	fun updateAvatar(file: File) {
@@ -63,13 +72,13 @@ class ProfileViewModel @Inject constructor(
 	}
 
 	private fun executeAndUpdateProfile(action: suspend () -> Result<Profile>) {
-		viewModelScope.launch {
-			_state.value = Loading
+		screenModelScope.launch {
+			mutableState.update { it.copy(type = LOADING) }
 			action()
-				.onSuccess {
-					_state.value = Loaded(it)
+				.onSuccess { profile ->
+					mutableState.update { it.copy(type = LOADED, profile = profile) }
 				}.onFailure {
-					_state.value = Error
+					mutableState.update { it.copy(type = ERROR) }
 				}
 		}
 	}
