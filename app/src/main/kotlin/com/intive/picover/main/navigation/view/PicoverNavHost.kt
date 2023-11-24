@@ -45,6 +45,7 @@ fun PicoverNavHost(
 				Navigator(PartiesScreen())
 			}
 			bottomSheet(route = "parties/addParty") {
+				// TODO Fix state restoration after configuration change
 				Navigator(AddPartyBottomSheet())
 			}
 			composable("photos") {

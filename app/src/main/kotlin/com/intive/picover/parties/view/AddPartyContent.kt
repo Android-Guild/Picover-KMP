@@ -9,8 +9,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -22,11 +22,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.hilt.getScreenModel
 import com.intive.picover.common.text.PicoverOutlinedTextField
 import com.intive.picover.common.validator.TextValidator
 import com.intive.picover.main.navigation.NavControllerHolder
-import com.intive.picover.parties.viewmodel.PartiesViewModel
+import com.intive.picover.parties.model.AddPartyResult
 import com.intive.picover.shared.R
 
 class AddPartyBottomSheet : Screen {
@@ -34,17 +33,17 @@ class AddPartyBottomSheet : Screen {
 	@OptIn(ExperimentalMaterial3Api::class)
 	@Composable
 	override fun Content() {
-		val viewModel = getScreenModel<PartiesViewModel>()
-		val state by viewModel.state.collectAsState()
+		val (title, setTitle) = remember { mutableStateOf("") }
+		val (description, setDescription) = remember { mutableStateOf("") }
 		ModalBottomSheet(
 			onDismissRequest = { NavControllerHolder.popBackStack() },
 		) {
 			AddPartyContent(
-				title = state.title,
-				onTitleChange = { viewModel.updateTitle(it) },
-				description = state.description,
-				onDescriptionChange = { viewModel.updateDescription(it) },
-				onSaveButtonClick = { NavControllerHolder.popBackStack() },
+				title = title,
+				onTitleChange = setTitle,
+				description = description,
+				onDescriptionChange = setDescription,
+				onSaveButtonClick = { NavControllerHolder.popBackStack(AddPartyResult(title, description)) },
 			)
 		}
 	}
