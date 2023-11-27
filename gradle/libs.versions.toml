@@ -78,6 +78,7 @@ kotlin-ksp = { id = "com.google.devtools.ksp", version.strictly = "1.9.21-1.0.15
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }
 kover = "org.jetbrains.kotlinx.kover:0.7.4"
+cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 oss-licenses = { id = "com.google.android.gms.oss-licenses-plugin" }
 firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.strictly = "4.0.1" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.strictly = "2.9.9" }
