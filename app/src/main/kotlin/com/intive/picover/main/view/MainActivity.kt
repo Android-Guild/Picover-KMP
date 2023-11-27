@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
 				val state by viewModel.state.collectAsState(initial = Loading)
 				when (state) {
 					Loading -> PicoverLoader(Modifier.fillMaxSize())
-					UserAuthorized -> MainScreen(this, snackbarHostState)
+					UserAuthorized -> MainScreen(snackbarHostState)
 					UserUnauthorized -> LaunchedEffect(Unit) { signInLauncher.launch(signInIntent.intent) }
 				}
 			}
