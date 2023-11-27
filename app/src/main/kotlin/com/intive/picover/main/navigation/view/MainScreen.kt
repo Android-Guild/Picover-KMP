@@ -1,7 +1,6 @@
 package com.intive.picover.main.navigation.view
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,15 +30,12 @@ import com.intive.picover.main.navigation.tab.ProfileTab
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(activity: Activity, snackbarHostState: SnackbarHostState) {
-	val windowSize = calculateWindowSizeClass(activity)
-	val snackbarHost = @Composable {
-		SnackbarHost(snackbarHostState)
-	}
+fun MainScreen(snackbarHostState: SnackbarHostState) {
+	val windowSize = calculateWindowSizeClass()
 	BottomSheetNavigator {
 		TabNavigator(PartiesTab) {
 			Scaffold(
-				snackbarHost = snackbarHost,
+				snackbarHost = { SnackbarHost(snackbarHostState) },
 				bottomBar = {
 					if (windowSize.widthSizeClass == WindowWidthSizeClass.Compact) {
 						NavigationBar(modifier = Modifier.fillMaxWidth()) {
