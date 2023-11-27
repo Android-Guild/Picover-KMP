@@ -1,9 +1,10 @@
 package com.intive.picover.main.navigation.view
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -17,116 +18,71 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.navigation.material.BottomSheetNavigator
-import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
-import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
-import com.intive.picover.main.navigation.NavControllerHolder
-import com.intive.picover.main.navigation.model.NavigationItem
+import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
+import cafe.adriel.voyager.navigator.tab.CurrentTab
+import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
+import cafe.adriel.voyager.navigator.tab.Tab
+import cafe.adriel.voyager.navigator.tab.TabNavigator
+import com.intive.picover.main.navigation.tab.ImagesTab
+import com.intive.picover.main.navigation.tab.PartiesTab
+import com.intive.picover.main.navigation.tab.ProfileTab
 
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class, ExperimentalMaterialNavigationApi::class)
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(activity: Activity, snackbarHostState: SnackbarHostState) {
 	val windowSize = calculateWindowSizeClass(activity)
-	val bottomSheetNavigator = rememberBottomSheetNavigator()
-	val navController = rememberNavController(bottomSheetNavigator)
-	DisposableEffect(Unit) {
-		NavControllerHolder.attach(navController)
-		onDispose { NavControllerHolder.detach() }
-	}
 	val snackbarHost = @Composable {
 		SnackbarHost(snackbarHostState)
 	}
-	if (windowSize.widthSizeClass == WindowWidthSizeClass.Compact) {
-		BottomBarNavigation(navController, bottomSheetNavigator, snackbarHost)
-	} else {
-		RailNavigation(navController, bottomSheetNavigator, snackbarHost)
-	}
-}
-
-@OptIn(ExperimentalMaterialNavigationApi::class)
-@Composable
-private fun BottomBarNavigation(
-	navController: NavHostController,
-	bottomSheetNavigator: BottomSheetNavigator,
-	snackbarHost: @Composable () -> Unit,
-) {
-	Scaffold(
-		snackbarHost = snackbarHost,
-		bottomBar = {
-			NavigationBar(modifier = Modifier.fillMaxWidth()) {
-				val backStackEntry = navController.currentBackStackEntryAsState()
-				NavigationItem.entries.forEach { item ->
-					NavigationBarItem(
-						selected = item.route == backStackEntry.value?.destination?.route,
-						onClick = { navController.navigateWithSingleTop(item) },
-						icon = {
-							Icon(
-								imageVector = item.icon,
-								contentDescription = stringResource(id = item.labelResId),
-							)
-						},
-						label = {
-							Text(text = stringResource(id = item.labelResId))
-						},
-					)
+	BottomSheetNavigator {
+		TabNavigator(PartiesTab) {
+			Scaffold(
+				snackbarHost = snackbarHost,
+				bottomBar = {
+					if (windowSize.widthSizeClass == WindowWidthSizeClass.Compact) {
+						NavigationBar(modifier = Modifier.fillMaxWidth()) {
+							TabNavigationItem(PartiesTab)
+							TabNavigationItem(ImagesTab)
+							TabNavigationItem(ProfileTab)
+						}
+					}
+				},
+			) {
+				Row {
+					if (windowSize.widthSizeClass != WindowWidthSizeClass.Compact) {
+						NavigationRail {
+							TabNavigationRailItem(PartiesTab)
+							TabNavigationRailItem(ImagesTab)
+							TabNavigationRailItem(ProfileTab)
+						}
+					}
+					CurrentTab()
 				}
 			}
-		},
-	) { innerPadding ->
-		PicoverNavHost(
-			modifier = Modifier.padding(innerPadding),
-			navController = navController,
-			bottomSheetNavigator = bottomSheetNavigator,
-		)
-	}
-}
-
-@OptIn(ExperimentalMaterialNavigationApi::class)
-@Composable
-private fun RailNavigation(
-	navController: NavHostController,
-	bottomSheetNavigator: BottomSheetNavigator,
-	snackbarHost: @Composable () -> Unit,
-) {
-	Scaffold(snackbarHost = snackbarHost) { innerPadding ->
-		Row {
-			NavigationRail {
-				val backStackEntry = navController.currentBackStackEntryAsState()
-				NavigationItem.entries.forEach { item ->
-					NavigationRailItem(
-						selected = item.route == backStackEntry.value?.destination?.route,
-						onClick = { navController.navigateWithSingleTop(item) },
-						icon = {
-							Icon(
-								imageVector = item.icon,
-								contentDescription = stringResource(id = item.labelResId),
-							)
-						},
-						label = {
-							Text(text = stringResource(id = item.labelResId))
-						},
-					)
-				}
-			}
-			PicoverNavHost(
-				modifier = Modifier.padding(innerPadding),
-				navController = navController,
-				bottomSheetNavigator = bottomSheetNavigator,
-			)
 		}
 	}
 }
 
-private fun NavHostController.navigateWithSingleTop(item: NavigationItem) {
-	navigate(item.route) {
-		popUpTo(graph.findStartDestination().id)
-		launchSingleTop = true
-	}
+@Composable
+private fun RowScope.TabNavigationItem(tab: Tab) {
+	val tabNavigator = LocalTabNavigator.current
+	NavigationBarItem(
+		selected = tabNavigator.current.key == tab.key,
+		onClick = { tabNavigator.current = tab },
+		icon = { Icon(painter = tab.options.icon!!, contentDescription = tab.options.title) },
+		label = { Text(text = tab.options.title) },
+	)
+}
+
+@Composable
+private fun TabNavigationRailItem(tab: Tab) {
+	val tabNavigator = LocalTabNavigator.current
+	NavigationRailItem(
+		selected = tabNavigator.current.key == tab.key,
+		onClick = { tabNavigator.current = tab },
+		icon = { Icon(painter = tab.options.icon!!, contentDescription = tab.options.title) },
+		label = { Text(text = tab.options.title) },
+	)
 }

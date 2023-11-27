@@ -22,9 +22,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.intive.picover.common.text.PicoverOutlinedTextField
 import com.intive.picover.common.validator.TextValidator
-import com.intive.picover.main.navigation.NavControllerHolder
+import com.intive.picover.main.navigation.popWithResult
 import com.intive.picover.parties.model.AddPartyResult
 import com.intive.picover.shared.R
 
@@ -35,15 +36,16 @@ class AddPartyBottomSheet : Screen {
 	override fun Content() {
 		val (title, setTitle) = remember { mutableStateOf("") }
 		val (description, setDescription) = remember { mutableStateOf("") }
+		val bottomSheetNavigator = LocalBottomSheetNavigator.current
 		ModalBottomSheet(
-			onDismissRequest = { NavControllerHolder.popBackStack() },
+			onDismissRequest = bottomSheetNavigator::pop,
 		) {
 			AddPartyContent(
 				title = title,
 				onTitleChange = setTitle,
 				description = description,
 				onDescriptionChange = setDescription,
-				onSaveButtonClick = { NavControllerHolder.popBackStack(AddPartyResult(title, description)) },
+				onSaveButtonClick = { bottomSheetNavigator.popWithResult(AddPartyResult(title, description)) },
 			)
 		}
 	}

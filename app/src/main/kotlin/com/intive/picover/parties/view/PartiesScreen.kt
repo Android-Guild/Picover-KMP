@@ -17,7 +17,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -28,8 +27,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getScreenModel
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import com.intive.picover.common.state.DefaultStateDispatcher
-import com.intive.picover.main.navigation.NavControllerHolder
+import com.intive.picover.main.navigation.observeResult
 import com.intive.picover.main.theme.Typography
 import com.intive.picover.parties.model.AddPartyResult
 import com.intive.picover.parties.model.Party
@@ -42,17 +44,17 @@ class PartiesScreen : Screen {
 	override fun Content() {
 		val viewModel = getScreenModel<PartiesViewModel>()
 		val state by viewModel.state.collectAsState()
-		LaunchedEffect(Unit) {
-			NavControllerHolder.observeResult<AddPartyResult>().collect { viewModel.onAddPartyResult(it) }
-		}
+		val navigator = LocalNavigator.currentOrThrow
+		val bottomSheetNavigator = LocalBottomSheetNavigator.current
+		observeResult(AddPartyResult::class).value?.let(viewModel::onAddPartyResult)
 		DefaultStateDispatcher(
 			state = state.type,
 			onRetryClick = viewModel::onRetryClick,
 		) {
 			LoadedContent(
 				parties = state.parties,
-				onPartyClick = { NavControllerHolder.navigate("partyDetails/$it") },
-				onFabClick = { NavControllerHolder.navigate("parties/addParty") },
+				onPartyClick = { navigator.push(PartyDetailsScreen(it)) },
+				onFabClick = { bottomSheetNavigator.push(AddPartyBottomSheet()) },
 			)
 		}
 	}
