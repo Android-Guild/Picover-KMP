@@ -23,9 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.intive.picover.common.text.PicoverOutlinedTextField
 import com.intive.picover.common.validator.TextValidator
-import com.intive.picover.main.navigation.NavControllerHolder
+import com.intive.picover.main.navigation.popWithResult
 import com.intive.picover.profile.model.ProfileUpdateResult
 import com.intive.picover.shared.R
 
@@ -36,15 +37,16 @@ data class ProfileUpdateBottomSheet(val initialUsername: String) : Screen {
 	override fun Content() {
 		var username by remember { mutableStateOf(initialUsername) }
 		var isUserNameValid by remember { mutableStateOf(true) }
+		val bottomSheetNavigator = LocalBottomSheetNavigator.current
 		ModalBottomSheet(
 			modifier = Modifier.padding(bottom = 56.dp),
-			onDismissRequest = NavControllerHolder::popBackStack,
+			onDismissRequest = bottomSheetNavigator::pop,
 		) {
 			Row(horizontalArrangement = Arrangement.SpaceAround) {
 				CenterAlignedTopAppBar(
 					navigationIcon = {
 						IconButton(
-							onClick = NavControllerHolder::popBackStack,
+							onClick = bottomSheetNavigator::pop,
 						) {
 							Icon(
 								imageVector = Icons.Rounded.Close,
@@ -55,7 +57,7 @@ data class ProfileUpdateBottomSheet(val initialUsername: String) : Screen {
 					title = { Text(stringResource(id = R.string.EditUserData)) },
 					actions = {
 						IconButton(
-							onClick = { NavControllerHolder.popBackStack(ProfileUpdateResult(username)) },
+							onClick = { bottomSheetNavigator.popWithResult(ProfileUpdateResult(username)) },
 							enabled = isUserNameValid,
 						) {
 							Icon(

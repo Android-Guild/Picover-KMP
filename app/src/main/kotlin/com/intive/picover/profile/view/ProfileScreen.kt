@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -16,13 +15,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getScreenModel
+import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.intive.picover.common.error.PicoverGenericError
 import com.intive.picover.common.result.TakePictureOrPickImageContract
 import com.intive.picover.common.result.launch
 import com.intive.picover.common.viewmodel.state.MVIStateType.ERROR
 import com.intive.picover.common.viewmodel.state.MVIStateType.LOADED
 import com.intive.picover.common.viewmodel.state.MVIStateType.LOADING
-import com.intive.picover.main.navigation.NavControllerHolder
+import com.intive.picover.main.navigation.observeResult
 import com.intive.picover.profile.model.Profile
 import com.intive.picover.profile.model.ProfileState
 import com.intive.picover.profile.model.ProfileUpdateResult
@@ -39,13 +39,12 @@ class ProfileScreen : Screen {
 		val takePictureOrPickImageLauncher = rememberLauncherForActivityResult(TakePictureOrPickImageContract()) { uri ->
 			uri?.let { viewModel.updateAvatar(File(it)) }
 		}
-		LaunchedEffect(Unit) {
-			NavControllerHolder.observeResult<ProfileUpdateResult>().collect { viewModel.onProfileUpdateResult(it) }
-		}
+		val bottomSheetNavigator = LocalBottomSheetNavigator.current
+		observeResult(ProfileUpdateResult::class).value?.let(viewModel::onProfileUpdateResult)
 		ProfileContent(
 			state = state,
 			onEditPhotoClick = takePictureOrPickImageLauncher::launch,
-			onEditNameClick = { NavControllerHolder.navigate("updateProfile/${state.profile!!.name}") },
+			onEditNameClick = { bottomSheetNavigator.push(ProfileUpdateBottomSheet(state.profile!!.name)) },
 			onLogoutClick = viewModel::onLogoutClick,
 			onDeleteAccountCLick = viewModel::onDeleteAccountClick,
 			onRetryClick = viewModel::fetchProfile,
