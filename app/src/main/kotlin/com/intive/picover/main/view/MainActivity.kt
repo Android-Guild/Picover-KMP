@@ -2,26 +2,20 @@ package com.intive.picover.main.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.SnackbarHostState
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
+import androidx.lifecycle.lifecycleScope
+import cafe.adriel.voyager.navigator.Navigator
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.intive.picover.auth.intent.SignInIntent
-import com.intive.picover.common.loader.PicoverLoader
+import com.intive.picover.main.navigation.launcher.Launcher
+import com.intive.picover.main.navigation.launcher.LauncherEvent
 import com.intive.picover.main.navigation.view.MainScreen
 import com.intive.picover.main.theme.PicoverTheme
-import com.intive.picover.main.viewmodel.MainViewModel
-import com.intive.picover.main.viewmodel.state.MainState.Loading
-import com.intive.picover.main.viewmodel.state.MainState.UserAuthorized
-import com.intive.picover.main.viewmodel.state.MainState.UserUnauthorized
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -30,25 +24,23 @@ class MainActivity : ComponentActivity() {
 	lateinit var signInIntent: SignInIntent
 
 	@Inject
-	lateinit var snackbarHostState: SnackbarHostState
+	lateinit var launcher: Launcher
 
-	private val viewModel: MainViewModel by viewModels()
+	private val signInLauncher = registerForActivityResult(FirebaseAuthUIActivityResultContract()) {
+		if (it.resultCode == RESULT_CANCELED) {
+			finish()
+		}
+	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		launcher.observe()
+			.filter { it == LauncherEvent.SIGN_IN }
+			.onEach { signInLauncher.launch(signInIntent.intent) }
+			.launchIn(lifecycleScope)
 		setContent {
-			val signInLauncher = rememberLauncherForActivityResult(FirebaseAuthUIActivityResultContract()) {
-				if (it.resultCode == RESULT_CANCELED) {
-					finish()
-				}
-			}
 			PicoverTheme {
-				val state by viewModel.state.collectAsState(initial = Loading)
-				when (state) {
-					Loading -> PicoverLoader(Modifier.fillMaxSize())
-					UserAuthorized -> MainScreen(snackbarHostState)
-					UserUnauthorized -> LaunchedEffect(Unit) { signInLauncher.launch(signInIntent.intent) }
-				}
+				Navigator(MainScreen())
 			}
 		}
 	}
