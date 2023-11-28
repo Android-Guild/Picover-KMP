@@ -5,10 +5,10 @@ on:
     branches:
       - dev
 jobs:
-  test:
+  android:
     strategy:
       matrix:
-        task: ["app:koverHtmlReportDebug", "ktlint-ruleset:test", "lint:test"]
+        task: [ "app:koverHtmlReportDebug", "ktlint-ruleset:test", "lint:test" ]
     runs-on: ubuntu-latest
     container: gradle:8.4.0-jdk17
     steps:
@@ -19,3 +19,12 @@ jobs:
         with:
           secret: ${{ secrets.FIREBASE_GOOGLE_SERVICE }}
       - run: ./gradlew ${{ matrix.task }}
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
+      - run: ./gradlew shared:iosX64Test
