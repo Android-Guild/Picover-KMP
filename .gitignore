@@ -4,3 +4,5 @@ build
 local.properties
 google-services.json
 service-credentials.json
+project.xcworkspace
+xcuserdata
