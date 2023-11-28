@@ -3,6 +3,7 @@ package com.intive.picover.main.navigation.view
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -17,20 +18,41 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.hilt.getScreenModel
 import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
 import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
+import com.intive.picover.common.loader.PicoverLoader
 import com.intive.picover.main.navigation.tab.ImagesTab
 import com.intive.picover.main.navigation.tab.PartiesTab
 import com.intive.picover.main.navigation.tab.ProfileTab
+import com.intive.picover.main.viewmodel.MainViewModel
+import com.intive.picover.main.viewmodel.state.MainState
+
+class MainScreen : Screen {
+
+	@Composable
+	override fun Content() {
+		val viewModel = getScreenModel<MainViewModel>()
+		val state by viewModel.state.collectAsState(initial = MainState.Loading)
+		when (state) {
+			MainState.Loading -> PicoverLoader(Modifier.fillMaxSize())
+			MainState.UserAuthorized -> UserAuthorizedContent(viewModel.snackbarHostState)
+			else -> Unit
+		}
+	}
+}
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(snackbarHostState: SnackbarHostState) {
+private fun UserAuthorizedContent(snackbarHostState: SnackbarHostState) {
 	val windowSize = calculateWindowSizeClass()
 	BottomSheetNavigator {
 		TabNavigator(PartiesTab) {
