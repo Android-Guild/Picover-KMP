@@ -35,7 +35,6 @@ kotlin {
 		commonTest.dependencies {
 			implementation(libs.test.kotlin)
 			implementation(libs.test.kotest.engine)
-			implementation(libs.test.mockk)
 		}
 		androidMain.dependencies {
 			implementation(libs.android.core)
@@ -46,6 +45,7 @@ kotlin {
 		val androidUnitTest by getting {
 			dependencies {
 				implementation(libs.test.kotest.runner)
+				implementation(libs.test.mockk)
 			}
 		}
 	}
