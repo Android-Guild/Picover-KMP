@@ -8,7 +8,7 @@ jobs:
   android:
     strategy:
       matrix:
-        task: [ "app:koverHtmlReportDebug", "ktlint-ruleset:test", "lint:test" ]
+        task: ['androidApp:koverHtmlReportDebug', 'ktlint-ruleset:test', 'lint:test']
     runs-on: ubuntu-latest
     container: gradle:8.4.0-jdk17
     steps:
