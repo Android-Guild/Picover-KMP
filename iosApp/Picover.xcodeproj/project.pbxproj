@@ -1,0 +1,559 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ACE9FB5D2B164B390054B014 /* PicoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE9FB5C2B164B390054B014 /* PicoverApp.swift */; };
+		ACE9FB5F2B164B390054B014 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE9FB5E2B164B390054B014 /* ContentView.swift */; };
+		ACE9FB612B164B3C0054B014 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE9FB602B164B3C0054B014 /* Assets.xcassets */; };
+		ACE9FB642B164B3C0054B014 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE9FB632B164B3C0054B014 /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ACE9FB6A2B164B3C0054B014 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACE9FB512B164B390054B014 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ACE9FB582B164B390054B014;
+			remoteInfo = picover;
+		};
+		ACE9FB742B164B3C0054B014 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACE9FB512B164B390054B014 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ACE9FB582B164B390054B014;
+			remoteInfo = picover;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ACE9FB592B164B390054B014 /* Picover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picover.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACE9FB5C2B164B390054B014 /* PicoverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicoverApp.swift; sourceTree = "<group>"; };
+		ACE9FB5E2B164B390054B014 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ACE9FB602B164B3C0054B014 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ACE9FB632B164B3C0054B014 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ACE9FB692B164B3C0054B014 /* PicoverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicoverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACE9FB732B164B3C0054B014 /* PicoverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicoverUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ACE9FB562B164B390054B014 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE9FB662B164B3C0054B014 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE9FB702B164B3C0054B014 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ACE9FB502B164B390054B014 = {
+			isa = PBXGroup;
+			children = (
+				ACE9FB5B2B164B390054B014 /* picover */,
+				ACE9FB5A2B164B390054B014 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ACE9FB5A2B164B390054B014 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ACE9FB592B164B390054B014 /* Picover.app */,
+				ACE9FB692B164B3C0054B014 /* PicoverTests.xctest */,
+				ACE9FB732B164B3C0054B014 /* PicoverUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ACE9FB5B2B164B390054B014 /* picover */ = {
+			isa = PBXGroup;
+			children = (
+				ACE9FB5C2B164B390054B014 /* PicoverApp.swift */,
+				ACE9FB5E2B164B390054B014 /* ContentView.swift */,
+				ACE9FB602B164B3C0054B014 /* Assets.xcassets */,
+				ACE9FB622B164B3C0054B014 /* Preview Content */,
+			);
+			path = picover;
+			sourceTree = "<group>";
+		};
+		ACE9FB622B164B3C0054B014 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				ACE9FB632B164B3C0054B014 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ACE9FB582B164B390054B014 /* Picover */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACE9FB7D2B164B3C0054B014 /* Build configuration list for PBXNativeTarget "Picover" */;
+			buildPhases = (
+				ACE9FB552B164B390054B014 /* Sources */,
+				ACE9FB562B164B390054B014 /* Frameworks */,
+				ACE9FB572B164B390054B014 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Picover;
+			productName = picover;
+			productReference = ACE9FB592B164B390054B014 /* Picover.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ACE9FB682B164B3C0054B014 /* PicoverTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACE9FB802B164B3C0054B014 /* Build configuration list for PBXNativeTarget "PicoverTests" */;
+			buildPhases = (
+				ACE9FB652B164B3C0054B014 /* Sources */,
+				ACE9FB662B164B3C0054B014 /* Frameworks */,
+				ACE9FB672B164B3C0054B014 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ACE9FB6B2B164B3C0054B014 /* PBXTargetDependency */,
+			);
+			name = PicoverTests;
+			productName = picoverTests;
+			productReference = ACE9FB692B164B3C0054B014 /* PicoverTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ACE9FB722B164B3C0054B014 /* PicoverUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACE9FB832B164B3C0054B014 /* Build configuration list for PBXNativeTarget "PicoverUITests" */;
+			buildPhases = (
+				ACE9FB6F2B164B3C0054B014 /* Sources */,
+				ACE9FB702B164B3C0054B014 /* Frameworks */,
+				ACE9FB712B164B3C0054B014 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ACE9FB752B164B3C0054B014 /* PBXTargetDependency */,
+			);
+			name = PicoverUITests;
+			productName = picoverUITests;
+			productReference = ACE9FB732B164B3C0054B014 /* PicoverUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ACE9FB512B164B390054B014 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					ACE9FB582B164B390054B014 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					ACE9FB682B164B3C0054B014 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = ACE9FB582B164B390054B014;
+					};
+					ACE9FB722B164B3C0054B014 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = ACE9FB582B164B390054B014;
+					};
+				};
+			};
+			buildConfigurationList = ACE9FB542B164B390054B014 /* Build configuration list for PBXProject "Picover" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ACE9FB502B164B390054B014;
+			productRefGroup = ACE9FB5A2B164B390054B014 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ACE9FB582B164B390054B014 /* Picover */,
+				ACE9FB682B164B3C0054B014 /* PicoverTests */,
+				ACE9FB722B164B3C0054B014 /* PicoverUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ACE9FB572B164B390054B014 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACE9FB642B164B3C0054B014 /* Preview Assets.xcassets in Resources */,
+				ACE9FB612B164B3C0054B014 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE9FB672B164B3C0054B014 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE9FB712B164B3C0054B014 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ACE9FB552B164B390054B014 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACE9FB5F2B164B390054B014 /* ContentView.swift in Sources */,
+				ACE9FB5D2B164B390054B014 /* PicoverApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE9FB652B164B3C0054B014 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACE9FB6F2B164B3C0054B014 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ACE9FB6B2B164B3C0054B014 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ACE9FB582B164B390054B014 /* Picover */;
+			targetProxy = ACE9FB6A2B164B3C0054B014 /* PBXContainerItemProxy */;
+		};
+		ACE9FB752B164B3C0054B014 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ACE9FB582B164B390054B014 /* Picover */;
+			targetProxy = ACE9FB742B164B3C0054B014 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		ACE9FB7B2B164B3C0054B014 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ACE9FB7C2B164B3C0054B014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ACE9FB7E2B164B3C0054B014 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"picover/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intive.picover;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ACE9FB7F2B164B3C0054B014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"picover/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intive.picover;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ACE9FB812B164B3C0054B014 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intive.picoverTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Picover.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Picover";
+			};
+			name = Debug;
+		};
+		ACE9FB822B164B3C0054B014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intive.picoverTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Picover.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Picover";
+			};
+			name = Release;
+		};
+		ACE9FB842B164B3C0054B014 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intive.picoverUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = picover;
+			};
+			name = Debug;
+		};
+		ACE9FB852B164B3C0054B014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intive.picoverUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = picover;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ACE9FB542B164B390054B014 /* Build configuration list for PBXProject "Picover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACE9FB7B2B164B3C0054B014 /* Debug */,
+				ACE9FB7C2B164B3C0054B014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACE9FB7D2B164B3C0054B014 /* Build configuration list for PBXNativeTarget "Picover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACE9FB7E2B164B3C0054B014 /* Debug */,
+				ACE9FB7F2B164B3C0054B014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACE9FB802B164B3C0054B014 /* Build configuration list for PBXNativeTarget "PicoverTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACE9FB812B164B3C0054B014 /* Debug */,
+				ACE9FB822B164B3C0054B014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACE9FB832B164B3C0054B014 /* Build configuration list for PBXNativeTarget "PicoverUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACE9FB842B164B3C0054B014 /* Debug */,
+				ACE9FB852B164B3C0054B014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ACE9FB512B164B390054B014 /* Project object */;
+}
