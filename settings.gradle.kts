@@ -13,7 +13,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Picover"
 include(
-	":app",
+	":androidApp",
 	":shared",
 	":lint",
 	":ktlint-ruleset",

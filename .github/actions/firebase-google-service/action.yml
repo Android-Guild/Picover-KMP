@@ -10,4 +10,4 @@ runs:
     - shell: bash
       env:
         SECRET: ${{ inputs.secret }}
-      run: echo $SECRET > app/src/google-services.json
+      run: echo $SECRET > androidApp/src/google-services.json

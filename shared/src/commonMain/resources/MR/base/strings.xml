@@ -22,9 +22,9 @@
     <string name="ProfileError">Something went wrong \nClick to refresh</string>
     <string name="RetryButton">Retry</string>
     <string name="SaveButton">Save</string>
-    <string name="TextIsTooLong">"Text is too long"</string>
-    <string name="TextShouldNotBeBlank">"Text should not be blank"</string>
-    <string name="TextShouldNotBeEmpty">"Text should not be empty"</string>
+    <string name="TextIsTooLong">Text is too long</string>
+    <string name="TextShouldNotBeBlank">Text should not be blank</string>
+    <string name="TextShouldNotBeEmpty">Text should not be empty</string>
     <string name="UploadChannelName">Uploading</string>
     <string name="UploadFinishedNotificationTitle">New photo has been uploaded!</string>
     <string name="UploadOngoingNotificationTitle">Uploading…</string>
