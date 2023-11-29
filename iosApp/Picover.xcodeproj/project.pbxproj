@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC35F5E72B18A00500E1B8A8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = AC35F5E62B18A00500E1B8A8 /* FirebaseStorage */; };
 		ACE9FB5D2B164B390054B014 /* PicoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE9FB5C2B164B390054B014 /* PicoverApp.swift */; };
 		ACE9FB5F2B164B390054B014 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE9FB5E2B164B390054B014 /* ContentView.swift */; };
 		ACE9FB612B164B3C0054B014 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE9FB602B164B3C0054B014 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC35F5E72B18A00500E1B8A8 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +121,9 @@
 			dependencies = (
 			);
 			name = Picover;
+			packageProductDependencies = (
+				AC35F5E62B18A00500E1B8A8 /* FirebaseStorage */,
+			);
 			productName = picover;
 			productReference = ACE9FB592B164B390054B014 /* Picover.app */;
 			productType = "com.apple.product-type.application";
@@ -191,6 +196,9 @@
 				Base,
 			);
 			mainGroup = ACE9FB502B164B390054B014;
+			packageReferences = (
+				AC35F5E52B18A00500E1B8A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = ACE9FB5A2B164B390054B014 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -592,6 +600,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AC35F5E52B18A00500E1B8A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.18.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AC35F5E62B18A00500E1B8A8 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC35F5E52B18A00500E1B8A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ACE9FB512B164B390054B014 /* Project object */;
 }
