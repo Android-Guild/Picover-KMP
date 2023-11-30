@@ -7,6 +7,7 @@ plugins {
 	alias(libs.plugins.kover)
 	alias(libs.plugins.resources)
 	alias(libs.plugins.cocoapods)
+	alias(libs.plugins.jetbrains.compose)
 }
 
 kotlin {
@@ -28,6 +29,9 @@ kotlin {
 
 	sourceSets {
 		commonMain.dependencies {
+			implementation(compose.foundation)
+			implementation(compose.material3)
+			implementation(compose.ui)
 			implementation(libs.coroutines)
 			implementation(libs.firebase.auth)
 			implementation(libs.firebase.firestore)
