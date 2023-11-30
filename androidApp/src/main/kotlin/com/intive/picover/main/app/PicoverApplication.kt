@@ -12,8 +12,8 @@ class PicoverApplication : Application(), Configuration.Provider {
 	@Inject
 	lateinit var workerFactory: HiltWorkerFactory
 
-	override fun getWorkManagerConfiguration() =
-		Configuration.Builder()
+	override val workManagerConfiguration
+		get() = Configuration.Builder()
 			.setWorkerFactory(workerFactory)
 			.build()
 }
