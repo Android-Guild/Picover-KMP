@@ -13,6 +13,7 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-}
+// TODO fix on CI
+// #Preview {
+//     ContentView()
+// }
