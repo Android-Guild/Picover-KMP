@@ -29,6 +29,8 @@ kotlin {
 	sourceSets {
 		commonMain.dependencies {
 			implementation(libs.coroutines)
+			implementation(libs.firebase.auth)
+			implementation(libs.firebase.firestore)
 			implementation(libs.firebase.storage)
 			implementation(libs.resources)
 		}
@@ -38,8 +40,6 @@ kotlin {
 		}
 		androidMain.dependencies {
 			implementation(libs.android.core)
-			implementation(libs.firebase.auth)
-			implementation(libs.firebase.firestore)
 			implementation(libs.hilt.android)
 			implementation(libs.hilt.work)
 			implementation(libs.workmanager)
