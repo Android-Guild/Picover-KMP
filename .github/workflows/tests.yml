@@ -21,6 +21,7 @@ jobs:
       - run: ./gradlew ${{ matrix.task }}
   ios:
     runs-on: macos-latest
+    if: ${{ false }} # run unit tests from iosApp
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4

@@ -29,5 +29,5 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 17
-      - run: xcodebuild -configuration Debug -sdk iphonesimulator16.2
+      - run: xcodebuild -scheme Picover -configuration Debug -sdk iphonesimulator16.2 build
         working-directory: iosApp
