@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AC35F5E72B18A00500E1B8A8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = AC35F5E62B18A00500E1B8A8 /* FirebaseStorage */; };
+		ACAA11632B18EB370065A870 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = ACAA11622B18EB370065A870 /* FirebaseAuth */; };
+		ACAA11652B18EBB50065A870 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ACAA11642B18EBB50065A870 /* FirebaseFirestore */; };
 		ACE9FB5D2B164B390054B014 /* PicoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE9FB5C2B164B390054B014 /* PicoverApp.swift */; };
 		ACE9FB5F2B164B390054B014 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE9FB5E2B164B390054B014 /* ContentView.swift */; };
 		ACE9FB612B164B3C0054B014 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE9FB602B164B3C0054B014 /* Assets.xcassets */; };
@@ -47,6 +49,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC35F5E72B18A00500E1B8A8 /* FirebaseStorage in Frameworks */,
+				ACAA11632B18EB370065A870 /* FirebaseAuth in Frameworks */,
+				ACAA11652B18EBB50065A870 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +127,8 @@
 			name = Picover;
 			packageProductDependencies = (
 				AC35F5E62B18A00500E1B8A8 /* FirebaseStorage */,
+				ACAA11622B18EB370065A870 /* FirebaseAuth */,
+				ACAA11642B18EBB50065A870 /* FirebaseFirestore */,
 			);
 			productName = picover;
 			productReference = ACE9FB592B164B390054B014 /* Picover.app */;
@@ -617,6 +623,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AC35F5E52B18A00500E1B8A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		ACAA11622B18EB370065A870 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC35F5E52B18A00500E1B8A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		ACAA11642B18EBB50065A870 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC35F5E52B18A00500E1B8A8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
