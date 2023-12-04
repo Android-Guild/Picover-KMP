@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getScreenModel
@@ -27,8 +26,9 @@ import com.intive.picover.profile.model.Profile
 import com.intive.picover.profile.model.ProfileState
 import com.intive.picover.profile.model.ProfileUpdateResult
 import com.intive.picover.profile.viewmodel.ProfileViewModel
-import com.intive.picover.shared.R
+import com.intive.picover.shared.MR
 import dev.gitlive.firebase.storage.File
+import dev.icerock.moko.resources.compose.stringResource
 
 class ProfileScreen : Screen {
 
@@ -82,7 +82,7 @@ private fun ProfileContent(
 			}
 
 			LOADING -> {
-				val loadingProfile = Profile(null, stringResource(id = R.string.Loading), stringResource(id = R.string.Loading))
+				val loadingProfile = Profile(null, stringResource(MR.strings.Loading), stringResource(MR.strings.Loading))
 				LinearProgressIndicator(
 					modifier = Modifier
 						.fillMaxWidth(),
@@ -98,7 +98,7 @@ private fun ProfileContent(
 
 			ERROR -> {
 				PicoverGenericError(
-					message = stringResource(R.string.ProfileError),
+					message = stringResource(MR.strings.ProfileError),
 					onRetryClick = onRetryClick,
 				)
 				Divider(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp))

@@ -20,7 +20,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
@@ -28,7 +27,8 @@ import com.intive.picover.common.text.PicoverOutlinedTextField
 import com.intive.picover.common.validator.TextValidator
 import com.intive.picover.main.navigation.popWithResult
 import com.intive.picover.profile.model.ProfileUpdateResult
-import com.intive.picover.shared.R
+import com.intive.picover.shared.MR
+import dev.icerock.moko.resources.compose.stringResource
 
 data class ProfileUpdateBottomSheet(val initialUsername: String) : Screen {
 
@@ -54,7 +54,7 @@ data class ProfileUpdateBottomSheet(val initialUsername: String) : Screen {
 							)
 						}
 					},
-					title = { Text(stringResource(id = R.string.EditUserData)) },
+					title = { Text(stringResource(MR.strings.EditUserData)) },
 					actions = {
 						IconButton(
 							onClick = { bottomSheetNavigator.popWithResult(ProfileUpdateResult(username)) },
@@ -78,7 +78,7 @@ data class ProfileUpdateBottomSheet(val initialUsername: String) : Screen {
 					value = username,
 					onValueChange = { username = it },
 					validator = TextValidator.Short,
-					labelText = stringResource(id = R.string.UserName),
+					labelText = stringResource(MR.strings.UserName),
 					onValidationStatusChange = { isUserNameValid = it },
 				)
 			}
