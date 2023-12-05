@@ -36,6 +36,7 @@ kotlin {
 			implementation(libs.firebase.storage)
 			implementation(libs.resources)
 			api(libs.resources.compose)
+			implementation(libs.koin.core)
 		}
 		commonTest.dependencies {
 			implementation(libs.test.kotlin)
