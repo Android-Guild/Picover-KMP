@@ -6,7 +6,6 @@ plugins {
 	alias(libs.plugins.kotest)
 	alias(libs.plugins.kover)
 	alias(libs.plugins.resources)
-	alias(libs.plugins.cocoapods)
 	alias(libs.plugins.jetbrains.compose)
 }
 
@@ -14,14 +13,13 @@ kotlin {
 	jvmToolchain(17)
 
 	androidTarget()
-	iosX64()
-	iosArm64()
-	iosSimulatorArm64()
 
-	cocoapods {
-		version = "0.1"
-		ios.deploymentTarget = "16.0"
-		framework {
+	listOf(
+		iosX64(),
+		iosArm64(),
+		iosSimulatorArm64(),
+	).forEach {
+		it.binaries.framework {
 			baseName = "shared"
 			isStatic = true
 		}
