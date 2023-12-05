@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
@@ -27,7 +26,8 @@ import com.intive.picover.common.text.PicoverOutlinedTextField
 import com.intive.picover.common.validator.TextValidator
 import com.intive.picover.main.navigation.popWithResult
 import com.intive.picover.parties.model.AddPartyResult
-import com.intive.picover.shared.R
+import com.intive.picover.shared.MR
+import dev.icerock.moko.resources.compose.stringResource
 
 class AddPartyBottomSheet : Screen {
 
@@ -65,7 +65,7 @@ fun AddPartyContent(
 		horizontalAlignment = Alignment.CenterHorizontally,
 	) {
 		PicoverOutlinedTextField(
-			labelText = stringResource(R.string.PartyScreenAddPartyBottomSheetTitle),
+			labelText = stringResource(MR.strings.PartyScreenAddPartyBottomSheetTitle),
 			modifier = Modifier
 				.fillMaxWidth()
 				.padding(bottom = 16.dp),
@@ -80,7 +80,7 @@ fun AddPartyContent(
 			),
 		)
 		PicoverOutlinedTextField(
-			labelText = stringResource(R.string.PartyScreenAddPartyBottomSheetDescription),
+			labelText = stringResource(MR.strings.PartyScreenAddPartyBottomSheetDescription),
 			modifier = Modifier
 				.fillMaxWidth()
 				.padding(bottom = 16.dp),
@@ -94,7 +94,7 @@ fun AddPartyContent(
 			onClick = onSaveButtonClick,
 		) {
 			Text(
-				text = stringResource(R.string.SaveButton),
+				text = stringResource(MR.strings.SaveButton),
 				color = Color.White,
 			)
 		}

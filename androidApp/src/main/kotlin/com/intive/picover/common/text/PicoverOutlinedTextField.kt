@@ -12,7 +12,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -22,6 +21,7 @@ import com.intive.picover.common.annotation.LightDarkPreview
 import com.intive.picover.common.validator.TextValidator
 import com.intive.picover.common.validator.ValidationStatus
 import com.intive.picover.main.theme.PicoverTheme
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun PicoverOutlinedTextField(
@@ -63,7 +63,7 @@ fun PicoverOutlinedTextField(
 			validationStatus?.errorMessageId?.let {
 				Text(
 					modifier = Modifier.fillMaxWidth(),
-					text = stringResource(id = it),
+					text = stringResource(it),
 				)
 			}
 			Text(

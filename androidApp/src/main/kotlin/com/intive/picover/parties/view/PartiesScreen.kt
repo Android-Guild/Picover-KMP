@@ -21,7 +21,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,7 +35,8 @@ import com.intive.picover.main.theme.Typography
 import com.intive.picover.parties.model.AddPartyResult
 import com.intive.picover.parties.model.Party
 import com.intive.picover.parties.viewmodel.PartiesViewModel
-import com.intive.picover.shared.R
+import com.intive.picover.shared.MR
+import dev.icerock.moko.resources.compose.stringResource
 
 class PartiesScreen : Screen {
 
@@ -89,7 +89,7 @@ private fun LoadedContent(
 			containerColor = MaterialTheme.colorScheme.secondaryContainer,
 			contentColor = MaterialTheme.colorScheme.secondary,
 		) {
-			Icon(Icons.Filled.Add, stringResource(id = R.string.PartyScreenFabAddIcon))
+			Icon(Icons.Filled.Add, stringResource(MR.strings.PartyScreenFabAddIcon))
 		}
 	}
 }

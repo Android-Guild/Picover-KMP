@@ -5,19 +5,19 @@ import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.res.stringResource
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.intive.picover.images.view.ImagesScreen
-import com.intive.picover.shared.R
+import com.intive.picover.shared.MR
+import dev.icerock.moko.resources.compose.stringResource
 
 object ImagesTab : Tab {
 
 	override val options: TabOptions
 		@Composable
 		get() {
-			val title = stringResource(R.string.ItemPhotos)
+			val title = stringResource(MR.strings.ItemPhotos)
 			val icon = rememberVectorPainter(Icons.Filled.PhotoCamera)
 			return remember {
 				TabOptions(

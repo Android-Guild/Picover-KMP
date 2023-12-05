@@ -11,12 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.intive.picover.main.theme.Typography
-import com.intive.picover.shared.R
+import com.intive.picover.shared.MR
+import dev.icerock.moko.resources.compose.stringResource
 
 // TODO: Drop after migration from drawables to svg
 typealias AppDrawable = com.intive.picover.R.drawable
@@ -24,7 +24,7 @@ typealias AppDrawable = com.intive.picover.R.drawable
 @Preview
 @Composable
 fun PicoverGenericError(
-	message: String = stringResource(id = R.string.GenericErrorMessage),
+	message: String = stringResource(MR.strings.GenericErrorMessage),
 	onRetryClick: (() -> Unit)? = null,
 ) {
 	Column(
@@ -47,7 +47,7 @@ fun PicoverGenericError(
 		)
 		onRetryClick?.let {
 			TextButton(onClick = it) {
-				Text(stringResource(id = R.string.RetryButton).uppercase())
+				Text(stringResource(MR.strings.RetryButton).uppercase())
 			}
 		}
 	}

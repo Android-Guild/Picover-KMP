@@ -12,11 +12,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.intive.picover.R
 import com.intive.picover.profile.model.ProfileActionsItem
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun ProfileActions(onLogoutClick: () -> Unit, onDeleteAccountCLick: () -> Unit) {
@@ -45,11 +45,11 @@ fun ProfileActions(onLogoutClick: () -> Unit, onDeleteAccountCLick: () -> Unit) 
 					Icon(
 						modifier = Modifier.size(24.dp),
 						imageVector = it.icon,
-						contentDescription = stringResource(id = it.textId),
+						contentDescription = stringResource(it.textId),
 					)
 				},
 				label = {
-					Text(text = stringResource(id = it.textId))
+					Text(text = stringResource(it.textId))
 				},
 				onClick = it.onClick,
 				selected = false,
