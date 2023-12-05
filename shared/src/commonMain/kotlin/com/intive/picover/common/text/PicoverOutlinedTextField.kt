@@ -1,7 +1,6 @@
 package com.intive.picover.common.text
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
@@ -15,12 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
-import androidx.compose.ui.unit.dp
-import com.intive.picover.common.annotation.LightDarkPreview
 import com.intive.picover.common.validator.TextValidator
 import com.intive.picover.common.validator.ValidationStatus
-import com.intive.picover.main.theme.PicoverTheme
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
@@ -76,22 +71,4 @@ fun PicoverOutlinedTextField(
 		enabled = isEnabled,
 		trailingIcon = trailingIcon,
 	)
-}
-
-@LightDarkPreview
-@Composable
-private fun PicoverOutlinedTextFieldPreview() {
-	PicoverTheme {
-		var description by remember { mutableStateOf(LoremIpsum(10).values.first()) }
-		PicoverOutlinedTextField(
-			modifier = Modifier
-				.fillMaxWidth()
-				.padding(16.dp),
-			value = description,
-			labelText = "Description",
-			onValueChange = { description = it },
-			validator = TextValidator.Long,
-			maxLines = 3,
-		)
-	}
 }

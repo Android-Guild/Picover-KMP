@@ -5,7 +5,6 @@ kotlin = "1.9.20"
 kotest = "5.8.0"
 ktlint = "1.0.1"
 lint = "31.2.0"
-landscapist = "2.2.12"
 firebase = "1.10.4"
 resources = "0.23.0"
 voyager = "1.0.0-rc10"
@@ -68,7 +67,6 @@ test-slf4j = "org.slf4j:slf4j-simple:2.0.9"
 
 [bundles]
 lint-test = ["test-lint", "test-lint-tests"]
-voyager = ["voyager-navigator", "voyager-tab-navigator", "voyager-bottom-sheet-navigator", "voyager-hilt"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
