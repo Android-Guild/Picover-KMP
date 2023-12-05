@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ComposeUIViewController
+import com.intive.picover.common.error.PicoverGenericError
 import com.intive.picover.common.loader.PicoverLoader
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -25,6 +26,7 @@ object MainViewController {
 		) {
 			PicoverLoader()
 			Text(text = stringResource(MR.strings.GenericErrorMessage))
+			PicoverGenericError()
 		}
 	}
 }
