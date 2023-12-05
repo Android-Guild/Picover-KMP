@@ -16,7 +16,6 @@ plugins {
 	alias(libs.plugins.firebase.appdistribution) apply false
 	alias(libs.plugins.firebase.crashlytics) apply false
 	alias(libs.plugins.kotest) apply false
-	alias(libs.plugins.cocoapods) apply false
 	`picover-ktlint` apply true
 }
 
