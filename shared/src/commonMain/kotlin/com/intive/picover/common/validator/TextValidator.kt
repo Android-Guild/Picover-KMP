@@ -1,12 +1,11 @@
 package com.intive.picover.common.validator
 
-import androidx.annotation.VisibleForTesting
 import com.intive.picover.common.validator.ValidationStatus.BlankText
 import com.intive.picover.common.validator.ValidationStatus.EmptyText
 import com.intive.picover.common.validator.ValidationStatus.TooLongText
 import com.intive.picover.common.validator.ValidationStatus.ValidText
 
-class TextValidator @VisibleForTesting constructor(
+class TextValidator(
 	private val allowEmpty: Boolean,
 	private val allowBlank: Boolean,
 	val maxLength: Int?,

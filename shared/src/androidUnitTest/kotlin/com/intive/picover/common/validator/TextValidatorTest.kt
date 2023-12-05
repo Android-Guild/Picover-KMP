@@ -1,7 +1,5 @@
-package com.intive.picover.validators
+package com.intive.picover.common.validator
 
-import com.intive.picover.common.validator.TextValidator
-import com.intive.picover.common.validator.ValidationStatus
 import com.intive.picover.common.validator.ValidationStatus.BlankText
 import com.intive.picover.common.validator.ValidationStatus.EmptyText
 import com.intive.picover.common.validator.ValidationStatus.TooLongText
