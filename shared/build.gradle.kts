@@ -39,6 +39,8 @@ kotlin {
 			implementation(libs.koin.core)
 			api(libs.voyager.navigator)
 			api(libs.voyager.tab.navigator)
+			implementation(compose.material) // TODO https://github.com/adrielcafe/voyager/issues/185
+			api(libs.voyager.bottom.sheet.navigator)
 		}
 		commonTest.dependencies {
 			implementation(libs.test.kotlin)

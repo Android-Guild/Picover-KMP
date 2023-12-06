@@ -17,8 +17,6 @@ import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
@@ -99,28 +97,4 @@ fun AddPartyContent(
 			)
 		}
 	}
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun AddPartyContentValidPreview() {
-	AddPartyContent(
-		title = LoremIpsum(4).values.first(),
-		onTitleChange = {},
-		description = LoremIpsum(15).values.first(),
-		onDescriptionChange = {},
-		onSaveButtonClick = {},
-	)
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun AddPartyContentInvalidPreview() {
-	AddPartyContent(
-		title = LoremIpsum(6).values.first(),
-		onTitleChange = {},
-		description = LoremIpsum(20).values.first(),
-		onDescriptionChange = {},
-		onSaveButtonClick = {},
-	)
 }
