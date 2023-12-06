@@ -1,14 +1,14 @@
 import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
 
 plugins {
-	id(libs.plugins.android.application.get().pluginId)
+	alias(libs.plugins.android.application)
 	kotlin("android")
-	id(libs.plugins.kotlin.ksp.get().pluginId)
-	id(libs.plugins.hilt.android.get().pluginId)
-	id(libs.plugins.google.services.get().pluginId)
+	alias(libs.plugins.kotlin.ksp)
+	alias(libs.plugins.hilt.android)
+	alias(libs.plugins.google.services)
 	id(libs.plugins.oss.licenses.get().pluginId)
-	id(libs.plugins.firebase.appdistribution.get().pluginId)
-	id(libs.plugins.firebase.crashlytics.get().pluginId)
+	alias(libs.plugins.firebase.appdistribution)
+	alias(libs.plugins.firebase.crashlytics)
 	alias(libs.plugins.kover)
 }
 
@@ -57,7 +57,6 @@ android {
 dependencies {
 	lintChecks(project(":lint"))
 	implementation(project(":shared"))
-	kover(project(":shared"))
 	ksp(libs.hilt.android.compiler)
 	implementation(libs.accompanist.navigation.material)
 	implementation(platform(libs.compose.bom))
@@ -94,4 +93,8 @@ dependencies {
 	testCompileOnly("org.jetbrains.kotlin:kotlin-reflect:1.9.10") {
 		because("Needed to locally trigger single kotest test - check new versions of kotlin and kotest plugins to fix this workaround")
 	}
+}
+
+dependencies {
+	kover(project(":shared"))
 }
