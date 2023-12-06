@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC35F5E72B18A00500E1B8A8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = AC35F5E62B18A00500E1B8A8 /* FirebaseStorage */; };
+		ACA19C7A2B21FA1A0090A01F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACA19C792B21FA190090A01F /* GoogleService-Info.plist */; };
 		ACAA11632B18EB370065A870 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = ACAA11622B18EB370065A870 /* FirebaseAuth */; };
 		ACAA11652B18EBB50065A870 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ACAA11642B18EBB50065A870 /* FirebaseFirestore */; };
 		ACE9FB5D2B164B390054B014 /* PicoverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE9FB5C2B164B390054B014 /* PicoverApp.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ACA19C792B21FA190090A01F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ACE9FB592B164B390054B014 /* Picover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE9FB5C2B164B390054B014 /* PicoverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicoverApp.swift; sourceTree = "<group>"; };
 		ACE9FB5E2B164B390054B014 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 		ACE9FB5B2B164B390054B014 /* picover */ = {
 			isa = PBXGroup;
 			children = (
+				ACA19C792B21FA190090A01F /* GoogleService-Info.plist */,
 				ACE9FB5C2B164B390054B014 /* PicoverApp.swift */,
 				ACE9FB5E2B164B390054B014 /* ContentView.swift */,
 				ACE9FB602B164B3C0054B014 /* Assets.xcassets */,
@@ -224,6 +227,7 @@
 			files = (
 				ACE9FB642B164B3C0054B014 /* Preview Assets.xcassets in Resources */,
 				ACE9FB612B164B3C0054B014 /* Assets.xcassets in Resources */,
+				ACA19C7A2B21FA1A0090A01F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,7 +474,7 @@
 					"-framework",
 					shared,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.intive.picover;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intive.picover.kmp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -505,7 +509,7 @@
 					"-framework",
 					shared,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.intive.picover;
+				PRODUCT_BUNDLE_IDENTIFIER = com.intive.picover.kmp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

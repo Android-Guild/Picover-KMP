@@ -29,5 +29,6 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 17
+      - run: echo ${{ secrets.GOOGLE_SERVICE_IOS }} > iosApp/picover/GoogleService-Info.plist
       - run: xcodebuild -scheme Picover -configuration Debug -sdk iphonesimulator16.2 build
         working-directory: iosApp
