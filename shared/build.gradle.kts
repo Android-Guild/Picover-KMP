@@ -37,6 +37,8 @@ kotlin {
 			implementation(libs.resources)
 			api(libs.resources.compose)
 			implementation(libs.koin.core)
+			api(libs.voyager.navigator)
+			api(libs.voyager.tab.navigator)
 		}
 		commonTest.dependencies {
 			implementation(libs.test.kotlin)
