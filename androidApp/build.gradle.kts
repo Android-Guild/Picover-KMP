@@ -84,7 +84,6 @@ dependencies {
 	implementation(libs.firebaseui.auth)
 	implementation(libs.play.services.auth)
 	implementation(libs.voyager.hilt)
-	implementation(libs.voyager.bottom.sheet.navigator)
 	debugImplementation(libs.compose.ui.tooling)
 	debugImplementation(libs.leakcanary)
 	testImplementation(libs.test.kotest.runner)
