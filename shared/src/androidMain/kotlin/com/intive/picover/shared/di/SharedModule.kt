@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.work.WorkManager
 import com.intive.picover.auth.repository.AuthRepository
 import com.intive.picover.images.repository.ImagesRepository
-import com.intive.picover.shared.koin.mainModule
 import com.intive.picover.shared.party.data.repo.PartiesRepository
 import dagger.Module
 import dagger.Provides
@@ -13,7 +12,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dev.gitlive.firebase.storage.StorageReference
 import kotlinx.coroutines.CoroutineDispatcher
-import org.koin.core.context.startKoin
 import org.koin.core.parameter.parametersOf
 import org.koin.java.KoinJavaComponent.get
 
@@ -40,10 +38,4 @@ object SharedModule {
 	@Provides
 	fun provideWorkManager(@ApplicationContext context: Context) =
 		WorkManager.getInstance(context)
-
-	fun init() {
-		startKoin {
-			modules(mainModule)
-		}
-	}
 }

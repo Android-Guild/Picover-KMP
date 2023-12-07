@@ -1,9 +1,11 @@
 package com.intive.picover.shared
 
-class Greeting {
-	private val platform: Platform = getPlatform()
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-	fun greet(): String {
-		return "Hello, ${platform.name}!"
-	}
+class Greeting : KoinComponent {
+	private val platform: Platform by inject()
+
+	fun greet() =
+		"Hello, ${platform.name}!"
 }

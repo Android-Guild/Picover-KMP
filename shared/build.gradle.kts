@@ -43,7 +43,7 @@ kotlin {
 			api(libs.voyager.bottom.sheet.navigator)
 		}
 		commonTest.dependencies {
-			implementation(libs.test.kotlin)
+			implementation(libs.test.koin)
 			implementation(libs.test.kotest.engine)
 		}
 		androidMain.dependencies {
