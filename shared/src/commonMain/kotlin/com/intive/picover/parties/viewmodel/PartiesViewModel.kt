@@ -7,12 +7,11 @@ import com.intive.picover.parties.model.AddPartyResult
 import com.intive.picover.parties.model.PartiesState
 import com.intive.picover.parties.model.toUI
 import com.intive.picover.shared.party.data.repo.PartiesRepository
-import javax.inject.Inject
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class PartiesViewModel @Inject constructor(
+class PartiesViewModel(
 	private val partiesRepository: PartiesRepository,
 ) : StateScreenModel<PartiesState>(PartiesState()) {
 

@@ -22,10 +22,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.hilt.getScreenModel
+import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
@@ -38,7 +37,7 @@ import com.intive.picover.parties.viewmodel.PartiesViewModel
 import com.intive.picover.shared.MR
 import dev.icerock.moko.resources.compose.stringResource
 
-class PartiesScreen : Screen {
+internal class PartiesScreen : Screen {
 
 	@Composable
 	override fun Content() {
@@ -119,22 +118,4 @@ private fun PartyTile(
 			)
 		}
 	}
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun PartyScreenLoadedPreview() {
-	val parties = (1..5)
-		.map {
-			Party(
-				id = it.toString(),
-				title = "title$it",
-				description = "description$it",
-			)
-		}
-	LoadedContent(
-		parties = parties,
-		onPartyClick = {},
-		onFabClick = {},
-	)
 }
