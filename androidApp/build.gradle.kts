@@ -90,7 +90,7 @@ dependencies {
 	testImplementation(libs.test.junit.launcher)
 	testImplementation(libs.test.kotest.datatest)
 	testImplementation(libs.test.mockk)
-	testCompileOnly("org.jetbrains.kotlin:kotlin-reflect:1.9.10") {
+	testCompileOnly("org.jetbrains.kotlin:kotlin-reflect:1.9.22") {
 		because("Needed to locally trigger single kotest test - check new versions of kotlin and kotest plugins to fix this workaround")
 	}
 }
