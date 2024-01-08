@@ -1,9 +1,3 @@
-buildscript {
-	dependencies {
-		classpath("com.google.android.gms:oss-licenses-plugin:0.10.6")
-	}
-}
-
 plugins {
 	alias(libs.plugins.android.application) apply false
 	alias(libs.plugins.android.library) apply false
@@ -15,6 +9,7 @@ plugins {
 	alias(libs.plugins.hilt.android) apply false
 	alias(libs.plugins.firebase.appdistribution) apply false
 	alias(libs.plugins.firebase.crashlytics) apply false
+	alias(libs.plugins.aboutLibraries) apply false
 	alias(libs.plugins.kotest) apply false
 	alias(libs.plugins.kover) apply false
 	`picover-ktlint` apply true
