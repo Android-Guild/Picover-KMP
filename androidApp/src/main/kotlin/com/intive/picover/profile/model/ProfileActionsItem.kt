@@ -9,28 +9,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.intive.picover.shared.MR
 import dev.icerock.moko.resources.StringResource
 
-sealed class ProfileActionsItem(val onClick: () -> Unit, val textId: StringResource, val icon: ImageVector) {
-	class Licenses(onClick: () -> Unit) : ProfileActionsItem(
-		onClick = onClick,
-		textId = MR.strings.OpenLicenses,
-		icon = Icons.Filled.Copyright,
-	)
-
-	class Logout(onClick: () -> Unit) : ProfileActionsItem(
-		onClick = onClick,
-		textId = MR.strings.LogoutButton,
-		icon = Icons.Filled.Logout,
-	)
-
-	class DeleteAccount(onClick: () -> Unit) : ProfileActionsItem(
-		onClick = onClick,
-		textId = MR.strings.DeleteAccountButton,
-		icon = Icons.Filled.PersonRemove,
-	)
-
-	class GitHub(onClick: () -> Unit) : ProfileActionsItem(
-		onClick = onClick,
-		textId = MR.strings.GithubButton,
-		icon = Icons.Filled.OpenInBrowser,
-	)
+sealed class ProfileActionsItem(val text: StringResource, val icon: ImageVector) {
+	data object ShowLicenses : ProfileAction(MR.strings.OpenLicenses, Icons.Filled.Copyright)
+	data object Logout : ProfileAction(MR.strings.LogoutButton, Icons.Filled.Logout)
+	data object DeleteAccount : ProfileAction(MR.strings.DeleteAccountButton, Icons.Filled.PersonRemove)
+	data object ShowGitHub : ProfileAction(MR.strings.GithubButton, Icons.Filled.OpenInBrowser)
 }
+typealias ProfileAction = ProfileActionsItem
