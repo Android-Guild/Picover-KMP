@@ -1,0 +1,22 @@
+name: Distribute
+
+on:
+  workflow_run:
+    workflows: [ Build ]
+    types: [ completed ]
+    branches: [ dev ]
+
+jobs:
+  distribute-android:
+    runs-on: ubuntu-latest
+    container: gradle:8.5.0-jdk17
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/gradle-cache
+      - uses: android-actions/setup-android@v3.2.0
+      - uses: ./.github/actions/firebase-google-service
+        with:
+          secret: ${{ secrets.FIREBASE_GOOGLE_SERVICE }}
+      - run: ./gradlew assembleDebug
+      - run: echo ${{ secrets.FIREBASE_SERVICE_CREDENTIALS }} > androidApp/src/service-credentials.json
+      - run: ./gradlew appDistributionUploadDebug

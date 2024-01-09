@@ -16,11 +16,6 @@ jobs:
         with:
           secret: ${{ secrets.FIREBASE_GOOGLE_SERVICE }}
       - run: ./gradlew assembleDebug
-      - uses: ./.github/actions/firebase-service-credentials
-        with:
-          secret: ${{ secrets.FIREBASE_SERVICE_CREDENTIALS }}
-      - run: ./gradlew appDistributionUploadDebug
-        if: github.ref == 'refs/heads/dev'
   ios:
     runs-on: macos-latest
     steps:

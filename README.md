@@ -1,7 +1,7 @@
 # Picover
 
-[![](https://github.com/Android-Guild/Picover-KMP/actions/workflows/build.yml/badge.svg)](https://github.com/Android-Guild/Picover-KMP/actions/workflows/build.yml)
-[![](https://github.com/Android-Guild/Picover-KMP/actions/workflows/lint.yml/badge.svg)](https://github.com/Android-Guild/Picover-KMP/actions/workflows/lint.yml)
+[![](https://github.com/Android-Guild/Picover-KMP/actions/workflows/build.yml/badge.svg?branch=dev)](https://github.com/Android-Guild/Picover-KMP/actions/workflows/build.yml?query=branch%3Adev)
+[![](https://github.com/Android-Guild/Picover-KMP/actions/workflows/tests.yml/badge.svg?branch=dev)](https://github.com/Android-Guild/Picover-KMP/actions/workflows/tests.yml?query=branch%3Adev)
 
 App for documenting memories from Android Guild meetings and parties
 
