@@ -1,6 +1,5 @@
 package com.intive.picover.profile.view
 
-import android.content.Intent
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.foundation.layout.size
@@ -13,9 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.intive.picover.R
 import com.intive.picover.profile.model.ProfileActionsItem
+import com.mikepenz.aboutlibraries.LibsBuilder
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
@@ -24,7 +23,7 @@ fun ProfileActions(onLogoutClick: () -> Unit, onDeleteAccountCLick: () -> Unit) 
 	val items = listOf(
 		ProfileActionsItem.Licenses(
 			onClick = {
-				context.startActivity(Intent(context, OssLicensesMenuActivity::class.java))
+				LibsBuilder().start(context)
 			},
 		),
 		ProfileActionsItem.Logout(onClick = onLogoutClick),
