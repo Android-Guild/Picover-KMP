@@ -7,7 +7,7 @@ kotlin = "1.9.21"
 kotest = "5.8.0"
 ktlint = "1.1.1"
 lint = "31.2.1"
-firebase = "1.10.4"
+firebase = "1.11.0"
 resources = "0.23.0"
 voyager = "1.0.0"
 
