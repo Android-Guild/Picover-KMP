@@ -13,6 +13,7 @@ import com.intive.picover.profile.model.ProfileState
 import com.intive.picover.profile.model.ProfileUpdateResult
 import com.intive.picover.shared.R
 import dev.gitlive.firebase.storage.File
+import dev.icerock.moko.resources.StringResource
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.ShouldSpec
@@ -59,7 +60,7 @@ class ProfileViewModelTest : ShouldSpec(
 				tested.state.value shouldBe ProfileState(showDeleteAccountPopup = false)
 				coVerify {
 					authRepository.deleteAccount()
-					toastPublisher.show(textId)
+					toastPublisher.show(StringResource(textId))
 				}
 			}
 		}

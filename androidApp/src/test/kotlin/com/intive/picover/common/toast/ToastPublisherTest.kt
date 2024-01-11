@@ -2,6 +2,7 @@ package com.intive.picover.common.toast
 
 import android.content.Context
 import android.widget.Toast
+import dev.icerock.moko.resources.StringResource
 import io.kotest.core.spec.style.ShouldSpec
 import io.mockk.Runs
 import io.mockk.every
@@ -29,7 +30,7 @@ class ToastPublisherTest : ShouldSpec(
 			val textId = 123455678
 			every { Toast.makeText(any(), textId, any()).show() } just Runs
 
-			tested.show(textId)
+			tested.show(StringResource(textId))
 
 			verify { Toast.makeText(context, textId, Toast.LENGTH_LONG) }
 		}
