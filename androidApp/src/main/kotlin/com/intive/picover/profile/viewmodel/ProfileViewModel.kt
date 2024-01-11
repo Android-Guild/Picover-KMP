@@ -11,7 +11,7 @@ import com.intive.picover.common.viewmodel.state.MVIStateType.LOADING
 import com.intive.picover.profile.model.Profile
 import com.intive.picover.profile.model.ProfileState
 import com.intive.picover.profile.model.ProfileUpdateResult
-import com.intive.picover.shared.R
+import com.intive.picover.shared.MR
 import dev.gitlive.firebase.storage.File
 import javax.inject.Inject
 import kotlinx.coroutines.flow.update
@@ -41,8 +41,8 @@ class ProfileViewModel @Inject constructor(
 		screenModelScope.launch {
 			val accountDeletionResult = authRepository.deleteAccount()
 			when (accountDeletionResult) {
-				is AccountDeletionResult.Success -> R.string.DeleteAccountSuccessToastText
-				is AccountDeletionResult.ReAuthenticationNeeded -> R.string.DeleteAccountReAuthenticationToastText
+				is AccountDeletionResult.Success -> MR.strings.DeleteAccountSuccessToastText
+				is AccountDeletionResult.ReAuthenticationNeeded -> MR.strings.DeleteAccountReAuthenticationToastText
 			}.let {
 				toastPublisher.show(it)
 			}
