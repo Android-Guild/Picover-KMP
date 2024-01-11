@@ -18,5 +18,5 @@ jobs:
         with:
           secret: ${{ secrets.FIREBASE_GOOGLE_SERVICE }}
       - run: ./gradlew assembleDebug
-      - run: echo ${{ secrets.FIREBASE_SERVICE_CREDENTIALS }} > androidApp/src/service-credentials.json
+      - run: echo '${{ secrets.FIREBASE_SERVICE_CREDENTIALS }}' > androidApp/src/service-credentials.json
       - run: ./gradlew appDistributionUploadDebug
