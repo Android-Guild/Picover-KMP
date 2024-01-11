@@ -5,7 +5,7 @@ on:
     branches:
       - dev
 jobs:
-  android:
+  android-x:
     runs-on: ubuntu-latest
     container: gradle:8.5.0-jdk17
     steps:
@@ -28,6 +28,7 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 17
+      - uses: ./.github/actions/gradle-cache
       - run: echo ${{ secrets.GOOGLE_SERVICE_IOS }} > iosApp/picover/GoogleService-Info.plist
       - run: xcodebuild -scheme Picover -configuration Debug -sdk iphonesimulator16.2 build
         working-directory: iosApp
