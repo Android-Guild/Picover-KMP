@@ -6,11 +6,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.icerock.moko.resources.StringResource
 import javax.inject.Inject
 
-class ToastPublisher @Inject constructor(
+actual class ToastPublisher @Inject constructor(
 	@ApplicationContext private val context: Context,
 ) {
 
-	fun show(text: StringResource) {
+	actual fun show(text: StringResource) {
 		Toast.makeText(context, text.resourceId, Toast.LENGTH_LONG).show()
 	}
 }
