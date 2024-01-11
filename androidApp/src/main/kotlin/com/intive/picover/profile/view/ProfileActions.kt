@@ -20,37 +20,31 @@ import dev.icerock.moko.resources.compose.stringResource
 @Composable
 fun ProfileActions(onLogoutClick: () -> Unit, onDeleteAccountCLick: () -> Unit) {
 	val context = LocalContext.current
-	val items = listOf(
-		ProfileActionsItem.Licenses(
-			onClick = {
-				LibsBuilder().start(context)
-			},
-		),
-		ProfileActionsItem.Logout(onClick = onLogoutClick),
-		ProfileActionsItem.DeleteAccount(onClick = onDeleteAccountCLick),
-		ProfileActionsItem.GitHub(
-			onClick = {
-				CustomTabsIntent
-					.Builder()
-					.build()
-					.launchUrl(context, Uri.parse(context.getString(R.string.GitHub)))
-			},
-		),
+	val actions = listOf(
+		ProfileActionsItem.ShowLicenses to { LibsBuilder().start(context) },
+		ProfileActionsItem.Logout to onLogoutClick,
+		ProfileActionsItem.DeleteAccount to onDeleteAccountCLick,
+		ProfileActionsItem.ShowGitHub to {
+			CustomTabsIntent
+				.Builder()
+				.build()
+				.launchUrl(context, Uri.parse(context.getString(R.string.GitHub)))
+		},
 	)
 	LazyColumn {
-		items(items) {
+		items(actions) { (action, onClick) ->
 			NavigationDrawerItem(
 				icon = {
 					Icon(
 						modifier = Modifier.size(24.dp),
-						imageVector = it.icon,
-						contentDescription = stringResource(it.textId),
+						imageVector = action.icon,
+						contentDescription = stringResource(action.text),
 					)
 				},
 				label = {
-					Text(text = stringResource(it.textId))
+					Text(text = stringResource(action.text))
 				},
-				onClick = it.onClick,
+				onClick = onClick,
 				selected = false,
 			)
 		}
