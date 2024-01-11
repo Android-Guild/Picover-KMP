@@ -12,7 +12,7 @@ import io.mockk.mockkStatic
 import io.mockk.unmockkAll
 import io.mockk.verify
 
-class ToastPublisherTest : ShouldSpec(
+internal class ToastPublisherTest : ShouldSpec(
 	{
 
 		val context: Context = mockk()
