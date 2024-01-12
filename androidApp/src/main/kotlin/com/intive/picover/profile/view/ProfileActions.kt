@@ -2,9 +2,8 @@ package com.intive.picover.profile.view
 
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
@@ -13,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.intive.picover.R
-import com.intive.picover.profile.model.ProfileActionsItem
+import com.intive.picover.profile.model.ProfileAction
 import com.mikepenz.aboutlibraries.LibsBuilder
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -21,18 +20,18 @@ import dev.icerock.moko.resources.compose.stringResource
 fun ProfileActions(onLogoutClick: () -> Unit, onDeleteAccountCLick: () -> Unit) {
 	val context = LocalContext.current
 	val actions = listOf(
-		ProfileActionsItem.ShowLicenses to { LibsBuilder().start(context) },
-		ProfileActionsItem.Logout to onLogoutClick,
-		ProfileActionsItem.DeleteAccount to onDeleteAccountCLick,
-		ProfileActionsItem.ShowGitHub to {
+		ProfileAction.ShowLicenses to { LibsBuilder().start(context) },
+		ProfileAction.Logout to onLogoutClick,
+		ProfileAction.DeleteAccount to onDeleteAccountCLick,
+		ProfileAction.ShowGitHub to {
 			CustomTabsIntent
 				.Builder()
 				.build()
 				.launchUrl(context, Uri.parse(context.getString(R.string.GitHub)))
 		},
 	)
-	LazyColumn {
-		items(actions) { (action, onClick) ->
+	Column {
+		actions.forEach { (action, onClick) ->
 			NavigationDrawerItem(
 				icon = {
 					Icon(
