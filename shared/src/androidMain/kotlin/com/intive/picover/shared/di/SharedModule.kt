@@ -38,6 +38,6 @@ object SharedModule {
 
 	@Provides
 	@Singleton
-	fun provideToastPublisher(@ApplicationContext context: Context) =
-		ToastPublisher(context)
+	fun provideToastPublisher(@ApplicationContext context: Context): ToastPublisher =
+		get(ToastPublisher::class.java, parameters = { parametersOf(context) })
 }
