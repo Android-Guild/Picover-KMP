@@ -10,6 +10,7 @@ object KoinApp {
 				mainModule,
 				platformModule,
 				partyModule,
+				toastModule,
 			)
 		}
 	}
