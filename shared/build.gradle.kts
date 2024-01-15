@@ -7,6 +7,7 @@ plugins {
 	alias(libs.plugins.kover)
 	alias(libs.plugins.resources)
 	alias(libs.plugins.jetbrains.compose)
+	alias(libs.plugins.aboutLibraries)
 }
 
 kotlin {
@@ -48,6 +49,7 @@ kotlin {
 			}
 			implementation(libs.coil.compose)
 			implementation(libs.coil.network)
+			implementation(libs.aboutLibraries)
 		}
 		commonTest.dependencies {
 			implementation(libs.test.koin)

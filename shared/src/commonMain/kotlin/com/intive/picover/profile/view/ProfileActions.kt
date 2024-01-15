@@ -1,7 +1,5 @@
 package com.intive.picover.profile.view
 
-import android.net.Uri
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -9,26 +7,23 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
-import com.intive.picover.R
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import com.intive.picover.profile.model.ProfileAction
-import com.mikepenz.aboutlibraries.LibsBuilder
+import com.intive.picover.shared.licenses.LicensesScreen
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun ProfileActions(onLogoutClick: () -> Unit, onDeleteAccountCLick: () -> Unit) {
-	val context = LocalContext.current
+	val navigator = LocalNavigator.currentOrThrow
+	val uriHandler = LocalUriHandler.current
 	val actions = listOf(
-		ProfileAction.ShowLicenses to { LibsBuilder().start(context) },
+		ProfileAction.ShowLicenses to { navigator.push(LicensesScreen()) },
 		ProfileAction.Logout to onLogoutClick,
 		ProfileAction.DeleteAccount to onDeleteAccountCLick,
-		ProfileAction.ShowGitHub to {
-			CustomTabsIntent
-				.Builder()
-				.build()
-				.launchUrl(context, Uri.parse(context.getString(R.string.GitHub)))
-		},
+		ProfileAction.ShowGitHub to { uriHandler.openUri("https://github.com/Android-Guild/Picover-KMP") },
 	)
 	Column {
 		actions.forEach { (action, onClick) ->
