@@ -1,6 +1,9 @@
 package com.intive.picover.common.image
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ErrorOutline
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,6 +25,12 @@ fun PicoverImage(
 		contentScale = contentScale,
 		loading = {
 			CircularProgressIndicator()
+		},
+		error = {
+			Icon(
+				imageVector = Icons.Filled.ErrorOutline,
+				contentDescription = null,
+			)
 		},
 	)
 }
