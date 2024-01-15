@@ -13,7 +13,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.PhotoCamera
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
@@ -29,12 +28,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.intive.picover.common.animations.ShimmerBrush
 import com.intive.picover.common.annotation.LightDarkPreview
+import com.intive.picover.common.image.PicoverImage
 import com.intive.picover.main.theme.PicoverTheme
 import com.intive.picover.main.theme.Typography
 import com.intive.picover.profile.model.Profile
-import com.skydoves.landscapist.ImageOptions
-import com.skydoves.landscapist.coil.CoilImage
-import com.skydoves.landscapist.components.LocalImageComponent
 
 @Composable
 fun UserInfo(
@@ -106,20 +103,12 @@ fun UserInfo(
 
 @Composable
 private fun UserAvatar(imageUrl: String?) {
-	CoilImage(
+	PicoverImage(
 		modifier = Modifier
 			.size(120.dp)
 			.clip(CircleShape),
-		imageModel = { imageUrl },
-		imageOptions = ImageOptions(
-			alignment = Alignment.Center,
-			contentDescription = null,
-			contentScale = ContentScale.Crop,
-		),
-		loading = {
-			CircularProgressIndicator()
-		},
-		component = LocalImageComponent.current,
+		imageModel = imageUrl,
+		contentScale = ContentScale.Crop,
 	)
 }
 

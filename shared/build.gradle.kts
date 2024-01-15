@@ -46,6 +46,8 @@ kotlin {
 			implementation("co.touchlab:stately-common:2.0.6") {
 				because("https://github.com/cashapp/sqldelight/issues/4357#issuecomment-1839905700")
 			}
+			implementation(libs.coil.compose)
+			implementation(libs.coil.network)
 		}
 		commonTest.dependencies {
 			implementation(libs.test.koin)
@@ -56,6 +58,10 @@ kotlin {
 			implementation(libs.hilt.android)
 			implementation(libs.hilt.work)
 			implementation(libs.workmanager)
+			implementation(libs.ktor.engine.android)
+		}
+		iosMain.dependencies {
+			implementation(libs.ktor.engine.ios)
 		}
 		val androidUnitTest by getting {
 			dependencies {
