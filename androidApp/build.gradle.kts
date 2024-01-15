@@ -77,8 +77,6 @@ dependencies {
 	implementation(libs.hilt.android)
 	implementation(libs.hilt.navigation)
 	implementation(libs.hilt.work)
-	implementation(libs.coil)
-	implementation(libs.placeholder)
 	implementation(libs.material)
 	implementation(libs.firebaseui.auth)
 	implementation(libs.play.services.auth)
