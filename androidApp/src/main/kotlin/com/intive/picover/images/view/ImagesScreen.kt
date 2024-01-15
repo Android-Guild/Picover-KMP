@@ -1,7 +1,6 @@
 package com.intive.picover.images.view
 
 import android.net.Uri
-import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,8 +25,7 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getScreenModel
 import com.intive.picover.common.image.PicoverImage
-import com.intive.picover.common.result.TakePictureOrPickImageContract
-import com.intive.picover.common.result.launch
+import com.intive.picover.common.result.rememberTakePictureOrPickImageResultContract
 import com.intive.picover.common.state.DefaultStateDispatcher
 import com.intive.picover.images.viewmodel.ImagesViewModel
 import com.intive.picover.photos.model.Photo
@@ -49,8 +47,8 @@ class ImagesScreen : Screen {
 
 @Composable
 private fun PhotosGrid(photos: List<Photo>, onImageTaken: (Uri) -> Unit) {
-	val takePictureOrPickImageLauncher = rememberLauncherForActivityResult(TakePictureOrPickImageContract()) {
-		it?.let(onImageTaken)
+	val takePictureOrPickImageLauncher = rememberTakePictureOrPickImageResultContract {
+		onImageTaken(it.uri)
 	}
 	Box(Modifier.fillMaxSize()) {
 		LazyVerticalStaggeredGrid(

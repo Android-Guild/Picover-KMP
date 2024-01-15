@@ -1,6 +1,5 @@
 package com.intive.picover.profile.view
 
-import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,8 +15,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getScreenModel
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.intive.picover.common.error.PicoverGenericError
-import com.intive.picover.common.result.TakePictureOrPickImageContract
-import com.intive.picover.common.result.launch
+import com.intive.picover.common.result.rememberTakePictureOrPickImageResultContract
 import com.intive.picover.common.viewmodel.state.MVIStateType.ERROR
 import com.intive.picover.common.viewmodel.state.MVIStateType.LOADED
 import com.intive.picover.common.viewmodel.state.MVIStateType.LOADING
@@ -27,7 +25,6 @@ import com.intive.picover.profile.model.ProfileState
 import com.intive.picover.profile.model.ProfileUpdateResult
 import com.intive.picover.profile.viewmodel.ProfileViewModel
 import com.intive.picover.shared.MR
-import dev.gitlive.firebase.storage.File
 import dev.icerock.moko.resources.compose.stringResource
 
 class ProfileScreen : Screen {
@@ -36,8 +33,8 @@ class ProfileScreen : Screen {
 	override fun Content() {
 		val viewModel = getScreenModel<ProfileViewModel>()
 		val state by viewModel.state.collectAsState()
-		val takePictureOrPickImageLauncher = rememberLauncherForActivityResult(TakePictureOrPickImageContract()) { uri ->
-			uri?.let { viewModel.updateAvatar(File(it)) }
+		val takePictureOrPickImageLauncher = rememberTakePictureOrPickImageResultContract {
+			viewModel.updateAvatar(it)
 		}
 		val bottomSheetNavigator = LocalBottomSheetNavigator.current
 		observeResult(ProfileUpdateResult::class).value?.let(viewModel::onProfileUpdateResult)

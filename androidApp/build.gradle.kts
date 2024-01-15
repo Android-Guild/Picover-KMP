@@ -66,7 +66,6 @@ dependencies {
 	implementation(libs.compose.material3.window.size)
 	implementation(libs.android.core)
 	implementation(libs.android.lifecycle)
-	implementation(libs.android.compose.activity)
 	implementation(libs.android.compose.navigation)
 	implementation(platform(libs.firebase.bom))
 	implementation(libs.firebase.analytics)
@@ -83,7 +82,6 @@ dependencies {
 	debugImplementation(libs.leakcanary)
 	testImplementation(libs.test.kotest.runner)
 	testImplementation(libs.test.junit.launcher)
-	testImplementation(libs.test.kotest.datatest)
 	testImplementation(libs.test.mockk)
 	testCompileOnly("org.jetbrains.kotlin:kotlin-reflect:1.9.10") {
 		because("Needed to locally trigger single kotest test - check new versions of kotlin and kotest plugins to fix this workaround")
