@@ -1,6 +1,5 @@
 package com.intive.picover.profile.view
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,10 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.intive.picover.common.animations.ShimmerBrush
-import com.intive.picover.common.annotation.LightDarkPreview
 import com.intive.picover.common.image.PicoverImage
-import com.intive.picover.main.theme.PicoverTheme
 import com.intive.picover.main.theme.Typography
 import com.intive.picover.profile.model.Profile
 
@@ -39,24 +35,16 @@ fun UserInfo(
 	onEditPhotoClick: () -> Unit,
 	onEditNameClick: () -> Unit,
 	editButtonsEnabled: Boolean = true,
-	showShimmer: Boolean = false,
 ) {
 	Column(horizontalAlignment = Alignment.CenterHorizontally) {
 		Box(modifier = Modifier.size(120.dp)) {
-			if (!showShimmer) {
-				UserAvatar(profile.photo)
-			} else {
-				val brush = ShimmerBrush(
-					targetValue = 1300f,
-					showShimmer = true,
-				)
-				Canvas(
-					modifier = Modifier.size(120.dp),
-					onDraw = {
-						drawCircle(brush = brush)
-					},
-				)
-			}
+			PicoverImage(
+				modifier = Modifier
+					.size(120.dp)
+					.clip(CircleShape),
+				imageModel = profile.photo,
+				contentScale = ContentScale.Crop,
+			)
 			FilledIconButton(
 				modifier = Modifier.align(Alignment.BottomEnd),
 				shape = CircleShape,
@@ -98,24 +86,5 @@ fun UserInfo(
 			style = Typography.titleSmall,
 		)
 		Divider(modifier = Modifier.padding(all = 16.dp))
-	}
-}
-
-@Composable
-private fun UserAvatar(imageUrl: String?) {
-	PicoverImage(
-		modifier = Modifier
-			.size(120.dp)
-			.clip(CircleShape),
-		imageModel = imageUrl,
-		contentScale = ContentScale.Crop,
-	)
-}
-
-@LightDarkPreview
-@Composable
-private fun UserInfoPreview() {
-	PicoverTheme {
-		UserInfo(Profile(photo = "photo", name = "test", email = "test@aa.bb"), {}, {})
 	}
 }

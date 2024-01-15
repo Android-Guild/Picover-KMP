@@ -92,7 +92,6 @@ private fun ProfileContent(
 					onEditPhotoClick = onEditPhotoClick,
 					onEditNameClick = {},
 					editButtonsEnabled = false,
-					showShimmer = true,
 				)
 			}
 

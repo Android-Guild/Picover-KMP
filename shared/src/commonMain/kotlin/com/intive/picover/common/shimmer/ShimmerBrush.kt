@@ -1,4 +1,4 @@
-package com.intive.picover.common.animations
+package com.intive.picover.common.shimmer
 
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -11,8 +11,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun ShimmerBrush(
-	showShimmer: Boolean = true,
+internal fun shimmerBrush(
+	showShimmer: Boolean,
 	targetValue: Float = 1000f,
 ): Brush {
 	return if (showShimmer) {
