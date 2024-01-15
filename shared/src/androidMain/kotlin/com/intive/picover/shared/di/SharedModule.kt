@@ -3,14 +3,15 @@ package com.intive.picover.shared.di
 import android.content.Context
 import androidx.work.WorkManager
 import com.intive.picover.auth.repository.AuthRepository
+import com.intive.picover.common.toast.ToastPublisher
 import com.intive.picover.images.repository.ImagesRepository
-import com.intive.picover.shared.party.data.repo.PartiesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dev.gitlive.firebase.storage.StorageReference
+import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 import org.koin.core.parameter.parametersOf
 import org.koin.java.KoinJavaComponent.get
@@ -24,10 +25,6 @@ object SharedModule {
 		get(StorageReference::class.java)
 
 	@Provides
-	fun providePartiesRepository(): PartiesRepository =
-		get(PartiesRepository::class.java)
-
-	@Provides
 	fun provideAuthRepository(): AuthRepository =
 		get(AuthRepository::class.java)
 
@@ -38,4 +35,9 @@ object SharedModule {
 	@Provides
 	fun provideWorkManager(@ApplicationContext context: Context) =
 		WorkManager.getInstance(context)
+
+	@Provides
+	@Singleton
+	fun provideToastPublisher(@ApplicationContext context: Context) =
+		ToastPublisher(context)
 }
