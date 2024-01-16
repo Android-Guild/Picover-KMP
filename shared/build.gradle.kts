@@ -61,6 +61,7 @@ kotlin {
 			implementation(libs.hilt.android)
 			implementation(libs.hilt.work)
 			implementation(libs.workmanager)
+			implementation(libs.koin.android)
 			implementation(libs.ktor.engine.android)
 			implementation(compose.preview)
 			implementation(compose.uiTooling)

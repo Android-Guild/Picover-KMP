@@ -20,6 +20,6 @@ class PicoverApplication : Application(), Configuration.Provider {
 
 	override fun onCreate() {
 		super.onCreate()
-		KoinApp.init()
+		KoinApp.init(this)
 	}
 }
