@@ -59,6 +59,8 @@ kotlin {
 			implementation(libs.hilt.work)
 			implementation(libs.workmanager)
 			implementation(libs.ktor.engine.android)
+			implementation(compose.preview)
+			implementation(compose.uiTooling)
 		}
 		iosMain.dependencies {
 			implementation(libs.ktor.engine.ios)
@@ -87,6 +89,14 @@ android {
 
 	defaultConfig {
 		minSdk = 26
+	}
+
+	composeOptions {
+		kotlinCompilerExtensionVersion = "1.5.7"
+	}
+
+	buildFeatures {
+		compose = true
 	}
 
 	sourceSets {
