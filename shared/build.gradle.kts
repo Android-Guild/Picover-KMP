@@ -70,6 +70,11 @@ kotlin {
 			}
 		}
 	}
+
+	@Suppress("OPT_IN_USAGE")
+	compilerOptions {
+		freeCompilerArgs.add("-Xexpect-actual-classes")
+	}
 }
 
 dependencies {
