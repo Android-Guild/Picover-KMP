@@ -1,6 +1,5 @@
 package com.intive.picover.images.viewmodel
 
-import android.net.Uri
 import androidx.compose.material3.SnackbarHostState
 import com.intive.picover.common.coroutines.CoroutineTestExtension
 import com.intive.picover.common.mockkAnswer
@@ -11,6 +10,7 @@ import com.intive.picover.images.model.ImagesState
 import com.intive.picover.images.repository.ImagesRepository
 import com.intive.picover.photos.model.Photo
 import com.intive.picover.photos.usecase.ScheduleUploadPhotoUseCase
+import dev.gitlive.firebase.storage.File
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
@@ -57,11 +57,11 @@ internal class ImagesViewModelTest : ShouldSpec(
 				mockkAnswer<Unit> { throws(Throwable()) },
 				mockkAnswer { just(Runs) },
 			).forAll { answer ->
-				val photoUri: Uri = mockk()
-				coEvery { scheduleUploadPhotoUseCase(photoUri) }.answer()
+				val photoFile: File = mockk()
+				coEvery { scheduleUploadPhotoUseCase(photoFile) }.answer()
 				val tested = ImagesViewModel(imagesRepository, scheduleUploadPhotoUseCase, snackbarHostState)
 
-				tested.scheduleUploadPhoto(photoUri)
+				tested.scheduleUploadPhoto(photoFile)
 
 				coVerify { snackbarHostState.showSnackbar(message = any()) }
 			}

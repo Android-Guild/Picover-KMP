@@ -1,6 +1,5 @@
 package com.intive.picover.images.viewmodel
 
-import android.net.Uri
 import androidx.compose.material3.SnackbarHostState
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
@@ -9,6 +8,7 @@ import com.intive.picover.images.model.ImagesState
 import com.intive.picover.images.repository.ImagesRepository
 import com.intive.picover.photos.model.Photo
 import com.intive.picover.photos.usecase.ScheduleUploadPhotoUseCase
+import dev.gitlive.firebase.storage.File
 import javax.inject.Inject
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -25,10 +25,10 @@ class ImagesViewModel @Inject constructor(
 		}
 	}
 
-	fun scheduleUploadPhoto(uri: Uri) {
+	fun scheduleUploadPhoto(file: File) {
 		screenModelScope.launch {
 			runCatching {
-				scheduleUploadPhotoUseCase(uri)
+				scheduleUploadPhotoUseCase(file)
 			}.onSuccess {
 				snackbarHostState.showSnackbar("Upload scheduled successfully")
 			}.onFailure {

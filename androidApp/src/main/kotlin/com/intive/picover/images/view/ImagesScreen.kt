@@ -1,6 +1,5 @@
 package com.intive.picover.images.view
 
-import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,6 +28,7 @@ import com.intive.picover.common.result.rememberTakePictureOrPickImageResultCont
 import com.intive.picover.common.state.DefaultStateDispatcher
 import com.intive.picover.images.viewmodel.ImagesViewModel
 import com.intive.picover.photos.model.Photo
+import dev.gitlive.firebase.storage.File
 
 class ImagesScreen : Screen {
 
@@ -46,10 +46,8 @@ class ImagesScreen : Screen {
 }
 
 @Composable
-private fun PhotosGrid(photos: List<Photo>, onImageTaken: (Uri) -> Unit) {
-	val takePictureOrPickImageLauncher = rememberTakePictureOrPickImageResultContract {
-		onImageTaken(it.uri)
-	}
+private fun PhotosGrid(photos: List<Photo>, onImageTaken: (File) -> Unit) {
+	val takePictureOrPickImageLauncher = rememberTakePictureOrPickImageResultContract(onImageTaken)
 	Box(Modifier.fillMaxSize()) {
 		LazyVerticalStaggeredGrid(
 			columns = StaggeredGridCells.Adaptive(minSize = 120.dp),

@@ -13,6 +13,7 @@ internal fun appModules() =
 		partyModule,
 		toastModule,
 		profileModule,
+		uploadImageModule,
 	)
 
 private val profileModule = module {

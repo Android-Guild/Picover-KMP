@@ -1,14 +1,12 @@
 package com.intive.picover.shared.di
 
-import android.content.Context
-import androidx.work.WorkManager
 import com.intive.picover.auth.repository.AuthRepository
 import com.intive.picover.common.toast.ToastPublisher
 import com.intive.picover.images.repository.ImagesRepository
+import com.intive.picover.photos.usecase.ScheduleUploadPhotoUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dev.gitlive.firebase.storage.StorageReference
 import javax.inject.Singleton
@@ -33,8 +31,8 @@ object SharedModule {
 		get(ImagesRepository::class.java, parameters = { parametersOf(dispatcher) })
 
 	@Provides
-	fun provideWorkManager(@ApplicationContext context: Context) =
-		WorkManager.getInstance(context)
+	fun provideScheduleUploadPhotoUseCase(): ScheduleUploadPhotoUseCase =
+		get(ScheduleUploadPhotoUseCase::class.java)
 
 	@Provides
 	@Singleton

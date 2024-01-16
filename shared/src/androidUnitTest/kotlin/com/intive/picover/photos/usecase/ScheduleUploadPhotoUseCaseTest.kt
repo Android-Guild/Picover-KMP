@@ -5,6 +5,7 @@ import androidx.work.Operation
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
 import com.google.common.util.concurrent.Futures
+import dev.gitlive.firebase.storage.File
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
@@ -24,7 +25,7 @@ class ScheduleUploadPhotoUseCaseTest : ShouldSpec(
 			}
 			coEvery { workManager.enqueue(capture(workRequestSlot)).result } returns Futures.immediateFuture(Operation.SUCCESS)
 
-			tested(uri)
+			tested(File(uri))
 
 			workRequestSlot.captured.workSpec.input.getString("PHOTO_URI") shouldBe "images/picture1.jpg"
 		}
