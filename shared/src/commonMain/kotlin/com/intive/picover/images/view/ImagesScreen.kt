@@ -19,10 +19,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
-import cafe.adriel.voyager.hilt.getScreenModel
+import cafe.adriel.voyager.koin.getScreenModel
 import com.intive.picover.common.image.PicoverImage
 import com.intive.picover.common.result.rememberTakePictureOrPickImageResultContract
 import com.intive.picover.common.state.DefaultStateDispatcher
@@ -73,13 +72,4 @@ private fun PhotosGrid(photos: List<Photo>, onImageTaken: (File) -> Unit) {
 			Icon(Icons.Filled.PhotoCamera, null)
 		}
 	}
-}
-
-@Preview
-@Composable
-private fun PhotosGridPreview() {
-	val uris = (1..14).map {
-		Photo.withRandomSize("$it")
-	}
-	PhotosGrid(uris) {}
 }

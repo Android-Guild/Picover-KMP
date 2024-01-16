@@ -9,11 +9,10 @@ import com.intive.picover.images.repository.ImagesRepository
 import com.intive.picover.photos.model.Photo
 import com.intive.picover.photos.usecase.ScheduleUploadPhotoUseCase
 import dev.gitlive.firebase.storage.File
-import javax.inject.Inject
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class ImagesViewModel @Inject constructor(
+class ImagesViewModel(
 	private val repository: ImagesRepository,
 	private val scheduleUploadPhotoUseCase: ScheduleUploadPhotoUseCase,
 	private val snackbarHostState: SnackbarHostState,
