@@ -1,6 +1,5 @@
 package com.intive.picover.photos.usecase
 
-import android.net.Uri
 import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
@@ -9,18 +8,18 @@ import androidx.work.await
 import androidx.work.workDataOf
 import com.intive.picover.photos.work.UploadPhotoWork
 import com.intive.picover.photos.work.UploadPhotoWorker
-import javax.inject.Inject
+import dev.gitlive.firebase.storage.File
 
-class ScheduleUploadPhotoUseCase @Inject constructor(
+actual class ScheduleUploadPhotoUseCase(
 	private val workManager: WorkManager,
 ) {
 
-	suspend operator fun invoke(uri: Uri) {
+	actual suspend operator fun invoke(file: File) {
 		val constraints = Constraints.Builder()
 			.setRequiredNetworkType(NetworkType.CONNECTED)
 			.build()
 		val uploadWork = OneTimeWorkRequestBuilder<UploadPhotoWorker>()
-			.setInputData(workDataOf(UploadPhotoWork.URI_KEY to uri.toString()))
+			.setInputData(workDataOf(UploadPhotoWork.URI_KEY to file.uri.toString()))
 			.setConstraints(constraints)
 			.build()
 		workManager.enqueue(uploadWork)
