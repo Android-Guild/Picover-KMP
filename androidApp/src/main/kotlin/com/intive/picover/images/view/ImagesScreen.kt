@@ -20,18 +20,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getScreenModel
-import com.intive.picover.R
+import com.intive.picover.common.image.PicoverImage
 import com.intive.picover.common.result.TakePictureOrPickImageContract
 import com.intive.picover.common.result.launch
 import com.intive.picover.common.state.DefaultStateDispatcher
 import com.intive.picover.images.viewmodel.ImagesViewModel
 import com.intive.picover.photos.model.Photo
-import com.skydoves.landscapist.coil.CoilImage
-import com.skydoves.landscapist.components.LocalImageComponent
 
 class ImagesScreen : Screen {
 
@@ -60,11 +59,10 @@ private fun PhotosGrid(photos: List<Photo>, onImageTaken: (Uri) -> Unit) {
 			horizontalArrangement = Arrangement.spacedBy(4.dp),
 		) {
 			items(photos) {
-				CoilImage(
+				PicoverImage(
 					modifier = Modifier.size(it.width.dp, it.height.dp),
-					imageModel = { it.url },
-					previewPlaceholder = R.drawable.ic_launcher_foreground,
-					component = LocalImageComponent.current,
+					imageModel = it.url,
+					contentScale = ContentScale.Crop,
 				)
 			}
 		}

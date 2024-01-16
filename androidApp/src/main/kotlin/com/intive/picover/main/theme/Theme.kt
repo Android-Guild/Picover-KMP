@@ -3,26 +3,18 @@ package com.intive.picover.main.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import com.skydoves.landscapist.components.LocalImageComponent
-import com.skydoves.landscapist.components.imageComponent
-import com.skydoves.landscapist.placeholder.placeholder.PlaceholderPlugin
-import com.skydoves.landscapist.placeholder.shimmer.ShimmerPlugin
 
 private val DarkColorScheme = darkColorScheme(
 	primary = Purple80,
@@ -62,18 +54,9 @@ fun PicoverTheme(
 			}
 		}
 	}
-	val imageComponent = imageComponent {
-		+ShimmerPlugin(
-			baseColor = Color(0xFF424242),
-			highlightColor = Color(0xA3C2C2C2),
-		)
-		+PlaceholderPlugin.Failure(Icons.Outlined.AccountCircle)
-	}
-	CompositionLocalProvider(LocalImageComponent provides imageComponent) {
-		MaterialTheme(
-			colorScheme = colorScheme,
-			typography = Typography,
-			content = content,
-		)
-	}
+	MaterialTheme(
+		colorScheme = colorScheme,
+		typography = Typography,
+		content = content,
+	)
 }
