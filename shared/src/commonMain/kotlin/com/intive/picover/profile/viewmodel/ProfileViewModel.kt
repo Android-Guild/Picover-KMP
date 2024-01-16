@@ -13,11 +13,10 @@ import com.intive.picover.profile.model.ProfileState
 import com.intive.picover.profile.model.ProfileUpdateResult
 import com.intive.picover.shared.MR
 import dev.gitlive.firebase.storage.File
-import javax.inject.Inject
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class ProfileViewModel @Inject constructor(
+class ProfileViewModel(
 	private val authRepository: AuthRepository,
 	private val toastPublisher: ToastPublisher,
 ) : StateScreenModel<ProfileState>(ProfileState()) {
