@@ -56,6 +56,7 @@ kotlin {
 			implementation(libs.test.kotest.engine)
 		}
 		androidMain.dependencies {
+			implementation(libs.android.compose.activity)
 			implementation(libs.android.core)
 			implementation(libs.hilt.android)
 			implementation(libs.hilt.work)
@@ -69,6 +70,7 @@ kotlin {
 		}
 		val androidUnitTest by getting {
 			dependencies {
+				implementation(libs.test.kotest.datatest)
 				implementation(libs.test.kotest.runner)
 				implementation(libs.test.mockk)
 			}
