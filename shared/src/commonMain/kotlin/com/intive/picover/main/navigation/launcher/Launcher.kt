@@ -1,13 +1,10 @@
 package com.intive.picover.main.navigation.launcher
 
-import javax.inject.Inject
-import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
-@Singleton
-class Launcher @Inject constructor() {
+class Launcher {
 
 	private val events = MutableSharedFlow<LauncherEvent>()
 
