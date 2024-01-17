@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.ComposeUIViewController
 import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
 import cafe.adriel.voyager.navigator.tab.TabNavigator
-import com.intive.picover.common.image.PicoverImage
-import com.intive.picover.main.navigation.tab.PartiesTab
+import com.intive.picover.shared.common.image.PicoverImage
+import com.intive.picover.shared.main.navigation.tab.PartiesTab
 
 object MainViewController {
 
