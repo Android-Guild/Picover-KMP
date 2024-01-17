@@ -71,7 +71,6 @@ dependencies {
 	implementation(libs.hilt.android)
 	implementation(libs.hilt.work)
 	implementation(libs.material)
-	implementation(libs.firebaseui.auth)
 	implementation(libs.play.services.auth)
 	debugImplementation(libs.compose.ui.tooling)
 	debugImplementation(libs.leakcanary)
