@@ -28,6 +28,7 @@ import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
+import com.intive.picover.auth.result.rememberFirebaseAuthResultContract
 import com.intive.picover.common.loader.PicoverLoader
 import com.intive.picover.main.navigation.tab.ImagesTab
 import com.intive.picover.main.navigation.tab.PartiesTab
@@ -39,12 +40,15 @@ class MainScreen : Screen {
 
 	@Composable
 	override fun Content() {
+		val signInLauncher = rememberFirebaseAuthResultContract {
+			// TODO handle results
+		}
 		val viewModel = getScreenModel<MainViewModel>()
 		val state by viewModel.state.collectAsState(initial = MainState.Loading)
 		when (state) {
 			MainState.Loading -> PicoverLoader(Modifier.fillMaxSize())
 			MainState.UserAuthorized -> UserAuthorizedContent(viewModel.snackbarHostState)
-			else -> Unit
+			MainState.UserUnauthorized -> signInLauncher.launch()
 		}
 	}
 }
