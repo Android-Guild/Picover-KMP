@@ -32,6 +32,7 @@ kotlin {
 			implementation(compose.material3)
 			implementation(compose.materialIconsExtended)
 			implementation(compose.ui)
+			implementation(libs.compose.material3.window.size)
 			implementation(libs.coroutines)
 			implementation(libs.firebase.auth)
 			implementation(libs.firebase.firestore)

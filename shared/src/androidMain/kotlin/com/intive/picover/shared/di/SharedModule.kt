@@ -1,13 +1,11 @@
 package com.intive.picover.shared.di
 
-import androidx.compose.material3.SnackbarHostState
-import com.intive.picover.auth.repository.AuthRepository
+import com.intive.picover.main.navigation.launcher.Launcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.gitlive.firebase.storage.StorageReference
-import javax.inject.Singleton
 import org.koin.java.KoinJavaComponent.get
 
 @Module
@@ -19,11 +17,6 @@ object SharedModule {
 		get(StorageReference::class.java)
 
 	@Provides
-	fun provideAuthRepository(): AuthRepository =
-		get(AuthRepository::class.java)
-
-	@Provides
-	@Singleton
-	fun provideSnackbarHostState(): SnackbarHostState =
-		get(SnackbarHostState::class.java)
+	fun provideLauncher(): Launcher =
+		get(Launcher::class.java)
 }
