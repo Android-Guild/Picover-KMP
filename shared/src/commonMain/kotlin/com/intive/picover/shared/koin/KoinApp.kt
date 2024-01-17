@@ -1,5 +1,6 @@
 package com.intive.picover.shared.koin
 
+import com.intive.picover.images.viewmodel.ImagesViewModel
 import com.intive.picover.profile.viewmodel.ProfileViewModel
 import com.intive.picover.shared.party.di.partyModule
 import org.koin.dsl.module
@@ -12,10 +13,11 @@ internal fun appModules() =
 		platformModule,
 		partyModule,
 		toastModule,
-		profileModule,
+		modelsModule,
 		uploadImageModule,
 	)
 
-private val profileModule = module {
+private val modelsModule = module {
 	factory { ProfileViewModel(get(), get()) }
+	factory { ImagesViewModel(get(), get(), get()) }
 }
