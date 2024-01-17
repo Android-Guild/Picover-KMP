@@ -22,9 +22,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
-import com.intive.picover.common.state.DefaultStateDispatcher
 import com.intive.picover.shared.common.image.PicoverImage
 import com.intive.picover.shared.common.result.rememberTakePictureOrPickImageResultContract
+import com.intive.picover.shared.common.state.DefaultStateDispatcher
 import com.intive.picover.shared.images.viewmodel.ImagesViewModel
 import com.intive.picover.shared.photos.model.Photo
 import dev.gitlive.firebase.storage.File

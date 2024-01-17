@@ -3,8 +3,8 @@ package com.intive.picover.shared.images.viewmodel
 import androidx.compose.material3.SnackbarHostState
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
-import com.intive.picover.images.model.ImagesState
 import com.intive.picover.shared.common.state.MVIStateType
+import com.intive.picover.shared.images.model.ImagesState
 import com.intive.picover.shared.images.repository.ImagesRepository
 import com.intive.picover.shared.photos.model.Photo
 import com.intive.picover.shared.photos.usecase.ScheduleUploadPhotoUseCase

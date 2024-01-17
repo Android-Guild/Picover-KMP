@@ -1,12 +1,12 @@
 package com.intive.picover.shared.images.viewmodel
 
 import androidx.compose.material3.SnackbarHostState
-import com.intive.picover.images.model.ImagesState
 import com.intive.picover.shared.common.coroutines.CoroutineTestExtension
 import com.intive.picover.shared.common.mockkAnswer
 import com.intive.picover.shared.common.state.MVIStateType.ERROR
 import com.intive.picover.shared.common.state.MVIStateType.LOADED
 import com.intive.picover.shared.common.state.MVIStateType.LOADING
+import com.intive.picover.shared.images.model.ImagesState
 import com.intive.picover.shared.images.repository.ImagesRepository
 import com.intive.picover.shared.photos.model.Photo
 import com.intive.picover.shared.photos.usecase.ScheduleUploadPhotoUseCase

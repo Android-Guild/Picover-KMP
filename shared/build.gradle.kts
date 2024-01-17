@@ -38,13 +38,13 @@ kotlin {
 			implementation(libs.firebase.firestore)
 			implementation(libs.firebase.storage)
 			implementation(libs.resources)
-			api(libs.resources.compose)
+			implementation(libs.resources.compose)
 			implementation(libs.koin.core)
 			api(libs.voyager.navigator)
-			api(libs.voyager.tab.navigator)
+			implementation(libs.voyager.tab.navigator)
 			implementation(compose.material) // TODO https://github.com/adrielcafe/voyager/issues/185
-			api(libs.voyager.bottom.sheet.navigator)
-			api(libs.voyager.koin)
+			implementation(libs.voyager.bottom.sheet.navigator)
+			implementation(libs.voyager.koin)
 			implementation("co.touchlab:stately-common:2.0.6") {
 				because("https://github.com/cashapp/sqldelight/issues/4357#issuecomment-1839905700")
 			}

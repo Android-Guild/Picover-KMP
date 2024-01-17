@@ -1,4 +1,4 @@
-package com.intive.picover.images.model
+package com.intive.picover.shared.images.model
 
 import com.intive.picover.shared.common.state.MVIStateType
 import com.intive.picover.shared.photos.model.Photo

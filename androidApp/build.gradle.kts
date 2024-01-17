@@ -60,26 +60,18 @@ dependencies {
 	implementation(libs.accompanist.navigation.material)
 	implementation(platform(libs.compose.bom))
 	implementation(libs.compose.ui.ui)
-	implementation(libs.compose.ui.preview)
 	implementation(libs.compose.material3)
 	implementation(libs.android.core)
-	implementation(libs.android.lifecycle)
 	implementation(platform(libs.firebase.bom))
-	implementation(libs.firebase.analytics)
 	implementation(libs.firebase.crashlytics)
 	implementation(libs.firebase.storage)
 	implementation(libs.hilt.android)
 	implementation(libs.hilt.work)
 	implementation(libs.material)
 	implementation(libs.play.services.auth)
-	debugImplementation(libs.compose.ui.tooling)
 	debugImplementation(libs.leakcanary)
 	testImplementation(libs.test.kotest.runner)
 	testImplementation(libs.test.junit.launcher)
-	testImplementation(libs.test.mockk)
-	testCompileOnly("org.jetbrains.kotlin:kotlin-reflect:1.9.10") {
-		because("Needed to locally trigger single kotest test - check new versions of kotlin and kotest plugins to fix this workaround")
-	}
 }
 
 dependencies {
