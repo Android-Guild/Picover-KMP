@@ -3,8 +3,10 @@ package com.intive.picover.common.result
 import androidx.compose.runtime.Composable
 import dev.gitlive.firebase.storage.File
 
-expect class ResultContractLauncher {
-	fun launch()
+class ResultContractLauncher(private val onLaunch: () -> Unit) {
+	fun launch() {
+		onLaunch()
+	}
 }
 
 @Composable
