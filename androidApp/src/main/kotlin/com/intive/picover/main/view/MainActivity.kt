@@ -5,8 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.lifecycle.lifecycleScope
 import cafe.adriel.voyager.navigator.Navigator
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
-import com.intive.picover.auth.intent.SignInIntent
+import com.intive.picover.auth.result.rememberFirebaseAuthResultContract
+import com.intive.picover.common.result.ResultContractLauncher
 import com.intive.picover.main.navigation.launcher.Launcher
 import com.intive.picover.main.navigation.launcher.LauncherEvent
 import com.intive.picover.main.navigation.view.MainScreen
@@ -21,24 +21,22 @@ import kotlinx.coroutines.flow.onEach
 class MainActivity : ComponentActivity() {
 
 	@Inject
-	lateinit var signInIntent: SignInIntent
-
-	@Inject
 	lateinit var launcher: Launcher
 
-	private val signInLauncher = registerForActivityResult(FirebaseAuthUIActivityResultContract()) {
-		if (it.resultCode == RESULT_CANCELED) {
-			finish()
-		}
-	}
+	private lateinit var signInLauncher: ResultContractLauncher
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		launcher.observe()
 			.filter { it == LauncherEvent.SIGN_IN }
-			.onEach { signInLauncher.launch(signInIntent.intent) }
+			.onEach { signInLauncher.launch() }
 			.launchIn(lifecycleScope)
 		setContent {
+			signInLauncher = rememberFirebaseAuthResultContract {
+				if (it == RESULT_CANCELED) {
+					finish()
+				}
+			}
 			PicoverTheme {
 				Navigator(MainScreen())
 			}

@@ -59,6 +59,7 @@ kotlin {
 		androidMain.dependencies {
 			implementation(libs.android.compose.activity)
 			implementation(libs.android.core)
+			implementation(libs.firebaseui.auth)
 			implementation(libs.hilt.android)
 			implementation(libs.hilt.work)
 			implementation(libs.workmanager)
