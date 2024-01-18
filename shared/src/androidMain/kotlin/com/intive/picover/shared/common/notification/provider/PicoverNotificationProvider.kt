@@ -9,12 +9,10 @@ import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
 import androidx.work.WorkManager
 import com.intive.picover.shared.R
-import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.UUID
-import javax.inject.Inject
 
-class PicoverNotificationProvider @Inject constructor(
-	@ApplicationContext private val context: Context,
+class PicoverNotificationProvider(
+	private val context: Context,
 ) {
 
 	fun provideUploadOngoing(workId: UUID): Notification {

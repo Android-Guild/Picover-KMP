@@ -4,28 +4,21 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.net.Uri
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
-import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.ForegroundInfo
 import androidx.work.WorkerParameters
 import com.intive.picover.shared.R
 import com.intive.picover.shared.common.notification.provider.PicoverNotificationProvider
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
 import dev.gitlive.firebase.storage.File
 import dev.gitlive.firebase.storage.StorageReference
 import java.time.LocalDateTime
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-@HiltWorker
-@RequiresApi(Build.VERSION_CODES.S)
-internal class UploadPhotoWorker @AssistedInject constructor(
-	@Assisted appContext: Context,
-	@Assisted workerParams: WorkerParameters,
+internal class UploadPhotoWorker(
+	appContext: Context,
+	workerParams: WorkerParameters,
 	private val storageReference: StorageReference,
 	private val notificationProvider: PicoverNotificationProvider,
 ) : CoroutineWorker(appContext, workerParams) {

@@ -2,7 +2,6 @@ plugins {
 	alias(libs.plugins.kotlin.multiplatform)
 	alias(libs.plugins.android.library)
 	alias(libs.plugins.kotlin.ksp)
-	alias(libs.plugins.hilt.android)
 	alias(libs.plugins.kotest)
 	alias(libs.plugins.kover)
 	alias(libs.plugins.resources)
@@ -60,10 +59,9 @@ kotlin {
 			implementation(libs.android.compose.activity)
 			implementation(libs.android.core)
 			implementation(libs.firebaseui.auth)
-			implementation(libs.hilt.android)
-			implementation(libs.hilt.work)
 			implementation(libs.workmanager)
 			implementation(libs.koin.android)
+			implementation(libs.koin.workmanager)
 			implementation(libs.ktor.engine.android)
 			implementation(compose.preview)
 			implementation(compose.uiTooling)
@@ -84,11 +82,6 @@ kotlin {
 	compilerOptions {
 		freeCompilerArgs.add("-Xexpect-actual-classes")
 	}
-}
-
-dependencies {
-	add("kspAndroid", libs.hilt.android.compiler)
-	add("kspAndroid", libs.hilt.compiler)
 }
 
 multiplatformResources {
