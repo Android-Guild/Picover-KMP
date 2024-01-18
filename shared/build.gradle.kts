@@ -39,7 +39,7 @@ kotlin {
 			implementation(libs.resources)
 			implementation(libs.resources.compose)
 			implementation(libs.koin.core)
-			api(libs.voyager.navigator)
+			implementation(libs.voyager.navigator)
 			implementation(libs.voyager.tab.navigator)
 			implementation(compose.material) // TODO https://github.com/adrielcafe/voyager/issues/185
 			implementation(libs.voyager.bottom.sheet.navigator)
