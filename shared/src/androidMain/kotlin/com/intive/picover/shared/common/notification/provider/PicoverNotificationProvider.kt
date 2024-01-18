@@ -11,7 +11,7 @@ import androidx.work.WorkManager
 import com.intive.picover.shared.R
 import java.util.UUID
 
-class PicoverNotificationProvider(
+internal class PicoverNotificationProvider(
 	private val context: Context,
 ) {
 
