@@ -28,8 +28,8 @@ import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.intive.picover.common.state.DefaultStateDispatcher
 import com.intive.picover.shared.MR
+import com.intive.picover.shared.common.state.DefaultStateDispatcher
 import com.intive.picover.shared.main.navigation.observeResult
 import com.intive.picover.shared.main.theme.Typography
 import com.intive.picover.shared.parties.model.AddPartyResult

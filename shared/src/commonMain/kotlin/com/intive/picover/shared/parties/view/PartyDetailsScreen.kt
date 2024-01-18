@@ -11,7 +11,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
-import com.intive.picover.common.state.DefaultStateDispatcher
+import com.intive.picover.shared.common.state.DefaultStateDispatcher
 import com.intive.picover.shared.main.theme.Typography
 import com.intive.picover.shared.parties.model.Party
 import com.intive.picover.shared.parties.viewmodel.PartyDetailsViewModel
