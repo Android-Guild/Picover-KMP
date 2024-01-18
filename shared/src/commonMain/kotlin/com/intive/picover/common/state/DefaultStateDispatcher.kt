@@ -3,12 +3,12 @@ package com.intive.picover.common.state
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.intive.picover.common.error.PicoverGenericError
-import com.intive.picover.common.loader.PicoverLoader
-import com.intive.picover.common.viewmodel.state.MVIStateType
-import com.intive.picover.common.viewmodel.state.MVIStateType.ERROR
-import com.intive.picover.common.viewmodel.state.MVIStateType.LOADED
-import com.intive.picover.common.viewmodel.state.MVIStateType.LOADING
+import com.intive.picover.shared.common.error.PicoverGenericError
+import com.intive.picover.shared.common.loader.PicoverLoader
+import com.intive.picover.shared.common.state.MVIStateType
+import com.intive.picover.shared.common.state.MVIStateType.ERROR
+import com.intive.picover.shared.common.state.MVIStateType.LOADED
+import com.intive.picover.shared.common.state.MVIStateType.LOADING
 
 @Composable
 fun DefaultStateDispatcher(

@@ -1,7 +1,7 @@
 package com.intive.picover.shared.koin
 
 import androidx.work.WorkManager
-import com.intive.picover.photos.usecase.ScheduleUploadPhotoUseCase
+import com.intive.picover.shared.photos.usecase.ScheduleUploadPhotoUseCase
 import org.koin.dsl.module
 
 internal actual val uploadImageModule = module {
