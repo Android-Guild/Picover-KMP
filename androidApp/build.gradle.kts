@@ -3,8 +3,6 @@ import com.google.firebase.appdistribution.gradle.firebaseAppDistribution
 plugins {
 	alias(libs.plugins.android.application)
 	kotlin("android")
-	alias(libs.plugins.kotlin.ksp)
-	alias(libs.plugins.hilt.android)
 	alias(libs.plugins.google.services)
 	alias(libs.plugins.firebase.appdistribution)
 	alias(libs.plugins.firebase.crashlytics)
@@ -56,7 +54,6 @@ android {
 dependencies {
 	lintChecks(project(":lint"))
 	implementation(project(":shared"))
-	ksp(libs.hilt.android.compiler)
 	implementation(libs.accompanist.navigation.material)
 	implementation(platform(libs.compose.bom))
 	implementation(libs.compose.ui.ui)
@@ -65,8 +62,6 @@ dependencies {
 	implementation(platform(libs.firebase.bom))
 	implementation(libs.firebase.crashlytics)
 	implementation(libs.firebase.storage)
-	implementation(libs.hilt.android)
-	implementation(libs.hilt.work)
 	implementation(libs.material)
 	implementation(libs.play.services.auth)
 	debugImplementation(libs.leakcanary)
