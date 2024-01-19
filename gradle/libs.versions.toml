@@ -70,7 +70,7 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 google-services = { id = "com.google.gms.google-services", version.strictly = "4.4.0" }
 jetbrains-compose = "org.jetbrains.compose:1.5.11"
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-ksp = { id = "com.google.devtools.ksp", version.strictly = "1.9.22-1.0.16" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.strictly = "1.9.22-1.0.17" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }
 kover = "org.jetbrains.kotlinx.kover:0.7.5"
