@@ -62,12 +62,8 @@ kotlin {
 			implementation(libs.workmanager)
 			implementation(libs.koin.android)
 			implementation(libs.koin.workmanager)
-			implementation(libs.ktor.engine.android)
 			implementation(compose.preview)
 			implementation(compose.uiTooling)
-		}
-		iosMain.dependencies {
-			implementation(libs.ktor.engine.ios)
 		}
 		val androidUnitTest by getting {
 			dependencies {
