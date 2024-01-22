@@ -37,6 +37,7 @@ import com.intive.picover.shared.main.navigation.tab.PartiesTab
 import com.intive.picover.shared.main.navigation.tab.ProfileTab
 import com.intive.picover.shared.main.viewmodel.MainViewModel
 import com.intive.picover.shared.main.viewmodel.state.MainState
+import org.koin.compose.koinInject
 
 internal class MainScreen : Screen {
 
@@ -49,7 +50,7 @@ internal class MainScreen : Screen {
 		val state by viewModel.state.collectAsState(initial = MainState.Loading)
 		when (state) {
 			MainState.Loading -> PicoverLoader(Modifier.fillMaxSize())
-			MainState.UserAuthorized -> UserAuthorizedContent(viewModel.snackbarHostState)
+			MainState.UserAuthorized -> UserAuthorizedContent()
 			MainState.UserUnauthorized -> signInLauncher.launch()
 		}
 	}
@@ -57,7 +58,7 @@ internal class MainScreen : Screen {
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class, ExperimentalMaterialApi::class)
 @Composable
-private fun UserAuthorizedContent(snackbarHostState: SnackbarHostState) {
+private fun UserAuthorizedContent(snackbarHostState: SnackbarHostState = koinInject()) {
 	val windowSize = calculateWindowSizeClass()
 	BottomSheetNavigator {
 		TabNavigator(PartiesTab) {

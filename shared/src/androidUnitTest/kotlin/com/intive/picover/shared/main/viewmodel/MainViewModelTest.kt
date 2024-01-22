@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.flowOf
 class MainViewModelTest : ShouldSpec(
 	{
 		val authRepository: AuthRepository = mockk()
-		val tested by lazy { MainViewModel(authRepository, mockk()) }
+		val tested by lazy { MainViewModel(authRepository) }
 
 		beforeSpec {
 			mockkObject(MainState)

@@ -19,7 +19,7 @@ internal fun appModules() =
 	)
 
 private val modelsModule = module {
-	factory { MainViewModel(get(), get()) }
+	factory { MainViewModel(get()) }
 	factory { ProfileViewModel(get(), get()) }
 	factory { ImagesViewModel(get(), get(), get()) }
 }
