@@ -9,10 +9,10 @@ import com.intive.picover.shared.common.state.MVIStateType.ERROR
 import com.intive.picover.shared.common.state.MVIStateType.LOADED
 import com.intive.picover.shared.common.state.MVIStateType.LOADING
 import com.intive.picover.shared.common.toast.ToastPublisher
+import com.intive.picover.shared.common.uri.Uri
 import com.intive.picover.shared.profile.model.Profile
 import com.intive.picover.shared.profile.model.ProfileState
 import com.intive.picover.shared.profile.model.ProfileUpdateResult
-import dev.gitlive.firebase.storage.File
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -52,9 +52,9 @@ class ProfileViewModel(
 		mutableState.update { it.copy(showDeleteAccountPopup = false) }
 	}
 
-	fun updateAvatar(file: File) {
+	fun updateAvatar(uri: Uri) {
 		executeAndUpdateProfile {
-			authRepository.updateUserAvatar(file)
+			authRepository.updateUserAvatar(uri)
 		}
 	}
 

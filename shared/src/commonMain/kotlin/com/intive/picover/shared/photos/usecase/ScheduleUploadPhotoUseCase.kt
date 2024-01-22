@@ -1,7 +1,7 @@
 package com.intive.picover.shared.photos.usecase
 
-import dev.gitlive.firebase.storage.File
+import com.intive.picover.shared.common.uri.Uri
 
 expect class ScheduleUploadPhotoUseCase {
-	suspend operator fun invoke(file: File)
+	suspend operator fun invoke(uri: Uri)
 }

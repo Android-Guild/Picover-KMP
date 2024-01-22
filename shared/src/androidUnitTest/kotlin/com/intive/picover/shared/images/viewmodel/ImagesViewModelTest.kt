@@ -6,11 +6,11 @@ import com.intive.picover.shared.common.mockkAnswer
 import com.intive.picover.shared.common.state.MVIStateType.ERROR
 import com.intive.picover.shared.common.state.MVIStateType.LOADED
 import com.intive.picover.shared.common.state.MVIStateType.LOADING
+import com.intive.picover.shared.common.uri.Uri
 import com.intive.picover.shared.images.model.ImagesState
 import com.intive.picover.shared.images.repository.ImagesRepository
 import com.intive.picover.shared.photos.model.Photo
 import com.intive.picover.shared.photos.usecase.ScheduleUploadPhotoUseCase
-import dev.gitlive.firebase.storage.File
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.inspectors.forAll
 import io.kotest.matchers.shouldBe
@@ -57,11 +57,11 @@ internal class ImagesViewModelTest : ShouldSpec(
 				mockkAnswer<Unit> { throws(Throwable()) },
 				mockkAnswer { just(Runs) },
 			).forAll { answer ->
-				val photoFile: File = mockk()
-				coEvery { scheduleUploadPhotoUseCase(photoFile) }.answer()
+				val photoUri: Uri = mockk()
+				coEvery { scheduleUploadPhotoUseCase(photoUri) }.answer()
 				val tested = ImagesViewModel(imagesRepository, scheduleUploadPhotoUseCase, snackbarHostState)
 
-				tested.scheduleUploadPhoto(photoFile)
+				tested.scheduleUploadPhoto(photoUri)
 
 				coVerify { snackbarHostState.showSnackbar(message = any()) }
 			}
