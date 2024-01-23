@@ -1,9 +1,11 @@
 package com.intive.picover.shared.main.navigation.view
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -36,7 +38,7 @@ import com.intive.picover.shared.main.navigation.tab.ProfileTab
 import com.intive.picover.shared.main.viewmodel.MainViewModel
 import com.intive.picover.shared.main.viewmodel.state.MainState
 
-class MainScreen : Screen {
+internal class MainScreen : Screen {
 
 	@Composable
 	override fun Content() {
@@ -70,7 +72,7 @@ private fun UserAuthorizedContent(snackbarHostState: SnackbarHostState) {
 						}
 					}
 				},
-			) {
+			) { paddingValues ->
 				Row {
 					if (windowSize.widthSizeClass != WindowWidthSizeClass.Compact) {
 						NavigationRail {
@@ -79,7 +81,9 @@ private fun UserAuthorizedContent(snackbarHostState: SnackbarHostState) {
 							TabNavigationRailItem(ProfileTab)
 						}
 					}
-					CurrentTab()
+					Column(Modifier.padding(paddingValues)) {
+						CurrentTab()
+					}
 				}
 			}
 		}
