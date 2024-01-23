@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Picover"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Picover"
+        android:theme="@style/Theme.MaterialComponents.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".main.view.MainActivity"
