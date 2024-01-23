@@ -2,10 +2,10 @@ package com.intive.picover.shared.auth.repository
 
 import com.intive.picover.shared.auth.model.AccountDeletionResult
 import com.intive.picover.shared.auth.model.AuthEvent
+import com.intive.picover.shared.common.uri.Uri
 import com.intive.picover.shared.profile.model.Profile
 import dev.gitlive.firebase.auth.FirebaseAuth
 import dev.gitlive.firebase.auth.FirebaseAuthRecentLoginRequiredException
-import dev.gitlive.firebase.storage.File
 import dev.gitlive.firebase.storage.StorageReference
 import kotlinx.coroutines.flow.map
 
@@ -44,10 +44,10 @@ class AuthRepository(
 			AccountDeletionResult.ReAuthenticationNeeded
 		}
 
-	suspend fun updateUserAvatar(file: File) =
+	suspend fun updateUserAvatar(uri: Uri) =
 		runCatching {
 			val photoReference = storageReference.child("user/${currentUser.uid}")
-			photoReference.putFile(file)
+			photoReference.putFile(uri.toFile())
 			currentUser.updateProfile(photoUrl = photoReference.getDownloadUrl())
 			currentUserProfile()
 		}

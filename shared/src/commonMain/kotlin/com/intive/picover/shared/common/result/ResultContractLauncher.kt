@@ -1,7 +1,7 @@
 package com.intive.picover.shared.common.result
 
 import androidx.compose.runtime.Composable
-import dev.gitlive.firebase.storage.File
+import com.intive.picover.shared.common.uri.Uri
 
 class ResultContractLauncher(private val onLaunch: () -> Unit) {
 	fun launch() {
@@ -10,4 +10,4 @@ class ResultContractLauncher(private val onLaunch: () -> Unit) {
 }
 
 @Composable
-expect fun rememberTakePictureOrPickImageResultContract(onResult: (File) -> Unit): ResultContractLauncher
+expect fun rememberTakePictureOrPickImageResultContract(onResult: (Uri) -> Unit): ResultContractLauncher

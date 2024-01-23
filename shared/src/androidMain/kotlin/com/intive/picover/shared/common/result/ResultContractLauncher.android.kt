@@ -2,12 +2,12 @@ package com.intive.picover.shared.common.result
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.runtime.Composable
-import dev.gitlive.firebase.storage.File
+import com.intive.picover.shared.common.uri.Uri
 
 @Composable
-actual fun rememberTakePictureOrPickImageResultContract(onResult: (File) -> Unit): ResultContractLauncher {
+actual fun rememberTakePictureOrPickImageResultContract(onResult: (Uri) -> Unit): ResultContractLauncher {
 	val launcher = rememberLauncherForActivityResult(TakePictureOrPickImageContract()) { uri ->
-		uri?.let { onResult(File(it)) }
+		uri?.let { onResult(Uri(it)) }
 	}
 	return ResultContractLauncher {
 		launcher.launch(Unit)

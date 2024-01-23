@@ -2,6 +2,7 @@ package com.intive.picover.shared.auth.repository
 
 import com.intive.picover.shared.auth.model.AccountDeletionResult
 import com.intive.picover.shared.auth.model.AuthEvent
+import com.intive.picover.shared.common.uri.Uri
 import com.intive.picover.shared.profile.model.Profile
 import dev.gitlive.firebase.auth.FirebaseAuth
 import dev.gitlive.firebase.auth.FirebaseAuthRecentLoginRequiredException
@@ -74,12 +75,15 @@ class AuthRepositoryTest : ShouldSpec(
 
 		should("call putFile AND update photo AND return profile WHEN updateUserAvatar called") {
 			val photoFile: File = mockk()
+			val photoUri: Uri = mockk {
+				every { toFile() } returns photoFile
+			}
 			val photoReference: StorageReference = mockk(relaxUnitFun = true)
 			coEvery { storageReference.child("user/$userUid") } returns photoReference
 			every { firebaseAuth.currentUser } returns firebaseUser
 			coEvery { photoReference.getDownloadUrl() } returns userPhotoUrl
 
-			val result = tested.updateUserAvatar(photoFile)
+			val result = tested.updateUserAvatar(photoUri)
 
 			coVerify {
 				photoReference.putFile(photoFile)

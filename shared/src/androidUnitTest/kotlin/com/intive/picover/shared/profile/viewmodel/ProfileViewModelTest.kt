@@ -1,6 +1,5 @@
 package com.intive.picover.shared.profile.viewmodel
 
-import android.net.Uri
 import com.intive.picover.shared.R
 import com.intive.picover.shared.auth.model.AccountDeletionResult
 import com.intive.picover.shared.auth.repository.AuthRepository
@@ -9,10 +8,10 @@ import com.intive.picover.shared.common.state.MVIStateType.ERROR
 import com.intive.picover.shared.common.state.MVIStateType.LOADED
 import com.intive.picover.shared.common.state.MVIStateType.LOADING
 import com.intive.picover.shared.common.toast.ToastPublisher
+import com.intive.picover.shared.common.uri.Uri
 import com.intive.picover.shared.profile.model.Profile
 import com.intive.picover.shared.profile.model.ProfileState
 import com.intive.picover.shared.profile.model.ProfileUpdateResult
-import dev.gitlive.firebase.storage.File
 import dev.icerock.moko.resources.StringResource
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.IsolationMode
@@ -32,8 +31,7 @@ class ProfileViewModelTest : ShouldSpec(
 		isolationMode = IsolationMode.InstancePerTest
 
 		val profile: Profile = mockk(relaxed = true)
-		val uri: Uri = mockk()
-		val photoFile = File(uri)
+		val photoUri: Uri = mockk()
 		val authRepository: AuthRepository = mockk(relaxed = true)
 		val toastPublisher: ToastPublisher = mockk(relaxed = true)
 		val tested by lazy { ProfileViewModel(authRepository, toastPublisher) }
@@ -88,8 +86,8 @@ class ProfileViewModelTest : ShouldSpec(
 		should("load profile WHEN specific method called") {
 			listOf(
 				ManageProfileParam(
-					{ authRepository.updateUserAvatar(photoFile) },
-					{ tested.updateAvatar(photoFile) },
+					{ authRepository.updateUserAvatar(photoUri) },
+					{ tested.updateAvatar(photoUri) },
 				),
 				ManageProfileParam(
 					{ authRepository.updateUserName("username") },
@@ -111,8 +109,8 @@ class ProfileViewModelTest : ShouldSpec(
 		should("be loading WHEN specific method called and start executing") {
 			listOf(
 				ManageProfileParam(
-					{ authRepository.updateUserAvatar(photoFile) },
-					{ tested.updateAvatar(photoFile) },
+					{ authRepository.updateUserAvatar(photoUri) },
+					{ tested.updateAvatar(photoUri) },
 				),
 				ManageProfileParam(
 					{ authRepository.updateUserName("username") },
@@ -134,8 +132,8 @@ class ProfileViewModelTest : ShouldSpec(
 		should("be error WHEN specific method throws exception") {
 			listOf(
 				ManageProfileParam(
-					{ authRepository.updateUserAvatar(photoFile) },
-					{ tested.updateAvatar(photoFile) },
+					{ authRepository.updateUserAvatar(photoUri) },
+					{ tested.updateAvatar(photoUri) },
 				),
 				ManageProfileParam(
 					{ authRepository.updateUserName("username") },

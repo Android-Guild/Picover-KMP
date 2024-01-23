@@ -1,11 +1,11 @@
 package com.intive.picover.shared.common.result
 
 import androidx.compose.runtime.Composable
-import dev.gitlive.firebase.storage.File
+import com.intive.picover.shared.common.uri.Uri
 import platform.Foundation.NSLog
 
 @Composable
-actual fun rememberTakePictureOrPickImageResultContract(onResult: (File) -> Unit) =
+actual fun rememberTakePictureOrPickImageResultContract(onResult: (Uri) -> Unit) =
 	ResultContractLauncher {
 		NSLog("ResultContractLauncher is not yet implemented!")
 	}

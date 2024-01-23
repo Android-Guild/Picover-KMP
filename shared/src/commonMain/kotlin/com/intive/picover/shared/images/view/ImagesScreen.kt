@@ -25,9 +25,9 @@ import cafe.adriel.voyager.koin.getScreenModel
 import com.intive.picover.shared.common.image.PicoverImage
 import com.intive.picover.shared.common.result.rememberTakePictureOrPickImageResultContract
 import com.intive.picover.shared.common.state.DefaultStateDispatcher
+import com.intive.picover.shared.common.uri.Uri
 import com.intive.picover.shared.images.viewmodel.ImagesViewModel
 import com.intive.picover.shared.photos.model.Photo
-import dev.gitlive.firebase.storage.File
 
 class ImagesScreen : Screen {
 
@@ -45,7 +45,7 @@ class ImagesScreen : Screen {
 }
 
 @Composable
-private fun PhotosGrid(photos: List<Photo>, onImageTaken: (File) -> Unit) {
+private fun PhotosGrid(photos: List<Photo>, onImageTaken: (Uri) -> Unit) {
 	val takePictureOrPickImageLauncher = rememberTakePictureOrPickImageResultContract(onImageTaken)
 	Box(Modifier.fillMaxSize()) {
 		LazyVerticalStaggeredGrid(
