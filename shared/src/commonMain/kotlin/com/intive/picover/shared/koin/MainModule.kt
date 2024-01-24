@@ -15,7 +15,7 @@ import org.koin.dsl.module
 internal val mainModule = module {
 	single { SnackbarHostState() }
 	single { Firebase.storage.reference }
-	factory { AuthRepository(Firebase.auth, get()) }
+	factory { AuthRepository(Firebase.auth, null) }
 	factory { PartiesRepository(Firebase.firestore) }
 	factory { ImagesRepository(get(), Dispatchers.IO) }
 }

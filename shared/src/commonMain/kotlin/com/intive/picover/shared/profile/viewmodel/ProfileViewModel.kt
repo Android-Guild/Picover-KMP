@@ -53,9 +53,9 @@ class ProfileViewModel(
 	}
 
 	fun updateAvatar(uri: Uri) {
-		executeAndUpdateProfile {
-			authRepository.updateUserAvatar(uri)
-		}
+		// executeAndUpdateProfile {
+		// authRepository.updateUserAvatar(uri)
+		// }
 	}
 
 	fun onProfileUpdateResult(result: ProfileUpdateResult) {

@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.map
 
 class AuthRepository(
 	private val firebaseAuth: FirebaseAuth,
-	private val storageReference: StorageReference,
+	private val storageReference: StorageReference?,
 ) {
 
 	private val currentUser get() = firebaseAuth.currentUser!!
@@ -46,10 +46,10 @@ class AuthRepository(
 
 	suspend fun updateUserAvatar(uri: Uri) =
 		runCatching {
-			val photoReference = storageReference.child("user/${currentUser.uid}")
-			photoReference.putFile(uri.toFile())
-			currentUser.updateProfile(photoUrl = photoReference.getDownloadUrl())
-			currentUserProfile()
+			// val photoReference = storageReference.child("user/${currentUser.uid}")
+			// photoReference.putFile(uri.toFile())
+			// currentUser.updateProfile(photoUrl = photoReference.getDownloadUrl())
+			// currentUserProfile()
 		}
 
 	suspend fun updateUserName(userName: String) =

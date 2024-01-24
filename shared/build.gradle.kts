@@ -1,4 +1,4 @@
-import dev.icerock.gradle.MRVisibility
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
 	alias(libs.plugins.kotlin.multiplatform)
@@ -15,6 +15,8 @@ kotlin {
 	jvmToolchain(17)
 
 	androidTarget()
+
+	jvm("desktop")
 
 	listOf(
 		iosX64(),
@@ -72,6 +74,13 @@ kotlin {
 		iosMain.dependencies {
 			implementation(libs.ktor.engine.ios)
 		}
+		val desktopMain by getting {
+			dependencies {
+				implementation(compose.desktop.currentOs)
+				implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.7.3")
+			}
+			dependsOn(commonMain.get())
+		}
 		val androidUnitTest by getting {
 			dependencies {
 				implementation(libs.test.kotest.datatest)
@@ -89,7 +98,7 @@ kotlin {
 
 multiplatformResources {
 	multiplatformResourcesPackage = "com.intive.picover.shared"
-	multiplatformResourcesVisibility = MRVisibility.Internal
+	// multiplatformResourcesVisibility = MRVisibility.Internal
 }
 
 android {
@@ -111,5 +120,17 @@ android {
 	sourceSets {
 		// https://github.com/icerockdev/moko-resources/issues/531
 		getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
+	}
+}
+
+compose.desktop {
+	application {
+		mainClass = "MainKt"
+
+		nativeDistributions {
+			targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+			packageName = "com.intive.picover"
+			packageVersion = "1.0.0"
+		}
 	}
 }
