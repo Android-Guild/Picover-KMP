@@ -12,7 +12,7 @@ import com.intive.picover.shared.photos.usecase.ScheduleUploadPhotoUseCase
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class ImagesViewModel(
+internal class ImagesViewModel(
 	private val repository: ImagesRepository,
 	private val scheduleUploadPhotoUseCase: ScheduleUploadPhotoUseCase,
 	private val snackbarHostState: SnackbarHostState,
@@ -28,6 +28,8 @@ class ImagesViewModel(
 		screenModelScope.launch {
 			runCatching {
 				scheduleUploadPhotoUseCase(uri)
+				val newPhoto = Photo.withRandomSize(uri.data)
+				mutableState.update { it.copy(photos = it.photos + newPhoto) }
 			}.onSuccess {
 				snackbarHostState.showSnackbar("Upload scheduled successfully")
 			}.onFailure {
