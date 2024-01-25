@@ -9,7 +9,6 @@ import dev.gitlive.firebase.auth.auth
 import dev.gitlive.firebase.firestore.firestore
 import dev.gitlive.firebase.storage.storage
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import org.koin.dsl.module
 
 internal val mainModule = module {
@@ -17,5 +16,5 @@ internal val mainModule = module {
 	single { Firebase.storage.reference }
 	factory { AuthRepository(Firebase.auth, get()) }
 	factory { PartiesRepository(Firebase.firestore) }
-	factory { ImagesRepository(get(), Dispatchers.IO) }
+	factory { ImagesRepository(get(), Dispatchers.Default) }
 }

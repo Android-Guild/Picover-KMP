@@ -1,7 +1,7 @@
 plugins {
 	alias(libs.plugins.kotlin.multiplatform)
 	alias(libs.plugins.android.library)
-	alias(libs.plugins.kotlin.ksp)
+	//alias(libs.plugins.kotlin.ksp)
 	alias(libs.plugins.kotest)
 	alias(libs.plugins.kover)
 	alias(libs.plugins.resources)
@@ -10,6 +10,19 @@ plugins {
 }
 
 kotlin {
+
+	js(IR) {
+		//useCommonJs2()
+		browser {
+			commonWebpackConfig {
+				outputFileName = "KmpApp2.js"
+				//devServer = (devServer ?: KotlinWebpackConfig.DevServer()).copy()
+			}
+		}
+
+		binaries.executable()
+	}
+
 	jvmToolchain(17)
 
 	androidTarget()
@@ -27,6 +40,7 @@ kotlin {
 
 	sourceSets {
 		commonMain.dependencies {
+			implementation(compose.runtime)
 			implementation(compose.foundation)
 			implementation(compose.material3)
 			implementation(compose.materialIconsExtended)
@@ -70,6 +84,14 @@ kotlin {
 		iosMain.dependencies {
 			implementation(libs.ktor.engine.ios)
 		}
+		jsMain {
+			dependsOn(commonMain.get())
+			dependencies {
+				implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:1.7.3")
+				implementation(compose.html.core)
+				implementation(compose.runtime)
+			}
+		}
 		val androidUnitTest by getting {
 			dependencies {
 				implementation(libs.test.kotest.datatest)
@@ -109,4 +131,8 @@ android {
 		// https://github.com/icerockdev/moko-resources/issues/531
 		getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
 	}
+}
+
+compose.experimental {
+	web.application {}
 }

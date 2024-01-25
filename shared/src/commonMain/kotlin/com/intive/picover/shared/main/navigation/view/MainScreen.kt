@@ -51,7 +51,7 @@ internal class MainScreen : Screen {
 		when (state) {
 			MainState.Loading -> PicoverLoader(Modifier.fillMaxSize())
 			MainState.UserAuthorized -> UserAuthorizedContent()
-			MainState.UserUnauthorized -> signInLauncher.launch()
+			MainState.UserUnauthorized -> PicoverLoader(Modifier.fillMaxSize())
 		}
 	}
 }
