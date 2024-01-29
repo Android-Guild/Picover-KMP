@@ -3,7 +3,10 @@ package com.intive.picover.shared.photos.work
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.pm.ServiceInfo
 import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import androidx.work.CoroutineWorker
 import androidx.work.ForegroundInfo
@@ -27,14 +30,23 @@ internal class UploadPhotoWorker(
 	private val uploadOngoingNotificationId = Random.nextInt(1..10)
 	private val uploadFinishedNotificationId = 11
 
+	@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
 	override suspend fun doWork(): Result {
 		createNotificationChannel()
-		setForeground(ForegroundInfo(uploadOngoingNotificationId, notificationProvider.provideUploadOngoing(id)))
+		setForeground(buildForegroundInfo())
 		val photoUri = inputData.getString(UploadPhotoWork.URI_KEY)!!.toUri()
 		uploadPhoto(photoUri)
 		notificationManager.notify(uploadFinishedNotificationId, notificationProvider.provideUploadFinished(photoUri))
 		return Result.success()
 	}
+
+	@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+	private fun buildForegroundInfo() =
+		ForegroundInfo(
+			uploadOngoingNotificationId,
+			notificationProvider.provideUploadOngoing(id),
+			ServiceInfo.FOREGROUND_SERVICE_TYPE_SHORT_SERVICE,
+		)
 
 	private suspend fun uploadPhoto(photoUri: Uri) {
 		storageReference.child("image")
