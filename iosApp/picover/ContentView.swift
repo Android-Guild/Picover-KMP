@@ -12,19 +12,10 @@ struct ComposeView : UIViewControllerRepresentable {
 
 struct ContentView: View {
     
-    private let toastPublisher = ToastPublisher()
-    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Button("Toast") {
-                toastPublisher.show(text: MR.strings().DeleteAccountSuccessToastText)
-            }
             ComposeView()
         }
-        .padding()
     }
 }
 
