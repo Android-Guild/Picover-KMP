@@ -57,7 +57,6 @@ dependencies {
 	implementation(libs.android.compose.activity)
 	implementation(platform(libs.firebase.bom))
 	implementation(libs.firebase.crashlytics)
-	implementation(libs.play.services.auth)
 	debugImplementation(libs.leakcanary)
 	testImplementation(libs.test.kotest.runner)
 	testImplementation(libs.test.junit.launcher)
