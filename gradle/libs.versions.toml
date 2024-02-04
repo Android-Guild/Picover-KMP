@@ -47,7 +47,7 @@ voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voy
 test-mockk = "io.mockk:mockk:1.13.9"
 test-lint = { group = "com.android.tools.lint", name = "lint", version.ref = "lint" }
 test-lint-tests = { group = "com.android.tools.lint", name = "lint-tests", version.ref = "lint" }
-test-junit-launcher = "org.junit.platform:junit-platform-launcher:1.10.1"
+test-junit-launcher = "org.junit.platform:junit-platform-launcher:1.10.2"
 test-koin = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 test-kotest-engine = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest" }
 test-kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
