@@ -60,6 +60,9 @@ kotlin {
 			implementation(libs.android.compose.activity)
 			implementation(libs.android.core)
 			implementation(libs.firebaseui.auth)
+			implementation("com.google.android.gms:play-services-auth:20.7.0") {
+				because("Launching FirebaseUI on Android 14 crashes due to outdated dependency")
+			}
 			implementation(libs.workmanager)
 			implementation(libs.koin.android)
 			implementation(libs.koin.workmanager)

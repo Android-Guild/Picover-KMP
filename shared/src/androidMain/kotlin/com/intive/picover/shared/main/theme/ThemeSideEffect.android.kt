@@ -1,6 +1,7 @@
 package com.intive.picover.shared.main.theme
 
 import android.app.Activity
+import android.graphics.Color
 import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -15,7 +16,7 @@ actual val platformThemeSideEffect: @Composable (ColorScheme, Boolean) -> Unit =
 		SideEffect {
 			with(view.context as Activity) {
 				window.navigationBarColor = colorScheme.primary.copy(alpha = 0.08f).compositeOver(colorScheme.surface.copy()).toArgb()
-				window.statusBarColor = colorScheme.background.toArgb()
+				window.statusBarColor = Color.TRANSPARENT
 				WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !isDarkTheme
 				WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = !isDarkTheme
 			}
