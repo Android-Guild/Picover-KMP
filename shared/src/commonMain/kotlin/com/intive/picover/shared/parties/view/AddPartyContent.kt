@@ -20,12 +20,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
-import com.intive.picover.shared.MR
 import com.intive.picover.shared.common.text.PicoverOutlinedTextField
 import com.intive.picover.shared.common.validator.TextValidator
 import com.intive.picover.shared.main.navigation.popWithResult
 import com.intive.picover.shared.parties.model.AddPartyResult
-import dev.icerock.moko.resources.compose.stringResource
+import org.jetbrains.compose.resources.stringResource
+import picover.shared.generated.resources.Res
 
 class AddPartyBottomSheet : Screen {
 
@@ -63,7 +63,7 @@ fun AddPartyContent(
 		horizontalAlignment = Alignment.CenterHorizontally,
 	) {
 		PicoverOutlinedTextField(
-			labelText = stringResource(MR.strings.PartyScreenAddPartyBottomSheetTitle),
+			labelText = stringResource(Res.string.PartyScreenAddPartyBottomSheetTitle),
 			modifier = Modifier
 				.fillMaxWidth()
 				.padding(bottom = 16.dp),
@@ -78,7 +78,7 @@ fun AddPartyContent(
 			),
 		)
 		PicoverOutlinedTextField(
-			labelText = stringResource(MR.strings.PartyScreenAddPartyBottomSheetDescription),
+			labelText = stringResource(Res.string.PartyScreenAddPartyBottomSheetDescription),
 			modifier = Modifier
 				.fillMaxWidth()
 				.padding(bottom = 16.dp),
@@ -92,7 +92,7 @@ fun AddPartyContent(
 			onClick = onSaveButtonClick,
 		) {
 			Text(
-				text = stringResource(MR.strings.SaveButton),
+				text = stringResource(Res.string.SaveButton),
 				color = Color.White,
 			)
 		}

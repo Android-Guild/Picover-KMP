@@ -4,7 +4,6 @@ plugins {
 	alias(libs.plugins.kotlin.ksp)
 	alias(libs.plugins.kotest)
 	alias(libs.plugins.kover)
-	alias(libs.plugins.resources)
 	alias(libs.plugins.jetbrains.compose)
 	alias(libs.plugins.aboutLibraries)
 }
@@ -26,7 +25,14 @@ kotlin {
 	}
 
 	sourceSets {
+		all {
+			languageSettings {
+				optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
+			}
+		}
+
 		commonMain.dependencies {
+			implementation(compose.components.resources)
 			implementation(compose.foundation)
 			implementation(compose.material3)
 			implementation(compose.materialIconsExtended)
@@ -36,8 +42,6 @@ kotlin {
 			implementation(libs.firebase.auth)
 			implementation(libs.firebase.firestore)
 			implementation(libs.firebase.storage)
-			implementation(libs.resources)
-			implementation(libs.resources.compose)
 			implementation(libs.koin.core)
 			implementation(libs.koin.compose)
 			implementation(libs.voyager.navigator)
@@ -88,13 +92,11 @@ kotlin {
 	}
 }
 
-multiplatformResources {
-	multiplatformResourcesPackage = "com.intive.picover.shared"
-}
-
 android {
 	namespace = "com.intive.picover.shared"
 	compileSdk = 34
+
+	sourceSets["main"].resources.srcDir("src/commonMain/resources")
 
 	defaultConfig {
 		minSdk = 26
@@ -106,10 +108,5 @@ android {
 
 	buildFeatures {
 		compose = true
-	}
-
-	sourceSets {
-		// https://github.com/icerockdev/moko-resources/issues/531
-		getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
 	}
 }

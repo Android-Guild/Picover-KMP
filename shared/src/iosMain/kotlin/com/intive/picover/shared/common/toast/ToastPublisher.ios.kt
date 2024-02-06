@@ -1,11 +1,11 @@
 package com.intive.picover.shared.common.toast
 
-import dev.icerock.moko.resources.StringResource
-import dev.icerock.moko.resources.desc.desc
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.getString
 import platform.Foundation.NSLog
 
 actual class ToastPublisher {
-	actual fun show(text: StringResource) {
-		NSLog("Toast message: ${text.desc().localized()}")
+	actual suspend fun show(stringResource: StringResource) {
+		NSLog("Toast message: ${getString(stringResource)}")
 	}
 }

@@ -4,8 +4,8 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import com.intive.picover.shared.MR
-import dev.icerock.moko.resources.compose.stringResource
+import org.jetbrains.compose.resources.stringResource
+import picover.shared.generated.resources.Res
 
 @Composable
 fun DeleteAccountDialog(
@@ -16,19 +16,19 @@ fun DeleteAccountDialog(
 		onDismissRequest = onDismiss,
 		confirmButton = {
 			TextButton(onClick = onConfirm) {
-				Text(stringResource(MR.strings.DeleteButton).uppercase())
+				Text(stringResource(Res.string.DeleteButton).uppercase())
 			}
 		},
 		dismissButton = {
 			TextButton(onClick = onDismiss) {
-				Text(stringResource(MR.strings.CancelButton).uppercase())
+				Text(stringResource(Res.string.CancelButton).uppercase())
 			}
 		},
 		title = {
-			Text(stringResource(MR.strings.DeleteAccountConfirmationDialogTitle))
+			Text(stringResource(Res.string.DeleteAccountConfirmationDialogTitle))
 		},
 		text = {
-			Text(stringResource(MR.strings.DeleteAccountConfirmationDialogDescription))
+			Text(stringResource(Res.string.DeleteAccountConfirmationDialogDescription))
 		},
 	)
 }

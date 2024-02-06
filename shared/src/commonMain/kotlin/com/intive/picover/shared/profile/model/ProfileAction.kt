@@ -6,12 +6,12 @@ import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material.icons.filled.PersonRemove
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.intive.picover.shared.MR
-import dev.icerock.moko.resources.StringResource
+import org.jetbrains.compose.resources.StringResource
+import picover.shared.generated.resources.Res
 
 sealed class ProfileAction(val text: StringResource, val icon: ImageVector) {
-	data object ShowLicenses : ProfileAction(MR.strings.OpenLicenses, Icons.Filled.Copyright)
-	data object Logout : ProfileAction(MR.strings.LogoutButton, Icons.Filled.Logout)
-	data object DeleteAccount : ProfileAction(MR.strings.DeleteAccountButton, Icons.Filled.PersonRemove)
-	data object ShowGitHub : ProfileAction(MR.strings.GithubButton, Icons.Filled.OpenInBrowser)
+	data object ShowLicenses : ProfileAction(Res.string.OpenLicenses, Icons.Filled.Copyright)
+	data object Logout : ProfileAction(Res.string.LogoutButton, Icons.Filled.Logout)
+	data object DeleteAccount : ProfileAction(Res.string.DeleteAccountButton, Icons.Filled.PersonRemove)
+	data object ShowGitHub : ProfileAction(Res.string.GithubButton, Icons.Filled.OpenInBrowser)
 }

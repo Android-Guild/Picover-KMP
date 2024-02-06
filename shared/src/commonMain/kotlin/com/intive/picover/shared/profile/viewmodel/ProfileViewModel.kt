@@ -2,7 +2,6 @@ package com.intive.picover.shared.profile.viewmodel
 
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
-import com.intive.picover.shared.MR
 import com.intive.picover.shared.auth.model.AccountDeletionResult
 import com.intive.picover.shared.auth.repository.AuthRepository
 import com.intive.picover.shared.common.state.MVIStateType.ERROR
@@ -15,6 +14,7 @@ import com.intive.picover.shared.profile.model.ProfileState
 import com.intive.picover.shared.profile.model.ProfileUpdateResult
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import picover.shared.generated.resources.Res
 
 class ProfileViewModel(
 	private val authRepository: AuthRepository,
@@ -40,8 +40,8 @@ class ProfileViewModel(
 		screenModelScope.launch {
 			val accountDeletionResult = authRepository.deleteAccount()
 			when (accountDeletionResult) {
-				is AccountDeletionResult.Success -> MR.strings.DeleteAccountSuccessToastText
-				is AccountDeletionResult.ReAuthenticationNeeded -> MR.strings.DeleteAccountReAuthenticationToastText
+				is AccountDeletionResult.Success -> Res.string.DeleteAccountSuccessToastText
+				is AccountDeletionResult.ReAuthenticationNeeded -> Res.string.DeleteAccountReAuthenticationToastText
 			}.let {
 				toastPublisher.show(it)
 			}
