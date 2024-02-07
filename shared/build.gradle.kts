@@ -40,6 +40,7 @@ kotlin {
 			implementation(libs.compose.material3.window.size)
 			implementation(libs.coroutines)
 			implementation(libs.firebase.auth)
+			implementation(libs.firebase.crashlytics)
 			implementation(libs.firebase.firestore)
 			implementation(libs.firebase.storage)
 			implementation(libs.koin.core)

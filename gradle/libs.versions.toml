@@ -26,9 +26,8 @@ ktor-engine-android = { module = "io.ktor:ktor-client-okhttp", version.ref = "kt
 ktor-engine-ios = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 compose-material3-window-size = "dev.chrisbanes.material3:material3-window-size-class-multiplatform:0.3.2"
-firebase-bom = "com.google.firebase:firebase-bom:32.7.2"
 firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "firebase" }
-firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
+firebase-crashlytics = { module = "dev.gitlive:firebase-crashlytics", version.ref = "firebase" }
 firebase-storage = { module = "dev.gitlive:firebase-storage", version.ref = "firebase" }
 firebase-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "firebase" }
 firebaseui-auth = "com.firebaseui:firebase-ui-auth:8.0.2"
@@ -68,5 +67,5 @@ kotlin-ksp = { id = "com.google.devtools.ksp", version.strictly = "1.9.22-1.0.17
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }
 kover = "org.jetbrains.kotlinx.kover:0.7.5"
-firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.strictly = "4.1.0" }
-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.strictly = "2.9.9" }
+firebase-appdistribution = "com.google.firebase.appdistribution:4.1.0"
+firebase-crashlytics = "com.google.firebase.crashlytics:2.9.9"

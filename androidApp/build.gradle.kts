@@ -47,8 +47,6 @@ dependencies {
 	lintChecks(project(":lint"))
 	implementation(project(":shared"))
 	implementation(libs.android.compose.activity)
-	implementation(platform(libs.firebase.bom))
-	implementation(libs.firebase.crashlytics)
 	debugImplementation(libs.leakcanary)
 	testImplementation(libs.test.kotest.runner)
 	testImplementation(libs.test.junit.launcher)
