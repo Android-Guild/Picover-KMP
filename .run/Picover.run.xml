@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration name="Picover" CONFIG_VERSION="1" EXEC_TARGET_ID="BF3F39BC-5B46-4CE3-9CE5-A0BDBED4A61D"
+        XCODE_CONFIGURATION="Debug" XCODE_PROJECT="$PROJECT_DIR$/iosApp/Picover.xcodeproj"
+        XCODE_SCHEME="Picover"
+        default="false" factoryName="iOS Application"
+        type="KmmRunConfiguration">
+        <method v="2">
+            <option name="com.jetbrains.kmm.ios.BuildIOSAppTask" enabled="true" />
+        </method>
+    </configuration>
+</component>
