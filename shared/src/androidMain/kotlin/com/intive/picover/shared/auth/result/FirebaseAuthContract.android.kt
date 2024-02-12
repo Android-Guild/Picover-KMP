@@ -15,7 +15,7 @@ actual fun rememberFirebaseAuthResultContract(onResultCode: (Int) -> Unit): Resu
 			exitProcess(1)
 		}
 	}
-	return ResultContractLauncher {
+	return {
 		contract.launch(singInIntent)
 	}
 }

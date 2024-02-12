@@ -5,7 +5,7 @@ import com.intive.picover.shared.common.uri.Uri
 import platform.Foundation.NSLog
 
 @Composable
-actual fun rememberTakePictureOrPickImageResultContract(onResult: (Uri) -> Unit) =
-	ResultContractLauncher {
+actual fun rememberTakePictureOrPickImageResultContract(onResult: (Uri) -> Unit): ResultContractLauncher =
+	{
 		NSLog("ResultContractLauncher is not yet implemented!")
 	}

@@ -65,7 +65,7 @@ private fun PhotosGrid(photos: List<Photo>, onImageTaken: (Uri) -> Unit) {
 			modifier = Modifier
 				.padding(12.dp)
 				.align(Alignment.BottomEnd),
-			onClick = takePictureOrPickImageLauncher::launch,
+			onClick = takePictureOrPickImageLauncher::invoke,
 			containerColor = MaterialTheme.colorScheme.secondaryContainer,
 			contentColor = MaterialTheme.colorScheme.secondary,
 		) {

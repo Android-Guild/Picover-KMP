@@ -40,7 +40,7 @@ class ProfileScreen : Screen {
 		observeResult(ProfileUpdateResult::class).value?.let(viewModel::onProfileUpdateResult)
 		ProfileContent(
 			state = state,
-			onEditPhotoClick = takePictureOrPickImageLauncher::launch,
+			onEditPhotoClick = takePictureOrPickImageLauncher::invoke,
 			onEditNameClick = { bottomSheetNavigator.push(ProfileUpdateBottomSheet(state.profile!!.name)) },
 			onLogoutClick = viewModel::onLogoutClick,
 			onDeleteAccountCLick = viewModel::onDeleteAccountClick,
