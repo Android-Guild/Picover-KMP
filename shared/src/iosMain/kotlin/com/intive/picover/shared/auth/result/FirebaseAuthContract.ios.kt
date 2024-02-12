@@ -8,8 +8,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @Composable
-actual fun rememberFirebaseAuthResultContract(onResultCode: (Int) -> Unit) =
-	ResultContractLauncher {
+actual fun rememberFirebaseAuthResultContract(onResultCode: (Int) -> Unit): ResultContractLauncher =
+	{
 		// TODO temporary, just to simplify testing
 		GlobalScope.launch {
 			try {

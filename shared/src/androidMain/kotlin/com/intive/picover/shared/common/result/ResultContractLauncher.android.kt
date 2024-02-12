@@ -9,7 +9,7 @@ actual fun rememberTakePictureOrPickImageResultContract(onResult: (Uri) -> Unit)
 	val launcher = rememberLauncherForActivityResult(TakePictureOrPickImageContract()) { uri ->
 		uri?.let { onResult(Uri(it)) }
 	}
-	return ResultContractLauncher {
+	return {
 		launcher.launch(Unit)
 	}
 }
