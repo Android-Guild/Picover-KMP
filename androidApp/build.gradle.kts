@@ -25,7 +25,7 @@ android {
 	buildTypes {
 		getByName("debug") {
 			firebaseAppDistribution {
-				serviceCredentialsFile = "androidApp/src/service-credentials.json"
+				serviceCredentialsFile = "androidApp/service-credentials.json"
 			}
 		}
 		getByName("release") {
