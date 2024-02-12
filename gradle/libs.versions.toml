@@ -2,6 +2,7 @@
 aboutLibraries = "10.10.0"
 agp = "8.2.2"
 coil = "3.0.0-alpha04"
+coroutines = "1.7.3"
 koin = "3.5.3"
 kotlin = "1.9.22"
 kotest = "5.8.0"
@@ -23,7 +24,7 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-workmanager = { module = "io.insert-koin:koin-androidx-workmanager", version.ref = "koin" }
 ktor-engine-android = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-engine-ios = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
-coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
+coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 compose-material3-window-size = "dev.chrisbanes.material3:material3-window-size-class-multiplatform:0.3.2"
 firebase-bom = "com.google.firebase:firebase-bom:32.7.2"
 firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "firebase" }
@@ -41,6 +42,7 @@ voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", 
 voyager-bottom-sheet-navigator = { module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator", version.ref = "voyager" }
 voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
 
+test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 test-mockk = "io.mockk:mockk:1.13.9"
 test-lint = { group = "com.android.tools.lint", name = "lint", version.ref = "lint" }
 test-lint-tests = { group = "com.android.tools.lint", name = "lint-tests", version.ref = "lint" }

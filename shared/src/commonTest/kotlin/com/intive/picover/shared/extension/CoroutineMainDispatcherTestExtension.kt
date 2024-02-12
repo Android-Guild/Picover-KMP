@@ -1,4 +1,4 @@
-package com.intive.picover.shared.common.coroutines
+package com.intive.picover.shared.extension
 
 import io.kotest.core.annotation.AutoScan
 import io.kotest.core.listeners.AfterProjectListener

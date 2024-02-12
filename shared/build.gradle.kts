@@ -57,6 +57,7 @@ kotlin {
 			implementation(libs.aboutLibraries)
 		}
 		commonTest.dependencies {
+			implementation(libs.test.coroutines)
 			implementation(libs.test.koin)
 			implementation(libs.test.kotest.engine)
 		}
