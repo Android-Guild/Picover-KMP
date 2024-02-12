@@ -1,6 +1,5 @@
 package com.intive.picover.shared.parties.viewmodel
 
-import com.intive.picover.shared.common.coroutines.CoroutineTestExtension
 import com.intive.picover.shared.common.state.MVIStateType
 import com.intive.picover.shared.parties.model.PartiesState
 import com.intive.picover.shared.parties.model.Party
@@ -20,8 +19,6 @@ import kotlinx.coroutines.flow.flowOf
 
 class PartiesViewModelTest : ShouldSpec(
 	{
-		extension(CoroutineTestExtension())
-
 		val partiesRemote: List<PartyRemote> = mockk()
 		val parties: List<Party> = listOf(mockk())
 		val repository: PartiesRepository = mockk()

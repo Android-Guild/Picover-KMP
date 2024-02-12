@@ -1,22 +1,23 @@
 package com.intive.picover.shared.common.coroutines
 
-import io.kotest.core.listeners.AfterSpecListener
-import io.kotest.core.listeners.BeforeSpecListener
-import io.kotest.core.spec.Spec
+import io.kotest.core.annotation.AutoScan
+import io.kotest.core.listeners.AfterProjectListener
+import io.kotest.core.listeners.BeforeProjectListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 
+@AutoScan
 @OptIn(ExperimentalCoroutinesApi::class)
-class CoroutineTestExtension : BeforeSpecListener, AfterSpecListener {
+class CoroutineMainDispatcherTestExtension : BeforeProjectListener, AfterProjectListener {
 
-	override suspend fun beforeSpec(spec: Spec) {
+	override suspend fun beforeProject() {
 		Dispatchers.setMain(UnconfinedTestDispatcher())
 	}
 
-	override suspend fun afterSpec(spec: Spec) {
+	override suspend fun afterProject() {
 		Dispatchers.resetMain()
 	}
 }
