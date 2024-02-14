@@ -3,7 +3,6 @@ package com.intive.picover.shared.profile.viewmodel
 import com.intive.picover.shared.R
 import com.intive.picover.shared.auth.model.AccountDeletionResult
 import com.intive.picover.shared.auth.repository.AuthRepository
-import com.intive.picover.shared.common.coroutines.CoroutineTestExtension
 import com.intive.picover.shared.common.state.MVIStateType.ERROR
 import com.intive.picover.shared.common.state.MVIStateType.LOADED
 import com.intive.picover.shared.common.state.MVIStateType.LOADING
@@ -27,7 +26,6 @@ import io.mockk.mockk
 
 class ProfileViewModelTest : ShouldSpec(
 	{
-		extension(CoroutineTestExtension())
 		isolationMode = IsolationMode.InstancePerTest
 
 		val profile: Profile = mockk(relaxed = true)

@@ -1,7 +1,6 @@
 package com.intive.picover.shared.images.viewmodel
 
 import androidx.compose.material3.SnackbarHostState
-import com.intive.picover.shared.common.coroutines.CoroutineTestExtension
 import com.intive.picover.shared.common.mockkAnswer
 import com.intive.picover.shared.common.state.MVIStateType.ERROR
 import com.intive.picover.shared.common.state.MVIStateType.LOADED
@@ -25,8 +24,6 @@ import io.mockk.mockkObject
 
 internal class ImagesViewModelTest : ShouldSpec(
 	{
-		extension(CoroutineTestExtension())
-
 		val imagesRepository: ImagesRepository = mockk(relaxed = true)
 		val scheduleUploadPhotoUseCase: ScheduleUploadPhotoUseCase = mockk(relaxed = true)
 		val snackbarHostState: SnackbarHostState = mockk(relaxed = true)
