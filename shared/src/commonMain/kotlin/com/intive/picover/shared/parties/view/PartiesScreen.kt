@@ -29,14 +29,14 @@ import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.intive.picover.shared.MR
 import com.intive.picover.shared.common.state.DefaultStateDispatcher
 import com.intive.picover.shared.main.navigation.observeResult
 import com.intive.picover.shared.main.theme.Typography
 import com.intive.picover.shared.parties.model.AddPartyResult
 import com.intive.picover.shared.parties.model.Party
 import com.intive.picover.shared.parties.viewmodel.PartiesViewModel
-import dev.icerock.moko.resources.compose.stringResource
+import org.jetbrains.compose.resources.stringResource
+import picover.shared.generated.resources.Res
 
 internal class PartiesScreen : Screen {
 
@@ -89,7 +89,7 @@ private fun LoadedContent(
 			containerColor = MaterialTheme.colorScheme.secondaryContainer,
 			contentColor = MaterialTheme.colorScheme.secondary,
 		) {
-			Icon(Icons.Filled.Add, stringResource(MR.strings.PartyScreenFabAddIcon))
+			Icon(Icons.Filled.Add, stringResource(Res.string.PartyScreenFabAddIcon))
 		}
 	}
 }

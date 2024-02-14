@@ -9,7 +9,6 @@ ktlint = "1.1.1"
 ktor = "2.3.8"
 lint = "31.2.2"
 firebase = "1.11.1"
-resources = "0.23.0"
 voyager = "1.0.0"
 
 [libraries]
@@ -36,8 +35,6 @@ leakcanary = "com.squareup.leakcanary:leakcanary-android:2.13"
 lint-api = { group = "com.android.tools.lint", name = "lint-api", version.ref = "lint" }
 ktlint-cli = { group = "com.pinterest.ktlint", name = "ktlint-cli", version.ref = "ktlint" }
 ktlint-ruleset = { group = "com.pinterest.ktlint", name = "ktlint-cli-ruleset-core", version.ref = "ktlint" }
-resources = { module = "dev.icerock.moko:resources", version.ref = "resources" }
-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "resources" }
 workmanager = "androidx.work:work-runtime-ktx:2.9.0"
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyager" }
@@ -71,4 +68,3 @@ kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }
 kover = "org.jetbrains.kotlinx.kover:0.7.5"
 firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.strictly = "4.0.1" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.strictly = "2.9.9" }
-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "resources" }

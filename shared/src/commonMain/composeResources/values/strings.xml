@@ -25,8 +25,5 @@
     <string name="TextIsTooLong">Text is too long</string>
     <string name="TextShouldNotBeBlank">Text should not be blank</string>
     <string name="TextShouldNotBeEmpty">Text should not be empty</string>
-    <string name="UploadChannelName">Uploading</string>
-    <string name="UploadFinishedNotificationTitle">New photo has been uploaded!</string>
-    <string name="UploadOngoingNotificationTitle">Uploading…</string>
     <string name="UserName">User Name</string>
 </resources>

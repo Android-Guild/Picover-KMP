@@ -1,7 +1,7 @@
 package com.intive.picover.shared.common.toast
 
-import dev.icerock.moko.resources.StringResource
+import org.jetbrains.compose.resources.StringResource
 
 expect class ToastPublisher {
-	fun show(text: StringResource)
+	suspend fun show(stringResource: StringResource)
 }

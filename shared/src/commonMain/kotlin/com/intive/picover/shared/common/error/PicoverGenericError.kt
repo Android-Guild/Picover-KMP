@@ -14,13 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.intive.picover.shared.MR
 import com.intive.picover.shared.main.theme.Typography
-import dev.icerock.moko.resources.compose.stringResource
+import org.jetbrains.compose.resources.stringResource
+import picover.shared.generated.resources.Res
 
 @Composable
 fun PicoverGenericError(
-	message: String = stringResource(MR.strings.GenericErrorMessage),
+	message: String = stringResource(Res.string.GenericErrorMessage),
 	onRetryClick: (() -> Unit)? = null,
 ) {
 	Column(
@@ -43,7 +43,7 @@ fun PicoverGenericError(
 		)
 		onRetryClick?.let {
 			TextButton(onClick = it) {
-				Text(stringResource(MR.strings.RetryButton).uppercase())
+				Text(stringResource(Res.string.RetryButton).uppercase())
 			}
 		}
 	}

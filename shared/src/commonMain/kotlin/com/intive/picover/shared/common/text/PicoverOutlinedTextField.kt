@@ -16,7 +16,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import com.intive.picover.shared.common.validator.TextValidator
 import com.intive.picover.shared.common.validator.ValidationStatus
-import dev.icerock.moko.resources.compose.stringResource
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun PicoverOutlinedTextField(

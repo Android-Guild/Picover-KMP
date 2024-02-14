@@ -1,6 +1,5 @@
 package com.intive.picover.shared.profile.viewmodel
 
-import com.intive.picover.shared.R
 import com.intive.picover.shared.auth.model.AccountDeletionResult
 import com.intive.picover.shared.auth.repository.AuthRepository
 import com.intive.picover.shared.common.state.MVIStateType.ERROR
@@ -11,7 +10,6 @@ import com.intive.picover.shared.common.uri.Uri
 import com.intive.picover.shared.profile.model.Profile
 import com.intive.picover.shared.profile.model.ProfileState
 import com.intive.picover.shared.profile.model.ProfileUpdateResult
-import dev.icerock.moko.resources.StringResource
 import io.kotest.assertions.assertSoftly
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.ShouldSpec
@@ -23,6 +21,7 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.just
 import io.mockk.mockk
+import picover.shared.generated.resources.Res
 
 class ProfileViewModelTest : ShouldSpec(
 	{
@@ -46,9 +45,9 @@ class ProfileViewModelTest : ShouldSpec(
 
 		should("call deleteAccount on AuthRepository AND show on ToastPublisher depending on result WHEN onDeleteAccountConfirmClick") {
 			listOf(
-				AccountDeletionResult.Success to R.string.DeleteAccountSuccessToastText,
-				AccountDeletionResult.ReAuthenticationNeeded to R.string.DeleteAccountReAuthenticationToastText,
-			).forAll { (result, textId) ->
+				AccountDeletionResult.Success to Res.string.DeleteAccountSuccessToastText,
+				AccountDeletionResult.ReAuthenticationNeeded to Res.string.DeleteAccountReAuthenticationToastText,
+			).forAll { (result, stringResource) ->
 				coEvery { authRepository.deleteAccount() } returns result
 
 				tested.onDeleteAccountConfirmClick()
@@ -56,7 +55,7 @@ class ProfileViewModelTest : ShouldSpec(
 				tested.state.value shouldBe ProfileState(showDeleteAccountPopup = false)
 				coVerify {
 					authRepository.deleteAccount()
-					toastPublisher.show(StringResource(textId))
+					toastPublisher.show(stringResource)
 				}
 			}
 		}

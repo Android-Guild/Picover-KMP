@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
-import com.intive.picover.shared.MR
 import com.intive.picover.shared.common.error.PicoverGenericError
 import com.intive.picover.shared.common.result.rememberTakePictureOrPickImageResultContract
 import com.intive.picover.shared.common.state.MVIStateType.ERROR
@@ -25,7 +24,8 @@ import com.intive.picover.shared.profile.model.Profile
 import com.intive.picover.shared.profile.model.ProfileState
 import com.intive.picover.shared.profile.model.ProfileUpdateResult
 import com.intive.picover.shared.profile.viewmodel.ProfileViewModel
-import dev.icerock.moko.resources.compose.stringResource
+import org.jetbrains.compose.resources.stringResource
+import picover.shared.generated.resources.Res
 
 class ProfileScreen : Screen {
 
@@ -79,7 +79,7 @@ private fun ProfileContent(
 			}
 
 			LOADING -> {
-				val loadingProfile = Profile(null, stringResource(MR.strings.Loading), stringResource(MR.strings.Loading))
+				val loadingProfile = Profile(null, stringResource(Res.string.Loading), stringResource(Res.string.Loading))
 				LinearProgressIndicator(
 					modifier = Modifier
 						.fillMaxWidth(),
@@ -94,7 +94,7 @@ private fun ProfileContent(
 
 			ERROR -> {
 				PicoverGenericError(
-					message = stringResource(MR.strings.ProfileError),
+					message = stringResource(Res.string.ProfileError),
 					onRetryClick = onRetryClick,
 				)
 				Divider(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp))

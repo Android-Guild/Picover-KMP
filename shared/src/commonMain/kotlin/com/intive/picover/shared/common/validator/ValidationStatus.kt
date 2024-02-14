@@ -1,11 +1,11 @@
 package com.intive.picover.shared.common.validator
 
-import com.intive.picover.shared.MR
-import dev.icerock.moko.resources.StringResource
+import org.jetbrains.compose.resources.StringResource
+import picover.shared.generated.resources.Res
 
 sealed class ValidationStatus(val errorMessageId: StringResource?) {
-	data object EmptyText : ValidationStatus(MR.strings.TextShouldNotBeEmpty)
-	data object BlankText : ValidationStatus(MR.strings.TextShouldNotBeBlank)
-	data object TooLongText : ValidationStatus(MR.strings.TextIsTooLong)
+	data object EmptyText : ValidationStatus(Res.string.TextShouldNotBeEmpty)
+	data object BlankText : ValidationStatus(Res.string.TextShouldNotBeBlank)
+	data object TooLongText : ValidationStatus(Res.string.TextIsTooLong)
 	data object ValidText : ValidationStatus(null)
 }
