@@ -10,6 +10,7 @@ import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.intive.picover.shared.parties.view.PartiesScreen
 import org.jetbrains.compose.resources.stringResource
+import picover.shared.generated.resources.ItemParties
 import picover.shared.generated.resources.Res
 
 object PartiesTab : Tab {

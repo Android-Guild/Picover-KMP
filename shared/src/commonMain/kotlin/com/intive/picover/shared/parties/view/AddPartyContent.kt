@@ -25,7 +25,10 @@ import com.intive.picover.shared.common.validator.TextValidator
 import com.intive.picover.shared.main.navigation.popWithResult
 import com.intive.picover.shared.parties.model.AddPartyResult
 import org.jetbrains.compose.resources.stringResource
+import picover.shared.generated.resources.PartyScreenAddPartyBottomSheetDescription
+import picover.shared.generated.resources.PartyScreenAddPartyBottomSheetTitle
 import picover.shared.generated.resources.Res
+import picover.shared.generated.resources.SaveButton
 
 class AddPartyBottomSheet : Screen {
 

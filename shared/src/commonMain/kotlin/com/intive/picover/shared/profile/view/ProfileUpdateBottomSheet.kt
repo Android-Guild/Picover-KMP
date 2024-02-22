@@ -28,7 +28,9 @@ import com.intive.picover.shared.common.validator.TextValidator
 import com.intive.picover.shared.main.navigation.popWithResult
 import com.intive.picover.shared.profile.model.ProfileUpdateResult
 import org.jetbrains.compose.resources.stringResource
+import picover.shared.generated.resources.EditUserData
 import picover.shared.generated.resources.Res
+import picover.shared.generated.resources.UserName
 
 data class ProfileUpdateBottomSheet(val initialUsername: String) : Screen {
 

@@ -14,6 +14,8 @@ import com.intive.picover.shared.profile.model.ProfileState
 import com.intive.picover.shared.profile.model.ProfileUpdateResult
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import picover.shared.generated.resources.DeleteAccountReAuthenticationToastText
+import picover.shared.generated.resources.DeleteAccountSuccessToastText
 import picover.shared.generated.resources.Res
 
 class ProfileViewModel(

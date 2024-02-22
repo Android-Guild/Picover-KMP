@@ -25,6 +25,8 @@ import com.intive.picover.shared.profile.model.ProfileState
 import com.intive.picover.shared.profile.model.ProfileUpdateResult
 import com.intive.picover.shared.profile.viewmodel.ProfileViewModel
 import org.jetbrains.compose.resources.stringResource
+import picover.shared.generated.resources.Loading
+import picover.shared.generated.resources.ProfileError
 import picover.shared.generated.resources.Res
 
 class ProfileScreen : Screen {

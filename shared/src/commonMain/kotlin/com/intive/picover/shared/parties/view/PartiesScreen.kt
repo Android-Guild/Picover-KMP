@@ -36,6 +36,7 @@ import com.intive.picover.shared.parties.model.AddPartyResult
 import com.intive.picover.shared.parties.model.Party
 import com.intive.picover.shared.parties.viewmodel.PartiesViewModel
 import org.jetbrains.compose.resources.stringResource
+import picover.shared.generated.resources.PartyScreenFabAddIcon
 import picover.shared.generated.resources.Res
 
 internal class PartiesScreen : Screen {
