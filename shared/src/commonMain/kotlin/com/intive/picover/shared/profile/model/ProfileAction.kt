@@ -7,6 +7,10 @@ import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material.icons.filled.PersonRemove
 import androidx.compose.ui.graphics.vector.ImageVector
 import org.jetbrains.compose.resources.StringResource
+import picover.shared.generated.resources.DeleteAccountButton
+import picover.shared.generated.resources.GithubButton
+import picover.shared.generated.resources.LogoutButton
+import picover.shared.generated.resources.OpenLicenses
 import picover.shared.generated.resources.Res
 
 sealed class ProfileAction(val text: StringResource, val icon: ImageVector) {

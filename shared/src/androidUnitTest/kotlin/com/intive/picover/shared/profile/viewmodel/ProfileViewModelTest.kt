@@ -21,6 +21,8 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.just
 import io.mockk.mockk
+import picover.shared.generated.resources.DeleteAccountReAuthenticationToastText
+import picover.shared.generated.resources.DeleteAccountSuccessToastText
 import picover.shared.generated.resources.Res
 
 class ProfileViewModelTest : ShouldSpec(

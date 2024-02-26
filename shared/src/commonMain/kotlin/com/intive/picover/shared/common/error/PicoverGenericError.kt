@@ -16,7 +16,10 @@ import androidx.compose.ui.unit.dp
 import com.intive.picover.shared.main.theme.Typography
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import picover.shared.generated.resources.GenericErrorMessage
 import picover.shared.generated.resources.Res
+import picover.shared.generated.resources.RetryButton
+import picover.shared.generated.resources.ic_generic_error
 
 @Composable
 fun PicoverGenericError(
