@@ -25,7 +25,7 @@ koin-workmanager = { module = "io.insert-koin:koin-androidx-workmanager", versio
 ktor-engine-android = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-engine-ios = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-compose-material3-window-size = "dev.chrisbanes.material3:material3-window-size-class-multiplatform:0.3.2"
+compose-material3-window-size = "dev.chrisbanes.material3:material3-window-size-class-multiplatform:0.5.0"
 firebase-bom = "com.google.firebase:firebase-bom:32.7.2"
 firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "firebase" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
