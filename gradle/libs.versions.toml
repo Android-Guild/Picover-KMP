@@ -43,7 +43,7 @@ voyager-bottom-sheet-navigator = { module = "cafe.adriel.voyager:voyager-bottom-
 voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
 
 test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
-test-mockk = "io.mockk:mockk:1.13.9"
+test-mockk = "io.mockk:mockk:1.13.10"
 test-lint = { group = "com.android.tools.lint", name = "lint", version.ref = "lint" }
 test-lint-tests = { group = "com.android.tools.lint", name = "lint-tests", version.ref = "lint" }
 test-junit-launcher = "org.junit.platform:junit-platform-launcher:1.10.2"
