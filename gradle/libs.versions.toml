@@ -26,7 +26,7 @@ ktor-engine-android = { module = "io.ktor:ktor-client-okhttp", version.ref = "kt
 ktor-engine-ios = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 compose-material3-window-size = "dev.chrisbanes.material3:material3-window-size-class-multiplatform:0.5.0"
-firebase-bom = "com.google.firebase:firebase-bom:32.7.3"
+firebase-bom = "com.google.firebase:firebase-bom:32.7.4"
 firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "firebase" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
 firebase-storage = { module = "dev.gitlive:firebase-storage", version.ref = "firebase" }
