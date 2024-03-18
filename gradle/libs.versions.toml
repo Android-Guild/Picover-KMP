@@ -8,7 +8,7 @@ kotlin = "1.9.22"
 kotest = "5.8.1"
 ktlint = "1.2.1"
 ktor = "2.3.9"
-lint = "31.3.0"
+lint = "31.3.1"
 firebase = "1.11.1"
 voyager = "1.0.0"
 
