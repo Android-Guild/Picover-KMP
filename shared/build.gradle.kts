@@ -49,7 +49,7 @@ kotlin {
 			implementation(compose.material) // TODO https://github.com/adrielcafe/voyager/issues/185
 			implementation(libs.voyager.bottom.sheet.navigator)
 			implementation(libs.voyager.koin)
-			implementation("co.touchlab:stately-common:2.0.6") {
+			implementation("co.touchlab:stately-common:2.0.7") {
 				because("https://github.com/cashapp/sqldelight/issues/4357#issuecomment-1839905700")
 			}
 			implementation(libs.coil.compose)
