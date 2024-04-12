@@ -52,7 +52,7 @@ test-kotest-engine = { module = "io.kotest:kotest-framework-engine", version.ref
 test-kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 test-kotest-datatest = { module = "io.kotest:kotest-framework-datatest", version.ref = "kotest" }
 test-ktlint = { group = "com.pinterest.ktlint", name = "ktlint-test", version.ref = "ktlint" }
-test-slf4j = "org.slf4j:slf4j-simple:2.0.12"
+test-slf4j = "org.slf4j:slf4j-simple:2.0.13"
 
 [bundles]
 lint-test = ["test-lint", "test-lint-tests"]
