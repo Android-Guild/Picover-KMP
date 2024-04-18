@@ -14,7 +14,7 @@ voyager = "1.0.0"
 
 [libraries]
 aboutLibraries = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
-android-core = "androidx.core:core-ktx:1.12.0"
+android-core = "androidx.core:core-ktx:1.13.0"
 android-compose-activity = "androidx.activity:activity-compose:1.9.0"
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coil" }
