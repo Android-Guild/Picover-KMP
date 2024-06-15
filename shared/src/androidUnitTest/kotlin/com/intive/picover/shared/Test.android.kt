@@ -3,19 +3,21 @@
 package com.intive.picover.shared
 
 import com.intive.picover.shared.koin.platformModule
-import kotlin.test.DefaultAsserter.assertTrue
-import org.junit.jupiter.api.Test
+import io.kotest.core.spec.style.ShouldSpec
+import io.kotest.matchers.string.shouldContain
 import org.koin.core.context.startKoin
 import org.koin.test.KoinTest
 
-class AndroidGreetingTest : KoinTest {
+class AndroidGreetingTest : KoinTest, ShouldSpec(
+	{
+		val tested = Greeting()
 
-	@Test
-	fun testExample() {
-		startKoin {
-			modules(platformModule)
+		should("greeting contain Android name") {
+			startKoin {
+				modules(platformModule)
+			}
+
+			tested.greet() shouldContain "Android"
 		}
-
-		assertTrue("Check Android is mentioned", Greeting().greet().contains("Android"))
-	}
-}
+	},
+)
