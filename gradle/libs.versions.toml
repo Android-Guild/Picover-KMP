@@ -68,5 +68,5 @@ kotlin-ksp = { id = "com.google.devtools.ksp", version.strictly = "1.9.23-1.0.20
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }
 kover = "org.jetbrains.kotlinx.kover:0.7.6"
-firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.strictly = "4.2.0" }
+firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.strictly = "5.0.0" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.strictly = "3.0.1" }
