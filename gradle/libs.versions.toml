@@ -69,4 +69,4 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }
 kover = "org.jetbrains.kotlinx.kover:0.8.1"
 firebase-appdistribution = { id = "com.google.firebase.appdistribution", version.strictly = "5.0.0" }
-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.strictly = "3.0.1" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.strictly = "3.0.2" }
