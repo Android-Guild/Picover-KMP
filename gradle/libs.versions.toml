@@ -1,7 +1,7 @@
 [versions]
 aboutLibraries = "11.2.2"
 agp = "8.5.0"
-coil = "3.0.0-alpha07"
+coil = "3.0.0-alpha08"
 coroutines = "1.8.1"
 koin = "3.5.3"
 kotlin = "1.9.24"
