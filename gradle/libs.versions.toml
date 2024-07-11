@@ -1,6 +1,6 @@
 [versions]
 aboutLibraries = "11.2.2"
-agp = "8.5.0"
+agp = "8.5.1"
 coil = "3.0.0-alpha08"
 coroutines = "1.8.1"
 koin = "3.5.3"
